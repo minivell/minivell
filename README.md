@@ -1,2 +1,24 @@
 # minivell
 42seoul minishell 과제
+
+## Rule
+1. commit 작은 단위로 하기
+2. commit message 명확하고 자세하게 적기
+3. pr 보내고 상대방에게 바로 알려주기
+4. 42헤더는 완성 후 일괄적으로 설정하기 -> 시간 업데이트 때문에 confilct 위험 높음
+5. 상대방에게 모든 것을 공유한다는 느낌으로 주석 자세하게 작성하기
+6. 미니쉘 화이팅 ^__^
+
+## Git Convention
+|Tag Name|Description|
+|--|--|
+Feat|새로운 기능을 추가
+Fix|버그 수정
+Refactor|프로덕션 코드 리팩토링, 에러 수정이 아닌 모든 코드 수정
+Style|코드 포맷 변경, 세미 콜론 누락, 코드 수정이 없는 경우
+Chore|빌드 업무 수정, 패키지 매니저 수정, 패키지 관리자 구성 등 업데이트, Production Code 변경 없음
+Comment|필요한 주석 추가 및 변경
+Docs|문서 수정
+Chore|빌드 업무 수정, 패키지 매니저 수정, 패키지 관리자 구성 등 업데이트, Production Code 변경 없음
+Rename|파일 혹은 폴더명을 수정하거나 옮기는 작업만인 경우
+Remove|파일을 삭제하는 작업만 수행한 경우
