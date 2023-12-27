@@ -4,7 +4,7 @@ CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
 RM		= rm -f
 
-SRCS	=
+SRCS	=	echo.c
 
 OBJS	= $(SRCS:.c=.o)
 
