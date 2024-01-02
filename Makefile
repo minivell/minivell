@@ -11,8 +11,10 @@ CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
 RM		= rm -f
 
+# exec src files
 EXEC_SRCS =	exec_main.c\
 
+# parse src files
 PARSE_SRCS = parse_main.c\
 
 
