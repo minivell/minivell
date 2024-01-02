@@ -1,12 +1,16 @@
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef STRUCT_H
+# define STRUCT_H
 
 # include "./libft/libft.h"
 
-typedef enum
+# define TRUE 1
+# define FALSE 0
 
-// test code
-void	test_builtin(char **command);
-int		cd(char **cmd);
+typedef struct s_exec
+{
+	int		pipe[2];
+	char	**new_envp;
+}	t_exec;
+
 
 #endif
