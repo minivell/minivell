@@ -6,6 +6,7 @@ RM		= rm -f
 
 SRCS	=
 
+
 OBJS	= $(SRCS:.c=.o)
 
 LIBFT_DIR = ./libft
