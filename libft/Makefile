@@ -21,22 +21,22 @@ else
 endif
 
 ${NAME}:	${OBJS_T}
-			ar -rc ${NAME} ${OBJS_T}
+			@ar -rc ${NAME} ${OBJS_T}
 
 all:	${NAME}
 
 
 .c.o:
-	${CC} ${CFLAGS} -c $< -o $@ -I${INC}
+	@${CC} ${CFLAGS} -c $< -o $@ -I${INC}
 
 bonus:
-		make BONUS=1 all
+		@make BONUS=1 all
 
 clean:
-		rm -f ${OBJS} ${OBJS_b}
+		@rm -f ${OBJS} ${OBJS_b}
 
 fclean: clean
-		rm -f ${NAME}
+		@rm -f ${NAME}
 
 re: fclean all
 
