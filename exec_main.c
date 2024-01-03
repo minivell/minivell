@@ -1,9 +1,20 @@
 #include "minishell.h"
 
-int main(int ac, char *av[], char *envp[])
+//int main(int ac, char *av[], char *envp[])
+int	main(void)
 {
-	(void) ac;
-	(void) av;
-	(void) envp;
+	char	*str;
+
+	while (1)
+	{
+		str = readline("minivell$ ");
+		if (!str)
+			return (0);
+		add_history(str);
+		free(str);
+	}
+//	(void) ac;
+//	(void) av;
+//	(void) envp;
 	return 0;
 }
