@@ -15,7 +15,8 @@ RM		= rm -f
 EXEC_SRCS =	exec_main.c\
 
 # parse src files
-PARSE_SRCS = parse_main.c\
+PARSE_SRCS =	parse_main.c\
+				./parse/init_env.c \
 
 
 SRCS	=	${EXEC_SRCS}\

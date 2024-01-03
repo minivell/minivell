@@ -16,6 +16,14 @@ typedef enum e_type
 	HEREDOC
 }	t_type;
 
+typedef struct s_shell
+{
+	int				pipe_cnt;
+	int				heredoc_cnt;
+	struct s_env	*env;
+	struct s_cmd	*cmd;
+}	t_shell;
+
 typedef struct s_env
 {
 	char			*key;
@@ -23,6 +31,7 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
+// parse
 typedef struct s_redir
 {
 	t_type			type;
@@ -38,16 +47,12 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 }	t_cmd;
 
-typedef struct s_shell
+typedef struct s_token
 {
-	int		pipe_cnt;
-	int		heredoc_cnt;
-	t_env	*env;
-	t_cmd	*cmd;
-}	t_shell;
-
-// parse
-
+	t_type			type;
+	char			*value;
+	struct s_token	*next;
+}	t_token;
 
 // execute
 typedef struct s_exec
@@ -55,6 +60,5 @@ typedef struct s_exec
 	int		pipe[2];
 	char	**new_envp;
 }	t_exec;
-
 
 #endif
