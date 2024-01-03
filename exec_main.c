@@ -1,11 +1,11 @@
 #include "minishell.h"
 
-//int main(int ac, char *av[], char *envp[])
-int	main(void)
+int main(int ac, char *av[], char *envp[])
+//int	main(void)
 {
 	char	*str;
 
-	while (1)
+	while (TRUE)
 	{
 		str = readline("minivell$ ");
 		if (!str)
@@ -13,8 +13,8 @@ int	main(void)
 		add_history(str);
 		free(str);
 	}
-//	(void) ac;
-//	(void) av;
-//	(void) envp;
+	(void) ac;
+	(void) av;
+	(void) envp;
 	return 0;
 }
