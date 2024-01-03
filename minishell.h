@@ -8,4 +8,7 @@
 /*parse*/
 void	init_env(t_env **env, char *envp[]);
 
+# include <readline/readline.h>
+# include <readline/history.h>
+
 #endif
