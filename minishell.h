@@ -2,13 +2,14 @@
 # define MINISHELL_H
 
 # include "struct.h"
+
 # include <stdio.h>
 # include <stdlib.h>
 
-/*parse*/
-void	init_env(t_env **env, char *envp[]);
-
 # include <readline/readline.h>
 # include <readline/history.h>
+
+/*parse*/
+void	init_env(t_env **env, char *envp[]);
 
 #endif
