@@ -3,13 +3,11 @@
 
 # include "./libft/libft.h"
 
-# define TRUE 1
-# define FALSE 0
-
 // share
 typedef enum e_type
 {
-	PIPE = 1,
+	WORD = 1,
+	PIPE,
 	OUT_REDIR,
 	IN_REDIR,
 	APPEND_REDIR,
@@ -47,8 +45,15 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 }	t_cmd;
 
+typedef struct s_quote
+{
+	int		quote_flag;
+	char	quote;
+}	t_quote;
+
 typedef struct s_token
 {
+	int				token_flag;
 	t_type			type;
 	char			*value;
 	struct s_token	*next;
