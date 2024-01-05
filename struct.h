@@ -63,7 +63,9 @@ typedef struct s_token
 typedef struct s_exec
 {
 	int		pipe[2];
-	char	**new_envp;
+	char	**path;
+	char	**new_env;
+	t_env	*env;
 }	t_exec;
 
 #endif

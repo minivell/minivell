@@ -8,7 +8,8 @@
 # define FALSE 0
 
 # include "struct.h"
-# include "libft.h"
+# include "./libft/libft.h"
+
 
 # include <stdio.h>
 # include <stdlib.h>
