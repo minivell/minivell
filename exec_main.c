@@ -38,6 +38,30 @@ void	init_exec(t_shell *shell_info, t_exec *exec_info)
 	exec_info->path = get_path(exec_info);
 }
 
+void	multiprocess()
+{
+	return ;
+
+}
+
+int check_builtin()
+{
+
+	return (FALSE);
+}
+
+void	singleprocess()
+{
+	if (check_builtin() == TRUE)
+	{
+//		exec_builtin();
+		return ;
+	}
+	else{
+		return ;
+	}
+
+}
 
 int	execute(t_shell *shell_info)
 {
@@ -45,8 +69,12 @@ int	execute(t_shell *shell_info)
 
 	// 일단 minivell 에서 pipe가 돌아가게 만들기
 	init_exec(shell_info, &exec_info);
+	if (shell_info->pipe_cnt == 0)
+		singleprocess();
+	else
+		multiprocess();
 
-//	exec_info.new_env = make_new_env(&exec_info);
+
 	return 0;
 }
 
