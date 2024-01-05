@@ -14,17 +14,42 @@
 // double process
 // -> pipex
 
+
+char	**get_path(t_exec *exec_info)
+{
+	t_env	*node;
+
+//	if (!envp)
+//		error_handle(6);
+	node = exec_info->env;
+	while (node)
+	{
+		if (!ft_strncmp(node->key, "PATH", 4))
+			break ;
+		node = node->next;
+	}
+	return (ft_split((char const *)node->value, ':'));
+}
+
+
+void	init_exec(t_shell *shell_info, t_exec *exec_info)
+{
+	exec_info->env = shell_info->env;
+	exec_info->path = get_path(exec_info);
+}
+
+
 int	execute(t_shell *shell_info)
 {
 	t_exec exec_info;
-	pid_t pid;
 
-//	check_heredoc();
-	if (init_exec(&exec_info))
-		return (-1);
-	if (args->pipe)
+	// 일단 minivell 에서 pipe가 돌아가게 만들기
+	init_exec(shell_info, &exec_info);
 
+//	exec_info.new_env = make_new_env(&exec_info);
+	return 0;
 }
+
 
 
 int main(int ac, char *av[], char *envp[])
