@@ -8,11 +8,12 @@ PARSE	= minishell_parse
 #==========================================
 
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -fsanitize=address -g3
 RM		= rm -f
 
 # exec src files
-EXEC_SRCS =	exec_main.c\
+EXEC_SRCS =		exec_main.c\
+				./parse/init_env.c\
 
 # parse src files
 PARSE_SRCS =	parse_main.c\

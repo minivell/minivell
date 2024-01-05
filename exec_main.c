@@ -14,6 +14,18 @@
 // double process
 // -> pipex
 
+int	execute(t_shell *shell_info)
+{
+	t_exec exec_info;
+	pid_t pid;
+
+//	check_heredoc();
+	if (init_exec(&exec_info))
+		return (-1);
+	if (args->pipe)
+
+}
+
 
 int main(int ac, char *av[], char *envp[])
 {
@@ -26,6 +38,7 @@ int main(int ac, char *av[], char *envp[])
 		str = readline("minivell$ ");
 		if (!str)
 			return (0);
+		execute(&shell_info);
 		add_history(str);
 		free(str);
 	}
