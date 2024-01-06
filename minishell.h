@@ -27,4 +27,12 @@ void	token_add_back(t_token **node, t_token *new);
 void	free_token(t_token *token);
 int		parse_all(/*t_shell *shell_info, */char *str);
 
+/* execute */
+int		execute(t_shell *shell_info);
+int		check_n_exec_builtin(t_cmd *cmd_info);
+void	init_exec(t_shell *shell_info, t_exec *exec_info);
+
+
+
+
 #endif
