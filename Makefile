@@ -11,6 +11,9 @@ CC		= cc
 CFLAGS	= -Wall -Wextra -Werror -fsanitize=address -g3
 RM		= rm -f
 
+<<<<<<< HEAD
+SRCS	=	echo.c
+=======
 # exec src files
 EXEC_SRCS =		exec_main.c\
 				./parse/init_env.c\
@@ -28,6 +31,7 @@ SRCS	=	${EXEC_SRCS}\
 			${PARSE_SRCS}
 
 
+>>>>>>> c38465d375fc72793455e119c68e84fee81199d7
 
 OBJS	= $(SRCS:.c=.o)
 

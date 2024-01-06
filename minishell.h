@@ -1,6 +1,12 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+<<<<<<< HEAD
+# include <unistd.h>
+# include "./libft/libft.h"
+
+
+=======
 # define SUCCESS 0
 # define FAILURE -1
 
@@ -26,5 +32,6 @@ t_token	*token_new_node(t_type type, char *value);
 void	token_add_back(t_token **node, t_token *new);
 void	free_token(t_token *token);
 int		parse_all(/*t_shell *shell_info, */char *str);
+>>>>>>> c38465d375fc72793455e119c68e84fee81199d7
 
 #endif
