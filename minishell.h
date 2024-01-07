@@ -39,16 +39,17 @@ int		execute(t_shell *shell_info);
 // [execute/init_exec.c]
 void	init_exec(t_shell *shell_info, t_exec *exec_info);
 void	make_new_env(t_exec *exec_info);
-static size_t get_envlen(t_env *env);
 char	**get_path(t_exec *exec_info);
 
 // [execute/multi_process.c]
 void	multi_process(t_shell *shell_info, t_exec *exec_info);
-void	exec_child_process(t_shell *shell_info, t_exec *exec_info, t_cmd *cmd, int order);
+void	exec_child_process(t_exec *exec_info, t_cmd *cmd, int order, int last);
+void	exec_parents_process(t_exec *exec_info);
+
 
 // [execute/single_process.c]
 int	single_process(t_shell *shell_info, t_exec *exec_info);
-int	exec_cmd(t_shell *shell_info, t_exec *exec_info);
+int	exec_cmd(char **cmd_arg, t_exec *exec_info);
 char	*get_cmd_path(char *cmd, char **path);
 
 // [builtin/check_n_exec_builtin.c]
