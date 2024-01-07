@@ -13,6 +13,12 @@ RM		= rm -f
 
 # exec src files
 EXEC_SRCS =		exec_main.c\
+				./execute/execute.c\
+				./execute/init_exec.c\
+				./execute/single_process.c\
+				./execute/multi_process.c\
+				./builtin/check_n_exec_builtin.c\
+				./parse/init_env.c\
 
 # parse src files
 PARSE_SRCS =	parse_main.c\

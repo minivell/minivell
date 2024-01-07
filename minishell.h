@@ -13,6 +13,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -35,5 +36,16 @@ void	add_back_token(t_token **node, t_token *new);
 void	free_token(t_token *token);
 
 int		parse_all(/*t_shell *shell_info, */char *str);
+
+/* execute */
+int		execute(t_shell *shell_info);
+int		check_n_exec_builtin(t_cmd *cmd_info);
+void	init_exec(t_shell *shell_info, t_exec *exec_info);
+int	single_process(t_shell *shell_info, t_exec *exec_info);
+void	multi_process(void);
+
+
+
+
 
 #endif
