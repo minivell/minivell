@@ -13,6 +13,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -31,6 +32,9 @@ int		parse_all(/*t_shell *shell_info, */char *str);
 int		execute(t_shell *shell_info);
 int		check_n_exec_builtin(t_cmd *cmd_info);
 void	init_exec(t_shell *shell_info, t_exec *exec_info);
+int	single_process(t_shell *shell_info, t_exec *exec_info);
+void	multi_process(void);
+
 
 
 
