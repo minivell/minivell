@@ -38,6 +38,7 @@ int	exec_cmd(t_shell *shell_info, t_exec *exec_info)
 
 int	single_process(t_shell *shell_info, t_exec *exec_info)
 {
+	int	status;
 	pid_t	pid;
 
 	if (check_n_exec_builtin(shell_info->cmd) == SUCCESS)
@@ -48,10 +49,8 @@ int	single_process(t_shell *shell_info, t_exec *exec_info)
 		if (pid < 0)
 			return (FAILURE);
 		else if (pid == 0)
-		{
 			exec_cmd(shell_info, exec_info);
-		}
-
+		wait(&status);
 		return SUCCESS;
 	}
 }
