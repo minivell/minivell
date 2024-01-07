@@ -5,33 +5,33 @@ void add_token_if_not_empty(char **start, char **current, t_token **token, t_typ
     if (*current != *start)
     {
         char *value = ft_strndup(*start, *current - *start);
-        token_add_back(token, token_new_node(type, value));
+        add_back_token(token, new_token(type, value));
     }
 }
 
-t_token	*token_new_node(t_type type, char *value)
+t_token	*new_token(t_type type, char *value)
 {
-	t_token	*node;
+	t_token	*token;
 
-	node = ft_calloc(1, sizeof(t_token));
-	if (!node)
+	token = ft_calloc(1, sizeof(t_token));
+	if (!token)
 		return (NULL);
-	node->type = type;
-	node->value = value;
-	node->token_flag = TRUE;
-	node->next = NULL;
-	return (node);
+	token->type = type;
+	token->value = value;
+	token->token_flag = TRUE;
+	token->next = NULL;
+	return (token);
 }
 
-void	token_add_back(t_token **node, t_token *new)
+void	add_back_token(t_token **token, t_token *new)
 {
 	t_token	*tmp;
 
-	if (!(*node))
-		*node = new;
+	if (!(*token))
+		*token = new;
 	else
 	{
-		tmp = *node;
+		tmp = *token;
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = new;
