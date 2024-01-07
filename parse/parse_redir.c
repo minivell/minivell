@@ -76,21 +76,6 @@ void parse_and_extract_redir(t_token **token, char *str)
         add_back_token(token, new_token(WORD, ft_strdup(tmp)));
 }
 
-void identify_redir(t_token **token, char **str, char *start_str)
-{
-    t_quote q;
-    q.quote_flag = FALSE;
-    
-    if (!check_quote(&q, **str) && (**str == '<' || **str == '>'))
-    {
-        if (*str != start_str)
-            add_back_token(token, new_token(WORD, ft_strndup(start_str, *str - start_str)));
-        
-        create_redir_token(token, str); // start_str 인자 제거
-    }
-}
-
-
 void create_redir_token(t_token **token, char **str)
 {
     if (**str == '<' && *(*str + 1) != '<')
