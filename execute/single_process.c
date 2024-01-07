@@ -26,12 +26,12 @@ char	*get_cmd_path(char *cmd, char **path)
 }
 
 
-int	exec_cmd(t_shell *shell_info, t_exec *exec_info)
+int	exec_cmd(char **cmd_arg, t_exec *exec_info)
 {
 	char	*cmd_path;
 
-	cmd_path = get_cmd_path(shell_info->cmd->cmd_args[0], exec_info->path);
-	if (execve(cmd_path, shell_info->cmd->cmd_args, NULL) == -1)
+	cmd_path = get_cmd_path(cmd_arg[0], exec_info->path);
+	if (execve(cmd_path, cmd_arg, NULL) == -1)
 		return (FAILURE);
 	return (SUCCESS);
 }
@@ -49,7 +49,7 @@ int	single_process(t_shell *shell_info, t_exec *exec_info)
 		if (pid < 0)
 			return (FAILURE);
 		else if (pid == 0)
-			exec_cmd(shell_info, exec_info);
+			exec_cmd(shell_info->cmd->cmd_args, exec_info);
 		wait(&status);
 		return SUCCESS;
 	}
