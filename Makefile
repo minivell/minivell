@@ -24,6 +24,7 @@ EXEC_SRCS =		exec_main.c\
 PARSE_SRCS =	parse_main.c\
 				./parse/parse_all.c \
 				./parse/parse_pipe.c \
+				./parse/parse_redir.c \
 				./parse/token.c \
 				./parse/quote.c \
 				./parse/init_env.c \

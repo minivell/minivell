@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-int	set_quote(t_quote *quote, char c)
+int	check_quote(t_quote *quote, char c)
 {
 	if (quote->quote_flag == FALSE && (c == '\'' || c == '\"'))
 	{

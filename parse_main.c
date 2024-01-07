@@ -3,17 +3,28 @@
 int main(int ac, char *av[], char *envp[])
 {
 	t_shell shell_info;
+	char	*str;
 	(void) ac;
 	(void) av;
 	(void) envp;
 
 	init_env(&shell_info.env, envp);
-	//text code
-	// t_env *current_env;
-	// current_env = shell_info.env;
-	// while (current_env != NULL) {
-	//     printf("Key: %s, Value: %s\n", current_env->key, current_env->value);
-	//     current_env = current_env->next;
-	// }
+	while (TRUE)
+	{
+		str = readline("minivell$ ");
+		if (str == NULL)
+			break ;
+		if (!*str)
+		{
+			free(str);
+			continue ;
+		}
+		if (parse_all(/*&shell_info, */str) == SUCCESS)
+		{
+			// execute
+		}
+		add_history(str);
+		free(str);
+	}
 	return (0);
 }
