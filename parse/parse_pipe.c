@@ -8,12 +8,12 @@ void parse_pipe(t_token **token, char *str)
 	tmp = str;
 	while (*str)
 	{
-		if (set_quote(&quote, *str) == FALSE)
+		if (check_quote(&quote, *str) == FALSE)
 		{
 			if (*str == '|')
 			{
 				add_token_if_not_empty(&tmp, &str, token, WORD);
-				token_add_back(token, token_new_node(PIPE, ft_strdup("|")));
+				add_back_token(token, new_token(PIPE, ft_strdup("|")));
 				tmp = ++str;
 			}
 			else
