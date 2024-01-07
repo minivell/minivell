@@ -9,7 +9,7 @@ char	**get_path(t_exec *exec_info)
 	node = exec_info->env;
 	while (node)
 	{
-		if (!ft_strncmp(node->key, "PATH", 4))
+		if (ft_strncmp(node->key, "PATH", 4) == TRUE)
 			break ;
 		node = node->next;
 	}
@@ -37,7 +37,7 @@ void	make_new_env(t_exec *exec_info)
 
 	i = 0;
 	node = exec_info->env;
-	exec_info->env = malloc(sizeof(char *) * get_envlen(exec_info->env));
+	exec_info->new_env = malloc(sizeof(char *) * get_envlen(exec_info->env));
 	while (node)
 	{
 		tmp = ft_strjoin(node->key, "=");
