@@ -10,6 +10,8 @@ int	parse_all(/*t_shell *shell_info, */char *str)
 	parse_pipe(&token, str);
 	// 3. 리다이렉션 처리
 	parse_redir(&token);
+	// 4. white space 처리 -> token 완성
+	parse_space(&token);
 
 	t_token *current_token;
 	current_token = token;
@@ -18,7 +20,7 @@ int	parse_all(/*t_shell *shell_info, */char *str)
         printf("Type: %d, Value: [%s]\n", current_token->type, current_token->value);
         current_token = current_token->next;
     }
-	// 4. white space 처리 -> token 완성
+	
 	// 5. token 순회하면서 invalid token 삭제
 
 	// 6. token 없거나 에러 걸리면 token free하고 fail return -> 나중에
