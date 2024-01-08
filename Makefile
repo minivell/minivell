@@ -28,6 +28,8 @@ PARSE_SRCS =	parse_main.c\
 				./parse/token.c \
 				./parse/quote.c \
 				./parse/parse_space.c \
+				./parse/redir.c \
+				./parse/cmd.c \
 				./parse/init_env.c \
 
 
