@@ -30,6 +30,16 @@ int	parse_all(t_shell *shell_info, char *str)
 	
 	// 8. cmd init
 	// init_cmd(&shell_info->cmd, token);
-	// 9. cmd argument 합치기z
+	// 9. cmd argument 합치기
+
+	t_cmd *cmd = tokens_to_cmds(token);
+	if (cmd != NULL)
+    {
+        printf("Command Arguments Count: %d\n", cmd->cmd_cnt);
+        for (int i = 0; i < cmd->cmd_cnt; i++)
+        {
+            printf("Argument %d: %s\n", i, cmd->cmd_args[i]);
+        }
+    }
 	return (SUCCESS);
 }
