@@ -7,6 +7,9 @@
 # define TRUE 1
 # define FALSE 0
 
+# define O_STREAM 1
+# define I_STREAM 0
+
 # include "struct.h"
 # include "./libft/libft.h"
 
@@ -39,14 +42,27 @@ void 	parse_space(t_token **token);
 int		parse_all(/*t_shell *shell_info, */char *str);
 
 /* execute */
+
+// [execute/execute.c]
 int		execute(t_shell *shell_info);
-int		check_n_exec_builtin(t_cmd *cmd_info);
+
+// [execute/init_exec.c]
 void	init_exec(t_shell *shell_info, t_exec *exec_info);
+void	make_new_env(t_exec *exec_info);
+char	**get_path(t_exec *exec_info);
+
+// [execute/multi_process.c]
+void	multi_process(t_shell *shell_info, t_exec *exec_info);
+void	exec_child_process(t_exec *exec_info, t_cmd *cmd, int order, int last);
+void	exec_parents_process(t_exec *exec_info);
+
+
+// [execute/single_process.c]
 int	single_process(t_shell *shell_info, t_exec *exec_info);
-void	multi_process(void);
+int	exec_cmd(char **cmd_arg, t_exec *exec_info);
+char	*get_cmd_path(char *cmd, char **path);
 
-
-
-
+// [builtin/check_n_exec_builtin.c]
+int		check_n_exec_builtin(t_cmd *cmd_info);
 
 #endif

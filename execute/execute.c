@@ -14,6 +14,11 @@
 // double process
 // -> pipex
 
+
+//첫 child, 중간 child, 마지막 child, 명령어 실행
+
+
+
 int	execute(t_shell *shell_info)
 {
 	t_exec exec_info;
@@ -23,6 +28,6 @@ int	execute(t_shell *shell_info)
 	if (shell_info->pipe_cnt == 0)
 		single_process(shell_info, &exec_info);
 	else
-		multi_process();
+		multi_process(shell_info, &exec_info);
 	return 0;
 }
