@@ -7,8 +7,9 @@
 # define TRUE 1
 # define FALSE 0
 
-# define O_WORDEAM 1
-# define I_WORDEAM 0
+# define O_STREAM 1
+# define I_STREAM 0
+
 
 # include "struct.h"
 # include "./libft/libft.h"
