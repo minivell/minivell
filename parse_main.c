@@ -19,7 +19,7 @@ int main(int ac, char *av[], char *envp[])
 			free(str);
 			continue ;
 		}
-		if (parse_all(/*&shell_info, */str) == SUCCESS)
+		if (parse_all(&shell_info, str) == SUCCESS)
 		{
 			// execute
 		}
