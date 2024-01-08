@@ -1,5 +1,8 @@
 #include "../minishell.h"
 
+// -nnnnnnn -> 정상작동 처리
+// -n -n -n -n -n -> 정상작동 처리
+// -n-n-n-n-n-n -> 그냥 하나의 문자열로 처리
 void	echo(char **args)
 {
 	int	idx;
