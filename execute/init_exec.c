@@ -30,22 +30,15 @@ static size_t	get_envlen(t_env *env)
 void	make_new_env(t_exec *exec_info)
 {
 	int		i;
-<<<<<<< HEAD
-=======
 	size_t 	size;
->>>>>>> d30a8c2 (refactor: malloc 널 사이즈 1개 더 주고 널 추가)
 	char	*tmp;
 	t_env	*node;
 
 	i = 0;
 	node = exec_info->env;
-<<<<<<< HEAD
-	exec_info->new_env = malloc(sizeof(char *) * (get_envlen(exec_info->env) + 1));
-=======
 	size = get_envlen(exec_info->env);
 	exec_info->new_env = malloc(sizeof(char *) * (size + 1));
 	exec_info->new_env[size] = 0;
->>>>>>> d30a8c2 (refactor: malloc 널 사이즈 1개 더 주고 널 추가)
 	while (node)
 	{
 		tmp = ft_strjoin(node->key, "=");
