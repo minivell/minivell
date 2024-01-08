@@ -1,7 +1,8 @@
 #include "../minishell.h"
 
-int	parse_all(/*t_shell *shell_info, */char *str)
+int	parse_all(t_shell *shell_info, char *str)
 {
+	(void)shell_info;
 	t_token *token;
 	token = NULL;
 	// 1. parsing 전 에러 handling (>> 갯수, 파이프 닫혔는지 등 확인) -> 나중에
@@ -13,13 +14,13 @@ int	parse_all(/*t_shell *shell_info, */char *str)
 	// 4. white space 처리 -> token 완성
 	parse_space(&token);
 
-	t_token *current_token;
-	current_token = token;
-    while (current_token)
-    {
-        printf("Type: %d, Value: [%s]\n", current_token->type, current_token->value);
-        current_token = current_token->next;
-    }
+	// t_token *current_token;
+	// current_token = token;
+    // while (current_token)
+    // {
+    //     printf("Type: %d, Value: [%s]\n", current_token->type, current_token->value);
+    //     current_token = current_token->next;
+    // }
 	
 	// 5. token 순회하면서 invalid token 삭제
 
@@ -28,6 +29,7 @@ int	parse_all(/*t_shell *shell_info, */char *str)
 	// 7. envp update -> 은영 실행부에서
 	
 	// 8. cmd init
-	// 9. cmd argument 합치기
+	// init_cmd(&shell_info->cmd, token);
+	// 9. cmd argument 합치기z
 	return (SUCCESS);
 }
