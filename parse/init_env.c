@@ -27,11 +27,11 @@ static void	env_add_back(t_env **env, t_env *new)
 	return ;
 }
 
-void init_env(t_env **env, char *envp[])
+void	init_env(t_env **env, char *envp[])
 {
+	int		i;
 	char	*key;
 	char	*value;
-	int		i;
 
 	*env = NULL;
 	while (*envp)

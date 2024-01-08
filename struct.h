@@ -62,6 +62,10 @@ typedef struct s_token
 // execute
 typedef struct s_exec
 {
+	int		origin_stdin;
+	int		origin_stdout;
+	int 	infile_fd;
+	int		outfile_fd;
 	int		pipe[2];
 	char	**path;
 	char	**new_env;

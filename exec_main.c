@@ -1,8 +1,5 @@
 #include "minishell.h"
-
-
-
-
+int	g_exit_code;
 
 int main(int ac, char *av[], char *envp[])
 {
@@ -14,21 +11,21 @@ int main(int ac, char *av[], char *envp[])
 	{
 		str = readline("minivell$ ");
 		if (!str)
-			return (0);
+			break ;
 		execute(&shell_info);
 		add_history(str);
 		free(str);
 	}
-	//	text code
-	t_env *current_env;
-
-	current_env = shell_info.env;
-	while (current_env != NULL) {
-		printf("Key: %s, Value: %s\n", current_env->key, current_env->value);
-		current_env = current_env->next;
-	}
 	(void) ac;
 	(void) av;
 	(void) envp;
-	return 0;
+	return (g_exit_code);
+	//	text code
+//	t_env *current_env;
+//
+//	current_env = shell_info.env;
+//	while (current_env != NULL) {
+//		printf("Key: %s, Value: %s\n", current_env->key, current_env->value);
+//		current_env = current_env->next;
+//	}
 }

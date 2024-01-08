@@ -1,6 +1,7 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# define EXIT_FAILURE 1
 # define SUCCESS 0
 # define FAILURE -1
 
@@ -18,9 +19,12 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 
 # include <readline/readline.h>
 # include <readline/history.h>
+
+extern int	g_exit_code;
 
 /*parse*/
 
@@ -68,7 +72,7 @@ int		execute(t_shell *shell_info);
 // [execute/init_exec.c]
 void	init_exec(t_shell *shell_info, t_exec *exec_info);
 void	make_new_env(t_exec *exec_info);
-char	**get_path(t_exec *exec_info);
+//char	**get_path(t_exec *exec_info);
 
 // [execute/multi_process.c]
 void	multi_process(t_shell *shell_info, t_exec *exec_info);
@@ -77,11 +81,15 @@ void	exec_parents_process(t_exec *exec_info);
 
 
 // [execute/single_process.c]
-int	single_process(t_shell *shell_info, t_exec *exec_info);
+void	single_process(t_shell *shell_info, t_exec *exec_info);
 int	exec_cmd(char **cmd_arg, t_exec *exec_info);
 char	*get_cmd_path(char *cmd, char **path);
 
 // [builtin/check_n_exec_builtin.c]
 int		check_n_exec_builtin(t_cmd *cmd_info);
+
+// [builtin/echo.c]
+//void	echo(char **args);
+
 
 #endif
