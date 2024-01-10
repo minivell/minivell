@@ -56,6 +56,7 @@ void    free_redir(t_redir *redir);
 
 /*quote.c*/
 int		check_quote(t_quote *quote, char c);
+void 	parse_quote(t_token **token);
 
 /*token.c*/
 void	add_token_if_not_empty(char **start, char **current, t_token **token, t_type type);
