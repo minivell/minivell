@@ -39,6 +39,7 @@ void 	parse_pipe(t_token **token, char *str);
 
 /*parse_redir.c*/
 void    parse_redir(t_token **token);
+void parse_filename(t_token **token);
 void    parse_and_extract_redir(t_token **token, char *str);
 void    create_redir_token(t_token **token, char **str);
 
