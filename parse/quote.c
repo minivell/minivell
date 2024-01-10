@@ -14,7 +14,7 @@ int check_quote(t_quote *quote, char c)
     return (quote->quote_flag);
 }
 
-void 	parse_quote(t_token **token)
-{
-    return ;
-}
+// void 	parse_quote(t_token **token)
+// {
+//     return ;
+// }
