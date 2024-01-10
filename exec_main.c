@@ -28,4 +28,15 @@ int main(int ac, char *av[], char *envp[])
 //		printf("Key: %s, Value: %s\n", current_env->key, current_env->value);
 //		current_env = current_env->next;
 //	}
+
+	// cmd test code
+	// t_cmd *cmd = tokens_to_cmds(token);
+	// if (cmd != NULL)
+    // {
+    //     printf("Command Arguments Count: %d\n", cmd->cmd_cnt);
+    //     for (int i = 0; i < cmd->cmd_cnt; i++)
+    //     {
+    //         printf("Argument %d: %s\n", i, cmd->cmd_args[i]);
+    //     }
+    // }
 }
