@@ -1,18 +1,5 @@
 #include "../minishell.h"
 
-static void	wait_child(int last_child)
-{
-	int	status;
-	int	i;
-
-	i = 0;
-	while (i < last_child)
-	{
-		wait(&status);
-		i++;
-	}
-}
-
 void	exec_parents_process(t_exec *exec_info)
 {
 	close(exec_info->pipe[O_STREAM]);
