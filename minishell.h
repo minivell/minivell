@@ -1,101 +1,102 @@
 #ifndef MINISHELL_H
-# define MINISHELL_H
+#define MINISHELL_H
 
-# define EXIT_FAILURE 1
-# define SUCCESS 0
-# define FAILURE -1
+#define EXIT_FAILURE 1
+#define SUCCESS 0
+#define FAILURE -1
 
-# define TRUE 1
-# define FALSE 0
+#define TRUE 1
+#define FALSE 0
 
-# define O_STREAM 1
-# define I_STREAM 0
+#define O_STREAM 1
+#define I_STREAM 0
 
+#include "struct.h"
+#include "./libft/libft.h"
 
-# include "struct.h"
-# include "./libft/libft.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
 
+#include <readline/readline.h>
+#include <readline/history.h>
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-
-# include <readline/readline.h>
-# include <readline/history.h>
-
-extern int	g_exit_code;
+extern int g_exit_code;
 
 /*parse*/
 
 /*parse_all.c*/
-int		parse_all(t_shell *shell_info, char *str);
+int parse_all(t_shell *shell_info, char *str);
 
 /*init_env.c*/
-void	init_env(t_env **env, char *envp[]);
+void init_env(t_env **env, char *envp[]);
 
 /*parse_pipe.c*/
-void 	parse_pipe(t_token **token, char *str);
+void parse_pipe(t_token **token, char *str);
 
 /*parse_redir.c*/
-void    parse_redir(t_token **token);
+void parse_redir(t_token **token);
 void parse_filename(t_token **token);
-void    parse_and_extract_redir(t_token **token, char *str);
-void    create_redir_token(t_token **token, char **str);
+void parse_and_extract_redir(t_token **token, char *str);
+void create_redir_token(t_token **token, char **str);
 
 /*parse_space.c*/
-int     ft_isspace(int c);
-void 	parse_space(t_token **token);
+int ft_isspace(int c);
+void parse_space(t_token **token);
+
+/*parse_error.c*/
+int error_before_parse(t_token *token, char *str);
+int print_error_msg(void);
+int quote_error(char *str);
+int token_error(t_token *token);
 
 /*cmd.c*/
 // void    init_cmd(t_cmd **cmd, t_token *token);
 
-
 t_cmd *tokens_to_cmds(t_token *tokens);
-
 
 /*redir.c*/
 t_redir *new_redir(t_type type, char *filename);
-void    add_back_redir(t_redir **redir, t_redir *new);
-void    free_redir(t_redir *redir);
+void add_back_redir(t_redir **redir, t_redir *new);
+void free_redir(t_redir *redir);
 
 /*quote.c*/
-int		check_quote(t_quote *quote, char c);
-void 	parse_quote(t_token **token);
+int check_quote(t_quote *quote, char c);
+void parse_quote(t_token **token);
 
 /*token.c*/
-void	add_token_if_not_empty(char **start, char **current, t_token **token, t_type type);
-t_token	*new_token(t_type type, char *value);
-void	add_back_token(t_token **node, t_token *new);
-void    replace_token(t_token **token_list, t_token *old_token, t_token *new_tokens);
-void	free_token(t_token *token);
+void add_token_if_not_empty(char **start, char **current, t_token **token, t_type type);
+t_token *new_token(t_type type, char *value);
+void add_back_token(t_token **node, t_token *new);
+void replace_token(t_token **token_list, t_token *old_token, t_token *new_tokens);
+void free_token(t_token *token);
+void count_token_type(t_shell *shell_info, t_token *token);
 
 /* execute */
 
 // [execute/execute.c]
-int		execute(t_shell *shell_info);
+int execute(t_shell *shell_info);
 
 // [execute/init_exec.c]
-void	init_exec(t_shell *shell_info, t_exec *exec_info);
-void	make_new_env(t_exec *exec_info);
-//char	**get_path(t_exec *exec_info);
+void init_exec(t_shell *shell_info, t_exec *exec_info);
+void make_new_env(t_exec *exec_info);
+// char	**get_path(t_exec *exec_info);
 
 // [execute/multi_process.c]
-void	multi_process(t_shell *shell_info, t_exec *exec_info);
-void	exec_child_process(t_exec *exec_info, t_cmd *cmd, int order, int last);
-void	exec_parents_process(t_exec *exec_info);
-
+void multi_process(t_shell *shell_info, t_exec *exec_info);
+void exec_child_process(t_exec *exec_info, t_cmd *cmd, int order, int last);
+void exec_parents_process(t_exec *exec_info);
 
 // [execute/single_process.c]
-void	single_process(t_shell *shell_info, t_exec *exec_info);
-int		exec_cmd(char **cmd_args, t_exec *exec_info);
-char	*get_cmd_path(char *cmd, char **path);
+void single_process(t_shell *shell_info, t_exec *exec_info);
+int exec_cmd(char **cmd_args, t_exec *exec_info);
+char *get_cmd_path(char *cmd, char **path);
 
 // [builtin/check_n_exec_builtin.c]
-int		check_n_exec_builtin(t_cmd *cmd_info);
+int check_n_exec_builtin(t_cmd *cmd_info);
 
 // [builtin/echo.c]
-//void	echo(char **args);
-
+// void	echo(char **args);
 
 #endif
