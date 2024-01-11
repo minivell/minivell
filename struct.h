@@ -8,6 +8,7 @@ typedef enum e_type
 {
 	WORD = 1,
 	PIPE,
+	FILENAME,
 	OUT_REDIR,
 	IN_REDIR,
 	APPEND_REDIR,
