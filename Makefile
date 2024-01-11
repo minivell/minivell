@@ -41,6 +41,7 @@ PARSE_SRCS =	parse_main.c\
 				./parse/redir.c \
 				./parse/cmd.c \
 				./parse/init_env.c \
+				./parse/parse_error.c \
 
 
 SRCS	=	${EXEC_SRCS}\

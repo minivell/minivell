@@ -53,3 +53,15 @@ void	free_token(t_token *token)
 	}
 }
 
+void count_token_type(t_shell *shell_info, t_token *token)
+{
+    t_token *current_token = token;
+    while (current_token)
+    {
+        if (current_token->type == HEREDOC)
+            shell_info->heredoc_cnt++;
+        else if (current_token->type == PIPE)
+            shell_info->pipe_cnt++;
+        current_token = current_token->next;
+    }
+}

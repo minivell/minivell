@@ -1,5 +1,6 @@
 #include "minishell.h"
 
+int g_exit_code;
 int main(int ac, char *av[], char *envp[])
 {
 	t_shell shell_info;
