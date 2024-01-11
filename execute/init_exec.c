@@ -32,7 +32,6 @@ static size_t	get_envlen(t_env *env)
 char	**make_new_env(t_exec *exec_info, size_t size)
 {
 	int		i;
-	size_t 	size;
 	char	*tmp;
 	t_env	*node;
 	char **new_env;
