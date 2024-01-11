@@ -2,7 +2,6 @@
 
 int	parse_all(t_shell *shell_info, char *str)
 {
-	(void)shell_info;
 	t_token *token;
 	token = NULL;
 	// 1. parsing 전 에러 handling (>> 갯수, 파이프 닫혔는지 등 확인) -> 나중에
@@ -29,5 +28,18 @@ int	parse_all(t_shell *shell_info, char *str)
 	// init_cmd(&shell_info->cmd, token);
 	// 9. cmd argument 합치기
 
+	 shell_info->cmd = tokens_to_cmds(token);
+
+//	if (cmd != NULL)
+//    {
+//        printf("Command Arguments Count: %d\n", cmd->cmd_cnt);
+//        for (int i = 0; i < cmd->cmd_cnt; i++)
+//        {
+//            printf("Argument %d: %s\n", i, cmd->cmd_args[i]);
+//        }
+//    }
+
+//	printf("cmd: %s\n", shell_info->cmd->cmd_args[0]);
+//	printf("cmd: %s\n", shell_info->cmd->cmd_args[1]);
 	return (SUCCESS);
 }

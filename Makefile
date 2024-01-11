@@ -18,7 +18,15 @@ EXEC_SRCS =		exec_main.c\
 				./execute/single_process.c\
 				./execute/multi_process.c\
 				./builtin/check_n_exec_builtin.c\
-				./parse/init_env.c\
+				./parse/parse_all.c \
+                ./parse/parse_pipe.c \
+                ./parse/parse_redir.c \
+                ./parse/token.c \
+                ./parse/quote.c \
+                ./parse/parse_space.c \
+                ./parse/redir.c \
+                ./parse/cmd.c \
+                ./parse/init_env.c \
 
 # parse src files
 PARSE_SRCS =	parse_main.c\
