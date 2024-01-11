@@ -49,6 +49,10 @@ void 	parse_space(t_token **token);
 /*cmd.c*/
 // void    init_cmd(t_cmd **cmd, t_token *token);
 
+
+t_cmd *tokens_to_cmds(t_token *tokens);
+
+
 /*redir.c*/
 t_redir *new_redir(t_type type, char *filename);
 void    add_back_redir(t_redir **redir, t_redir *new);
@@ -82,7 +86,7 @@ void	exec_parents_process(t_exec *exec_info);
 
 // [execute/single_process.c]
 void	single_process(t_shell *shell_info, t_exec *exec_info);
-int	exec_cmd(char **cmd_arg, t_exec *exec_info);
+int		exec_cmd(char **cmd_args, t_exec *exec_info);
 char	*get_cmd_path(char *cmd, char **path);
 
 // [builtin/check_n_exec_builtin.c]

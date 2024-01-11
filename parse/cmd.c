@@ -24,7 +24,7 @@ t_cmd *tokens_to_cmds(t_token *tokens)
             free(cmd);
             return NULL;
         }
-        cmd->cmd_args[cmd->cmd_cnt] = strdup(current_token->value);
+        cmd->cmd_args[cmd->cmd_cnt] = ft_strdup(current_token->value);
         cmd->cmd_cnt++;
 
         current_token = current_token->next; // 다음 토큰으로 이동
