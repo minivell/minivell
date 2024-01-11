@@ -64,13 +64,12 @@ typedef struct s_token
 // execute
 typedef struct s_exec
 {
-	int		origin_stdin;
-	int		origin_stdout;
+	int		origin_stdin; // -> 따로 빼기
+	int		origin_stdout; // -> 따로 빼기
 	int 	infile_fd;
 	int		outfile_fd;
 	int		pipe[2];
 	char	**path;
-	char	**new_env;
 	t_env	*env;
 }	t_exec;
 
