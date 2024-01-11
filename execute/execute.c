@@ -26,8 +26,12 @@ int	execute(t_shell *shell_info)
 	// 일단 minivell 에서 pipe가 돌아가게 만들기
 	init_exec(shell_info, &exec_info);
 	if (shell_info->pipe_cnt == 0)
-		single_process(shell_info, &exec_info);
+		return 0;
+//		single_process(shell_info, &exec_info);
 	else
+	{
+		printf("shell_info->pipe_cnt: %d\n", shell_info->pipe_cnt);
 		multi_process(shell_info, &exec_info);
+	}
 	return 0;
 }
