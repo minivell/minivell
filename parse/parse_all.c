@@ -10,16 +10,17 @@ int	parse_all(t_shell *shell_info, char *str)
 	parse_pipe(&token, str);
 	parse_redir(&token);
 	parse_space(&token);
+	parse_filename(&token);
 	// parse_quote(&token);
 
 	// token test code
-	// t_token *current_token;
-	// current_token = token;
-    // while (current_token)
-    // {
-    //     printf("Type: %d, Value: [%s]\n", current_token->type, current_token->value);
-    //     current_token = current_token->next;
-    // }
+	t_token *current_token;
+	current_token = token;
+    while (current_token)
+    {
+        printf("Type: %d, Value: [%s]\n", current_token->type, current_token->value);
+        current_token = current_token->next;
+    }
 	
 	// 5. token 순회하면서 invalid token 삭제
 	// 6. token 없거나 에러 걸리면 token free하고 fail return -> 나중에
