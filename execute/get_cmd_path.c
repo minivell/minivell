@@ -25,6 +25,5 @@ char	*get_cmd_path(char *cmd, char **path)
 		free(cmd_path);
 		i++;
 	}
-	free (cmd_path);
 	return (NULL);
 }
