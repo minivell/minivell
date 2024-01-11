@@ -42,39 +42,7 @@ int	exec_cmd(char **cmd_args, t_exec *exec_info)
 	return (SUCCESS);
 }
 
-void	set_for_redir(t_redir *redir)
-{
-	(void)redir;
 
-	return ;
-//	int	fd;
-//	t_redir	*node;
-//
-//	node = redir;
-//	while (node)
-//	{
-//		if (node->type == IN_REDIR)
-//		{
-//			fd = open(redir->file, O_RDONLY);
-//			dup2(fd, STDIN_FILENO);
-//			close(fd);
-//		}
-//		else if (redir->type == REDIR_OUT)
-//		{
-//			fd = open(redir->file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-//			dup2(fd, STDOUT_FILENO);
-//			close(fd);
-//		}
-//		else if (redir->type == REDIR_APPEND)
-//		{
-//			fd = open(redir->file, O_WRONLY | O_CREAT | O_APPEND, 0644);
-//			dup2(fd, STDOUT_FILENO);
-//			close(fd);
-//		}
-//		redir = redir->next;
-//	}
-
-}
 
 void	single_process(t_shell *shell_info, t_exec *exec_info)
 {
@@ -82,7 +50,7 @@ void	single_process(t_shell *shell_info, t_exec *exec_info)
 	pid_t	pid;
 
 	if (shell_info->cmd->redir != NULL)
-		set_for_redir(shell_info->cmd->redir);
+		set_for_redir(exec_info, shell_info->cmd->redir);
 	if (check_n_exec_builtin(shell_info->cmd) == TRUE)
 		return ;
 	else
