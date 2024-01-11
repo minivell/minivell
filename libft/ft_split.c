@@ -100,10 +100,10 @@ char	**ft_split(char const *s, char c)
 	board = (char **)malloc(sizeof(char *) * (word_cnt + 1));
 	if (!board)
 		return (NULL);
-	board[word_cnt] = 0;
 	board = ft_malloc(board, tmp, c, word_cnt);
 	if (!board)
 		return (ft_free(board, 0));
+	board[word_cnt] = 0;
 	board = fill_string(board, tmp, c, word_cnt);
 	return (board);
 }
