@@ -14,20 +14,20 @@ int	parse_all(t_shell *shell_info, char *str)
 
 	shell_info->cmd = tokens_to_cmds(token);
 
-	// t_cmd 구조체 안의 내용 출력 확인 코드
-	t_cmd *current_cmd = shell_info->cmd;
-	int cmd_index = 0;
-	while (current_cmd != NULL)
-	{
-		printf("Command %d: ", cmd_index);
-		for (int i = 0; i < current_cmd->cmd_cnt; i++)
-		{
-			printf("Arg %d: [%s] ", i, current_cmd->cmd_args[i]);
-		}
-		printf("\n");
-		current_cmd = current_cmd->next;
-		cmd_index++;
-	}
+//	// t_cmd 구조체 안의 내용 출력 확인 코드
+//	t_cmd *current_cmd = shell_info->cmd;
+//	int cmd_index = 0;
+//	while (current_cmd != NULL)
+//	{
+//		printf("Command %d: ", cmd_index);
+//		for (int i = 0; i < current_cmd->cmd_cnt; i++)
+//		{
+//			printf("Arg %d: [%s] ", i, current_cmd->cmd_args[i]);
+//		}
+//		printf("\n");
+//		current_cmd = current_cmd->next;
+//		cmd_index++;
+//	}
 
 
 	// -> 여기서 달러, 리다이렉션 처리
