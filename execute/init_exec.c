@@ -1,57 +1,5 @@
 #include "../minishell.h"
 
-char	**get_path(t_exec *exec_info)
-{
-	t_env	*node;
-
-	node = *exec_info->env;
-	while (node)
-	{
-		if (ft_strncmp(node->key, "PATH", 4) == TRUE)
-			break ;
-		node = node->next;
-	}
-	if (node == NULL || node->value == NULL)
-		return (NULL);
-	return (ft_split((char const *)node->value, ':'));
-}
-
-size_t	get_envlen(t_env *env)
-{
-	size_t len;
-
-	len = 0;
-	while (env)
-	{
-		len++;
-		env = env->next;
-	}
-	return (len);
-}
-
-char	**make_new_env(t_exec *exec_info)
-{
-	int		i;
-	char	*tmp;
-	t_env	*node;
-	char **new_env;
-
-
-	i = 0;
-	node = *exec_info->env;
-	new_env = malloc(sizeof(char *) * (get_envlen(node) + 1));
-	while (node)
-	{
-		tmp = ft_strjoin(node->key, "=");
-		new_env[i] = ft_strjoin(tmp, node->value);
-		free(tmp);
-		i++;
-		node = node->next;
-	}
-	return (new_env);
-}
-
-
 t_exec 	*init_exec(t_shell *shell_info)
 {
 	t_exec	*exec_info;

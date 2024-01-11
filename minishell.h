@@ -75,13 +75,28 @@ void count_token_type(t_shell *shell_info, t_token *token);
 
 /* execute */
 
+// [execute/exec_cmd.c]
+int	exec_cmd(char **cmd_args, t_exec *exec_info);
+
+// [execute/exec_process.c]
+void	exec_parents_process(t_exec *exec_info);
+void	exec_child_process(t_exec *exec_info, t_cmd *cmd, int order, int last_child);
+
 // [execute/execute.c]
 int execute(t_shell *shell_info);
 
+// [execute/get_cmd_path.c]
+char	*get_cmd_path(char *cmd, char **path);
+
+// [execute/get_path.c]
+char	**get_path(t_exec *exec_info);
+
 // [execute/init_exec.c]
-void	init_exec(t_shell *shell_info, t_exec *exec_info);
-char	**make_new_env(t_exec *exec_info, size_t size);
-//char	**get_path(t_exec *exec_info);
+t_exec 	*init_exec(t_shell *shell_info);
+
+// [execute/make_new_env.c]
+char	**make_new_env(t_exec *exec_info);
+
 
 // [execute/multi_process.c]
 void multi_process(t_shell *shell_info, t_exec *exec_info);
@@ -99,7 +114,8 @@ void	set_for_redir(t_exec *exec_info, t_redir *redir);
 int check_n_exec_builtin(t_cmd *cmd_info);
 
 // [builtin/echo.c]
-int	echo(char **args);
+//int	echo(char **args);
+char	**make_new_env(t_exec *exec_info);
 
 
 #endif

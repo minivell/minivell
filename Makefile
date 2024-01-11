@@ -13,8 +13,13 @@ RM		= rm -f
 
 # exec src files
 EXEC_SRCS =		exec_main.c\
+				./execute/exec_cmd.c\
+				./execute/exec_process.c\
 				./execute/execute.c\
+				./execute/get_cmd_path.c\
+				./execute/get_path.c\
 				./execute/init_exec.c\
+				./execute/make_new_env.c\
 				./execute/single_process.c\
 				./execute/multi_process.c\
 				./execute/set_for_redir.c\
