@@ -29,6 +29,8 @@ EXEC_SRCS =		exec_main.c\
                 ./parse/redir.c \
                 ./parse/cmd.c \
                 ./parse/init_env.c \
+                ./parse/parse_error.c \
+
 
 # parse src files
 PARSE_SRCS =	parse_main.c\
