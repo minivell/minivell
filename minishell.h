@@ -79,9 +79,9 @@ void count_token_type(t_shell *shell_info, t_token *token);
 int execute(t_shell *shell_info);
 
 // [execute/init_exec.c]
-void init_exec(t_shell *shell_info, t_exec *exec_info);
-void make_new_env(t_exec *exec_info);
-// char	**get_path(t_exec *exec_info);
+void	init_exec(t_shell *shell_info, t_exec *exec_info);
+char	**make_new_env(t_exec *exec_info, size_t size);
+//char	**get_path(t_exec *exec_info);
 
 // [execute/multi_process.c]
 void multi_process(t_shell *shell_info, t_exec *exec_info);
