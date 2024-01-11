@@ -16,7 +16,7 @@ void	wait_child(int last_child)
 void	exec_parents_process(t_exec *exec_info)
 {
 	close(exec_info->pipe[O_STREAM]);
-	if (dup2(exec_info->pipe[I_STREAM], STDIN_FILENO) < 0)
+	if (dup2(exec_info->pipe[I_STREAM], STDIN_FILENO) == FAILURE)
 		return ; // error
 	close(exec_info->pipe[I_STREAM]);
 }
@@ -25,7 +25,7 @@ void	exec_parents_process(t_exec *exec_info)
 void	exec_child_process(t_exec *exec_info, t_cmd *cmd, int order, int last_child)
 {
 	close(exec_info->pipe[I_STREAM]);
-	if (order != last_child && dup2(exec_info->pipe[O_STREAM], STDOUT_FILENO) < 0)
+	if (order != last_child && dup2(exec_info->pipe[O_STREAM], STDOUT_FILENO) == FAILURE)
 		return ; // error
 	close(exec_info->pipe[O_STREAM]);
 
@@ -64,12 +64,12 @@ void	multi_process(t_shell *shell_info, t_exec *exec_info)
 	// }
 	while (cmd)
 	{
-		if (pipe(exec_info->pipe) < 0)
+		if (pipe(exec_info->pipe) == FAILURE)
 			return ; // error handle
 		pid = fork();
-		if (pid < 0)
+		if (pid == FAILURE)
 			return ;	// error handle
-		else if (pid == 0)
+		else if (pid == SUCCESS)
 			exec_child_process(exec_info, cmd, order, shell_info->pipe_cnt + 1);
 		else
 			exec_parents_process(exec_info);

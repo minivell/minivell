@@ -12,9 +12,9 @@ void	set_for_redir(t_exec *exec_info, t_redir *redir)
 		if (node->type == IN_REDIR)
 		{
 			exec_info->infile_fd = open(redir->filename, O_RDONLY);
-			if (exec_info->infile_fd < 0)
+			if (exec_info->infile_fd == FAILURE)
 				return ; // error
-			if (dup2(exec_info->infile_fd, STDIN_FILENO) < 0)
+			if (dup2(exec_info->infile_fd, STDIN_FILENO) == FAILURE)
 				return ; // error
 			close(exec_info->infile_fd);
 		}
@@ -25,18 +25,18 @@ void	set_for_redir(t_exec *exec_info, t_redir *redir)
 		else if (node->type == OUT_REDIR)
 		{
 			exec_info->outfile_fd = open(redir->filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-			if (exec_info->outfile_fd < 0)
+			if (exec_info->outfile_fd == FAILURE)
 				return ; // error
-			if (dup2(exec_info->outfile_fd, STDOUT_FILENO) < 0)
+			if (dup2(exec_info->outfile_fd, STDOUT_FILENO) == FAILURE)
 				return ; // error
 			close(exec_info->outfile_fd);
 		}
 		else if (node->type == APPEND_REDIR)
 		{
 			exec_info->outfile_fd = open(redir->filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
-			if (exec_info->outfile_fd < 0)
+			if (exec_info->outfile_fd == FAILURE)
 				return ; // error
-			if (dup2(exec_info->outfile_fd, STDOUT_FILENO) < 0)
+			if (dup2(exec_info->outfile_fd, STDOUT_FILENO) == FAILURE)
 				return ; // error
 			close(exec_info->outfile_fd);
 		}
