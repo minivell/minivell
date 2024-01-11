@@ -27,7 +27,7 @@ int main(int ac, char *av[], char *envp[])
 		}
 		if (parse_all(&shell_info, str) == SUCCESS)
 		{
-//			shell_info.pipe_cnt = 1; // for test multi process
+			shell_info.pipe_cnt = 1; // for test multi process
 			execute(&shell_info);
 		}
 		add_history(str);

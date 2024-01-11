@@ -1,10 +1,11 @@
 #include "../minishell.h"
 
-void	echo(char **args)
+int	echo(char **args)
 {
 	int	idx;
 	int	newline;
 
+	printf("echo\n");
 	idx = 1;
 	newline = TRUE;
 	while (args[idx] && ft_strncmp(args[idx], "-n ", 3) == TRUE)
@@ -19,6 +20,7 @@ void	echo(char **args)
 			printf(" ");
 		idx++;
 	}
-	if (newline == FALSE)
+	if (newline == TRUE)
 		printf("\n");
+	return (SUCCESS);
 }
