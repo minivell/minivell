@@ -90,12 +90,14 @@ void	exec_parents_process(t_exec *exec_info);
 void	single_process(t_shell *shell_info, t_exec *exec_info);
 int		exec_cmd(char **cmd_args, t_exec *exec_info);
 char	*get_cmd_path(char *cmd, char **path);
+void	set_for_redir(t_exec *exec_info, t_redir *redir);
+
 
 // [builtin/check_n_exec_builtin.c]
 int		check_n_exec_builtin(t_cmd *cmd_info);
 
 // [builtin/echo.c]
-//void	echo(char **args);
+int	echo(char **args);
 
 
 #endif

@@ -17,7 +17,9 @@ EXEC_SRCS =		exec_main.c\
 				./execute/init_exec.c\
 				./execute/single_process.c\
 				./execute/multi_process.c\
+				./execute/set_for_redir.c\
 				./builtin/check_n_exec_builtin.c\
+				./builtin/echo.c\
 				./parse/parse_all.c \
                 ./parse/parse_pipe.c \
                 ./parse/parse_redir.c \
