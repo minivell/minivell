@@ -60,6 +60,7 @@ t_cmd *tokens_to_cmds(t_token *tokens);
 t_redir *new_redir(t_type type, char *filename);
 void add_back_redir(t_redir **redir, t_redir *new);
 void free_redir(t_redir *redir);
+void append_redir_to_shell(t_shell *shell_info, t_token *tokens);
 
 /*quote.c*/
 int check_quote(t_quote *quote, char c);
