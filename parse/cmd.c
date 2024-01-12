@@ -12,16 +12,12 @@ t_cmd *tokens_to_cmds(t_token *tokens)
             t_cmd *new_cmd = (t_cmd *)malloc(sizeof(t_cmd));
             if (!new_cmd)
             {
-                while (head_cmd != NULL)
-                {
-                    t_cmd *temp = head_cmd;
-                    head_cmd = head_cmd->next;
-                    free(temp);
-                }
+                // 메모리 해제 코드...
                 return NULL;
             }
 
-            new_cmd->cmd_args = NULL;
+            new_cmd->cmd_args = (char **)malloc(sizeof(char *));  // NULL 포인터를 위한 공간 할당
+            new_cmd->cmd_args[0] = NULL;  // 첫 번째 요소를 NULL로 초기화
             new_cmd->cmd_cnt = 0;
             new_cmd->redir = NULL;
             new_cmd->next = NULL;
@@ -35,68 +31,32 @@ t_cmd *tokens_to_cmds(t_token *tokens)
 
             if (tokens->type == PIPE)
             {
-                tokens = tokens->next; // 파이프 토큰을 건너뛰기
+                tokens = tokens->next;
                 continue;
             }
         }
 
-        // 현재 토큰을 현재 커맨드의 인자 배열에 추가
-        current_cmd->cmd_args = realloc(current_cmd->cmd_args, sizeof(char *) * (current_cmd->cmd_cnt + 1));
-        if (!current_cmd->cmd_args)
+        char **new_args = (char **)malloc(sizeof(char *) * (current_cmd->cmd_cnt + 2));  // +1 개의 인자와 NULL을 위한 공간
+        if (!new_args)
         {
-            // 메모리 재할당 실패시, 할당된 모든 구조체 해제
-            while (head_cmd != NULL)
-            {
-                t_cmd *temp = head_cmd;
-                head_cmd = head_cmd->next;
-                free(temp);
-            }
+            // 메모리 해제 코드...
             return NULL;
         }
+        
+        // 기존 인자 복사
+        if (current_cmd->cmd_args)
+        {
+            ft_memcpy(new_args, current_cmd->cmd_args, sizeof(char *) * current_cmd->cmd_cnt);
+            free(current_cmd->cmd_args);
+        }
+        
+        new_args[current_cmd->cmd_cnt] = ft_strdup(tokens->value);
+        new_args[current_cmd->cmd_cnt + 1] = NULL;  // 배열의 끝에 NULL 추가
 
-        current_cmd->cmd_args[current_cmd->cmd_cnt] = ft_strdup(tokens->value);
-        current_cmd->cmd_args[current_cmd->cmd_cnt + 1] = NULL;
+        current_cmd->cmd_args = new_args;
         current_cmd->cmd_cnt++;
-
-        tokens = tokens->next; // 다음 토큰으로 이동
+        tokens = tokens->next;
     }
 
-    return head_cmd; // 첫 번째 커맨드 구조체 반환
+    return head_cmd;
 }
-
-// t_cmd *tokens_to_cmds(t_token *tokens)
-// {
-// 	t_cmd *cmd = (t_cmd *)malloc(sizeof(t_cmd));
-// 	if (!cmd)
-// 	{
-// 		return NULL;
-// 	}
-
-// 	cmd->cmd_args = NULL; // 커맨드 인자 배열 초기화
-// 	cmd->cmd_cnt = 0; // 커맨드 카운트 초기화
-// 	cmd->next = NULL; // 다음 커맨드 포인터 초기화
-
-//   t_token *current_token = tokens; // 현재 처리 중인 토큰
-//   while (current_token != NULL)
-//     {
-//         // 현재 토큰을 커맨드 인자 배열에 추가
-//         cmd->cmd_args = realloc(cmd->cmd_args, sizeof(char *) * (cmd->cmd_cnt + 1));
-//         if (!cmd->cmd_args)
-//         {
-//             // 메모리 재할당 오류 처리
-//             free(cmd);
-//             return NULL;
-//         }
-//         cmd->cmd_args[cmd->cmd_cnt] = ft_strdup(current_token->value);
-//         cmd->cmd_cnt++;
-
-// 		current_token = current_token->next; // 다음 토큰으로 이동
-// 	}
-
-// 	return cmd; // 완성된 커맨드 반환
-// }
-
-// void	init_cmd(t_cmd **cmd, t_token *token)
-// {
-//     return ;
-// }
