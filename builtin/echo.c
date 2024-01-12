@@ -8,7 +8,7 @@ int	echo(char **args)
 	printf("echo\n");
 	idx = 1;
 	newline = TRUE;
-	while (args[idx] && ft_strncmp(args[idx], "-n ", 3) == TRUE)
+	while (args[idx] && ft_strncmp(args[idx], "-n", 2) == TRUE)
 	{
 		newline = FALSE;
 		idx++;

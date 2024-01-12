@@ -7,7 +7,7 @@ int check_n_exec_builtin(t_cmd *cmd_info)
 	cmd = cmd_info->cmd_args[0];
 	if (ft_strncmp(cmd, "echo", 4) == TRUE)
 	{
-		g_exit_code = echo(cmd_info->cmd_args);
+//		g_exit_code = echo(cmd_info->cmd_args);
 	}
 	else if (ft_strncmp(cmd, "cd", 2) == TRUE)
 	{
