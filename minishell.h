@@ -29,7 +29,10 @@ extern int g_exit_code;
 /*parse_all.c*/
 int parse_all(t_shell *shell_info, char *str);
 
-/*init_env.c*/
+/*init.c*/
+void init_shell(t_shell *shell_info);
+
+/*env.c*/
 void init_env(t_env **env, char *envp[]);
 
 /*parse_pipe.c*/
