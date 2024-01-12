@@ -31,5 +31,6 @@ char	**make_new_env(t_exec *exec_info)
 		i++;
 		node = node->next;
 	}
+	new_env[i] = NULL;
 	return (new_env);
 }
