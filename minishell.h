@@ -29,7 +29,10 @@ extern int g_exit_code;
 /*parse_all.c*/
 int parse_all(t_shell *shell_info, char *str);
 
-/*init_env.c*/
+/*init.c*/
+void init_shell(t_shell *shell_info);
+
+/*env.c*/
 void init_env(t_env **env, char *envp[]);
 
 /*parse_pipe.c*/
@@ -60,6 +63,7 @@ t_cmd *tokens_to_cmds(t_token *tokens);
 t_redir *new_redir(t_type type, char *filename);
 void add_back_redir(t_redir **redir, t_redir *new);
 void free_redir(t_redir *redir);
+void append_redir_to_shell(t_shell *shell_info, t_token *tokens);
 
 /*quote.c*/
 int check_quote(t_quote *quote, char c);

@@ -47,7 +47,8 @@ PARSE_SRCS =	parse_main.c\
 				./parse/parse_space.c \
 				./parse/redir.c \
 				./parse/cmd.c \
-				./parse/init_env.c \
+				./parse/env.c \
+				./parse/init.c \
 				./parse/parse_error.c \
 
 
