@@ -55,6 +55,7 @@ t_cmd *tokens_to_cmds(t_token *tokens)
         }
 
         current_cmd->cmd_args[current_cmd->cmd_cnt] = ft_strdup(tokens->value);
+        current_cmd->cmd_args[current_cmd->cmd_cnt + 1] = NULL;
         current_cmd->cmd_cnt++;
 
         tokens = tokens->next; // 다음 토큰으로 이동
