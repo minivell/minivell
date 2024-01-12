@@ -57,3 +57,7 @@
 //			printf("cd: no such file or directory: %s\n", args[1]);
 //	}
 //}
+
+
+// 폴더 없을 때 처리하기
+// 폴더 안에 폴더 만들고 상위 폴더 삭제시 다 삭제
