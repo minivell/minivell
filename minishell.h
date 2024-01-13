@@ -93,7 +93,7 @@ int execute(t_shell *shell_info);
 char	*get_cmd_path(char *cmd, char **path);
 
 // [execute/get_path.c]
-char	**get_path(t_exec *exec_info);
+char	**get_path(void);
 
 // [execute/init_exec.c]
 t_exec 	*init_exec(t_shell *shell_info);
