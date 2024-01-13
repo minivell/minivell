@@ -1,16 +1,5 @@
 #include "../minishell.h"
 
-int error_before_parse(t_token *token, char *str)
-{
-	t_token *tmp;
-
-	tmp = NULL;
-	if (!token)
-		return (quote_error(str));
-	tmp = tmp->next;
-	return (token_error(token));
-}
-
 int print_error_msg(void)
 {
 	ft_putstr_fd("minivell: syntax error\n", 2);
