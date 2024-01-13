@@ -56,18 +56,16 @@ int token_error(t_token *token);
 
 /*cmd.c*/
 // void    init_cmd(t_cmd **cmd, t_token *token);
-
 t_cmd *tokens_to_cmds(t_token *tokens);
 
 /*redir.c*/
 t_redir *new_redir(t_type type, char *filename);
 void add_back_redir(t_redir **redir, t_redir *new);
 void free_redir(t_redir *redir);
-void append_redir_to_shell(t_shell *shell_info, t_token *tokens);
 
 /*quote.c*/
 int check_quote(t_quote *quote, char c);
-void parse_quote(t_token **token);
+void remove_outer_quotes(t_token **token);
 
 /*token.c*/
 void add_token_if_not_empty(char **start, char **current, t_token **token, t_type type);
