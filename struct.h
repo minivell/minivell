@@ -19,7 +19,6 @@ typedef struct s_shell
 {
 	int				pipe_cnt;
 	int				heredoc_cnt;
-	struct s_redir	*redir;
 	struct s_env	*env;
 	struct s_cmd	*cmd;
 }	t_shell;
