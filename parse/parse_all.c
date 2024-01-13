@@ -12,8 +12,6 @@ int	parse_all(t_shell *shell_info, char *str)
 	parse_space(&token);
 	parse_filename(&token);
 	// 여기서 quote 뜯는 로직 추가해야 함
-	append_redir_to_shell(shell_info, token);
-	
 	// 앞으로 구현해야 할 것
 	// 5. token 순회하면서 invalid token 삭제 (token 없거나 에러 걸리면 token free하고 fail return)
 	// 6. envp update -> 은영 실행부에서 처리
@@ -34,7 +32,7 @@ int	parse_all(t_shell *shell_info, char *str)
 
 	///////////////////redir 출력 확인 코드///////////////////////////
 	t_redir *current_redir;
-	current_redir = shell_info->redir;
+	current_redir = shell_info->cmd->redir;
 	while (current_redir)
 	{
 		const char *filename = current_redir->filename ? current_redir->filename : "[NULL]";
