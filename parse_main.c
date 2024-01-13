@@ -7,7 +7,6 @@ int main(int ac, char *av[], char *envp[])
 	char	*str;
 	(void) ac;
 	(void) av;
-	(void) envp;
 
 	init_env(&shell_info.env, envp);
 	while (TRUE)
