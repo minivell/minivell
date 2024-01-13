@@ -25,6 +25,8 @@ EXEC_SRCS =		exec_main.c\
 				./execute/set_for_redir.c\
 				./builtin/check_n_exec_builtin.c\
 				./builtin/echo.c\
+				./builtin/pwd.c\
+				./builtin/exit.c\
 				./parse/parse_all.c \
                 ./parse/parse_pipe.c \
                 ./parse/parse_redir.c \
@@ -33,7 +35,8 @@ EXEC_SRCS =		exec_main.c\
                 ./parse/parse_space.c \
                 ./parse/redir.c \
                 ./parse/cmd.c \
-                ./parse/init_env.c \
+                ./parse/env.c \
+                ./parse/init.c \
                 ./parse/parse_error.c \
 
 

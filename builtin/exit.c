@@ -1,5 +1,7 @@
-//void	ft_exit(char **args)
-//{
-//	// 프로그램을 종료합니다.
-//	exit(0);
-//}
+#include "../minishell.h"
+
+int exit_shell(void)
+{
+	printf("exit\n");
+	exit(SUCCESS);
+}

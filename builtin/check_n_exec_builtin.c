@@ -7,7 +7,7 @@ int check_n_exec_builtin(t_cmd *cmd_info)
 	cmd = cmd_info->cmd_args[0];
 	if (ft_strncmp(cmd, "echo", 4) == TRUE)
 	{
-//		g_exit_code = echo(cmd_info->cmd_args);
+		g_exit_code = echo(cmd_info->cmd_args);
 	}
 	else if (ft_strncmp(cmd, "cd", 2) == TRUE)
 	{
@@ -15,7 +15,7 @@ int check_n_exec_builtin(t_cmd *cmd_info)
 	}
 	else if (ft_strncmp(cmd, "pwd", 3) == TRUE)
 	{
-//		g_exit_code = pwd();
+		g_exit_code = pwd();
 	}
 	else if (ft_strncmp(cmd, "export", 6) == TRUE)
 	{
@@ -31,7 +31,7 @@ int check_n_exec_builtin(t_cmd *cmd_info)
 	}
 	else if (ft_strncmp(cmd, "exit", 4) == TRUE)
 	{
-//		g_exit_code = exit();
+		g_exit_code = exit_shell();
 	}
 	else
 		return (FALSE);

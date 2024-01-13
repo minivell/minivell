@@ -120,6 +120,9 @@ int check_n_exec_builtin(t_cmd *cmd_info);
 // [builtin/echo.c]
 int	echo(char **args);
 
+// [builtin/exit.c]
+int exit_shell(void);
+
 // [builtin/pwd.c]
 int	pwd(void);
 
