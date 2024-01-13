@@ -21,7 +21,7 @@ char	**make_new_env(t_exec *exec_info)
 	char **new_env;
 
 	i = 0;
-	node = *exec_info->env;
+	node = exec_info->env;
 	new_env = malloc(sizeof(char *) * (get_envlen(node) + 1));
 	while (node)
 	{

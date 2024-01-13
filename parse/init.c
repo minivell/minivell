@@ -6,6 +6,5 @@ void init_shell(t_shell *shell_info)
 		return;
 	shell_info->pipe_cnt = 0;
 	shell_info->heredoc_cnt = 0;
-	shell_info->env = NULL;
 	shell_info->cmd = NULL;
 }

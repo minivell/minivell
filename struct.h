@@ -67,7 +67,7 @@ typedef struct s_exec
 	int		outfile_fd;
 	int		pipe[2];
 	char	**path;
-	t_env	**env;
+	t_env	*env;
 }	t_exec;
 
 #endif
