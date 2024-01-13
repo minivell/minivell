@@ -46,24 +46,3 @@ void    free_redir(t_redir *redir)
 		curr = tmp;
 	}
 }
-
-void append_redir_to_shell(t_shell *shell_info, t_token *tokens)
-{
-	t_token *current_token = tokens;
-	t_redir *new;
-
-	while (current_token)
-	{
-		if (current_token->type >= OUT_REDIR && current_token->type <= HEREDOC)
-		{
-			if (current_token->next && current_token->next->type == FILENAME)
-			{
-				char *filename = ft_strdup(current_token->next->value);
-				new = new_redir(current_token->type, filename);
-				add_back_redir(&(shell_info->redir), new);
-				current_token = current_token->next;
-			}
-		}
-		current_token = current_token->next;
-	}
-}
