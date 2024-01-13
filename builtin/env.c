@@ -1,11 +1,15 @@
-//void	ft_env(char **args)
-//{
-//	extern char **environ;
-//	int i = 0;
-//
-//	while (environ[i])
-//	{
-//		printf("%s\n", environ[i]);
-//		i++;
-//	}
-//}
+#include "../minishell.h"
+
+int env(t_exec *exec_info)
+{
+	t_env *env;
+
+	env = exec_info->env;
+	while (env)
+	{
+		printf("env->key: %s\n", env->key);
+		printf("%s=%s\n", env->key, env->value);
+		env = env->next;
+	}
+	return (SUCCESS);
+}

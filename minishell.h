@@ -115,10 +115,13 @@ void	set_for_redir(t_exec *exec_info, t_redir *redir);
 
 
 // [builtin/check_n_exec_builtin.c]
-int check_n_exec_builtin(t_cmd *cmd_info);
+int check_n_exec_builtin(t_cmd *cmd_info, t_exec *exec_info);
 
 // [builtin/echo.c]
 int	echo(char **args);
+
+// [builtin/env.c]
+int env(t_exec *exec_info);
 
 // [builtin/exit.c]
 int exit_shell(void);

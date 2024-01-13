@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-int check_n_exec_builtin(t_cmd *cmd_info)
+int check_n_exec_builtin(t_cmd *cmd_info, t_exec *exec_info)
 {
 	char	*cmd;
 
@@ -27,7 +27,7 @@ int check_n_exec_builtin(t_cmd *cmd_info)
 	}
 	else if (ft_strncmp(cmd, "env", 3) == TRUE)
 	{
-//		g_exit_code = env();
+		g_exit_code = env(exec_info);
 	}
 	else if (ft_strncmp(cmd, "exit", 4) == TRUE)
 	{

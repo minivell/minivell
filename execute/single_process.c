@@ -7,7 +7,7 @@ void	single_process(t_shell *shell_info, t_exec *exec_info)
 
 	if (shell_info->cmd->redir != NULL)
 		set_for_redir(exec_info, shell_info->cmd->redir);
-	if (check_n_exec_builtin(shell_info->cmd) == TRUE)
+	if (check_n_exec_builtin(shell_info->cmd, exec_info) == TRUE)
 		return ;
 	else
 	{
