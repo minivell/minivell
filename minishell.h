@@ -118,8 +118,9 @@ void	set_for_redir(t_exec *exec_info, t_redir *redir);
 int check_n_exec_builtin(t_cmd *cmd_info);
 
 // [builtin/echo.c]
-//int	echo(char **args);
-char	**make_new_env(t_exec *exec_info);
+int	echo(char **args);
 
+// [builtin/pwd.c]
+int	pwd(void);
 
 #endif

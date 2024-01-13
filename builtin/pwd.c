@@ -1,13 +1,13 @@
-//void	ft_pwd(char **args)
-//{
-//	char cwd[1024];
-//
-//	if (getcwd(cwd, sizeof(cwd)) == NULL)
-//	{
-//		perror("minishell");
-//	}
-//	else
-//	{
-//		printf("%s\n", cwd);
-//	}
-//}
+#include "../minishell.h"
+
+int	pwd(void)
+{
+	char	*pwd;
+
+	pwd = getcwd(NULL, 0);
+	if (pwd == NULL)
+		return (EXIT_FAILURE);
+	printf("%s\n", pwd);
+	free (pwd);
+	return (SUCCESS);
+}
