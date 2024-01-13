@@ -1,17 +1,11 @@
 #include "../minishell.h"
 
-char	**get_path(t_exec *exec_info)
+char	**get_path(void)
 {
-	t_env	*node;
+	char *path;
 
-	node = *exec_info->env;
-	while (node)
-	{
-		if (ft_strncmp(node->key, "PATH", 4) == TRUE)
-			break ;
-		node = node->next;
-	}
-	if (node == NULL || node->value == NULL)
+	path = getenv("PATH");
+	if (path == NULL)
 		return (NULL);
-	return (ft_split((char const *)node->value, ':'));
+	return (ft_split(path, ':'));
 }
