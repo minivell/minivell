@@ -23,22 +23,25 @@ EXEC_SRCS =		exec_main.c\
 				./execute/single_process.c\
 				./execute/multi_process.c\
 				./execute/set_for_redir.c\
+				./builtin/cd.c\
 				./builtin/check_n_exec_builtin.c\
 				./builtin/echo.c\
 				./builtin/env.c\
 				./builtin/exit.c\
 				./builtin/pwd.c\
 				./parse/parse_all.c \
-                ./parse/parse_pipe.c \
-                ./parse/parse_redir.c \
-                ./parse/token.c \
-                ./parse/quote.c \
-                ./parse/parse_space.c \
-                ./parse/redir.c \
-                ./parse/cmd.c \
-                ./parse/env.c \
-                ./parse/init.c \
-                ./parse/parse_error.c \
+        		./parse/parse_pipe.c \
+        		./parse/parse_redir.c \
+        		./parse/token.c \
+        		./parse/quote.c \
+        		./parse/parse_space.c \
+        		./parse/redir.c \
+        		./parse/cmd.c \
+        		./parse/env.c \
+        		./parse/init.c \
+        		./parse/parse_error.c \
+        		./parse/token_check.c \
+
 
 
 # parse src files

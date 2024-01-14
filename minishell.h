@@ -114,6 +114,8 @@ int		exec_cmd(char **cmd_args, t_exec *exec_info);
 char	*get_cmd_path(char *cmd, char **path);
 void	set_for_redir(t_exec *exec_info, t_redir *redir);
 
+// [builtin/cd.c]
+int	cd(char **args, t_exec *exec_info);
 
 // [builtin/check_n_exec_builtin.c]
 int check_n_exec_builtin(t_cmd *cmd_info, t_exec *exec_info);
