@@ -7,7 +7,7 @@ static void	print_export(t_exec *exec_info)
 	node = exec_info->env;
 	while (node)
 	{
-		printf("declare -x %s=%s\n", node->key, node->value);
+		printf("declare -x %s=\"%s\"\n", node->key, node->value);
 		node = node->next;
 	}
 }
