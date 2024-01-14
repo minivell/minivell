@@ -39,10 +39,10 @@ int check_heredoc_limit(t_token *token)
 
 int check_redir_filename_error(t_token *token)
 {
-    while (token && token->next)
+    while (token)
     {
         if ((token->type >= OUT_REDIR && token->type <= HEREDOC) &&
-            token->next->type != FILENAME)
+            (!token->next || token->next->type != FILENAME))
             return print_error_msg();
         token = token->next;
     }
