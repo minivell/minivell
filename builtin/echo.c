@@ -5,11 +5,11 @@ int	echo(char **args)
 	int	idx;
 	int	newline;
 
-	printf("echo\n");
 	idx = 1;
 	newline = TRUE;
-	while (args[idx] && ft_strncmp(args[idx], "-n", 2) == TRUE)
+	while (args[idx] && ft_strcmp(args[idx], "-n") == 0)
 	{
+		printf("-n option\n");
 		newline = FALSE;
 		idx++;
 	}

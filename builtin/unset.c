@@ -9,7 +9,7 @@ int unset(t_exec *exec_info, char **args)
 	node = exec_info->env;
 	while (node)
 	{
-		if (ft_strncmp(node->key, args[1], ft_strlen(args[1])) == TRUE)
+		if (ft_strcmp(node->key, args[1]) == 0)
 		{
 			tmp = node;
 			prev->next = tmp->next;

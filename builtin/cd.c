@@ -7,7 +7,7 @@ static void	set_oldpwd(t_exec *exec_info, char *oldpwd)
 	node = exec_info->env;
 	while (node)
 	{
-		if (ft_strncmp(node->key, "OLDPWD", 7) == TRUE)
+		if (ft_strcmp(node->key, "OLDPWD") == 0)
 		{
 			node->value = oldpwd;
 			return ;
@@ -22,8 +22,8 @@ int	cd(char **args, t_exec *exec_info)
 	char	*path;
 
 	cur_pwd = getcwd(NULL, 0);
-	if (args[1] == NULL || ft_strncmp(args[1], "~", 2) == TRUE
-	|| ft_strncmp(args[1], "~/", 2) == TRUE)
+	if (args[1] == NULL || ft_strcmp(args[1], "~") == 0
+	|| ft_strcmp(args[1], "~/") == 0)
 		path = getenv("HOME");
 	else
 		path = args[1];
@@ -38,6 +38,6 @@ int	cd(char **args, t_exec *exec_info)
 		return (1);
 	}
 	set_oldpwd(exec_info, cur_pwd);
-//	free(cur_pwd);
+	free(cur_pwd);
 	return (g_exit_code);
 }
