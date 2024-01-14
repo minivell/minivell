@@ -34,6 +34,8 @@ void init_shell(t_shell *shell_info);
 
 /*env.c*/
 void init_env(t_env **env, char *envp[]);
+void	env_add_back(t_env **env, t_env *new);
+t_env	*new_env(char *key, char *value);
 
 /*parse_pipe.c*/
 void parse_pipe(t_token **token, char *str);
@@ -114,6 +116,8 @@ int		exec_cmd(char **cmd_args, t_exec *exec_info);
 char	*get_cmd_path(char *cmd, char **path);
 void	set_for_redir(t_exec *exec_info, t_redir *redir);
 
+// [builtin/cd.c]
+int	cd(char **args, t_exec *exec_info);
 
 // [builtin/check_n_exec_builtin.c]
 int check_n_exec_builtin(t_cmd *cmd_info, t_exec *exec_info);
@@ -127,7 +131,13 @@ int env(t_exec *exec_info);
 // [builtin/exit.c]
 int exit_shell(void);
 
+// [builtin/export.c]
+int	export(t_exec *exec_info, char **args);
+
 // [builtin/pwd.c]
 int	pwd(void);
+
+// [builtin/unset.c]
+int	unset(t_exec *exec_info, char **args);
 
 #endif
