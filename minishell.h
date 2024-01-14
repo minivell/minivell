@@ -137,4 +137,7 @@ int	export(t_exec *exec_info, char **args);
 // [builtin/pwd.c]
 int	pwd(void);
 
+// [builtin/unset.c]
+int	unset(t_exec *exec_info, char **args);
+
 #endif

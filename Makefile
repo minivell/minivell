@@ -30,6 +30,7 @@ EXEC_SRCS =		exec_main.c\
 				./builtin/exit.c\
 				./builtin/export.c\
 				./builtin/pwd.c\
+				./builtin/unset.c\
 				./parse/parse_all.c \
         		./parse/parse_pipe.c \
         		./parse/parse_redir.c \
