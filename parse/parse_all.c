@@ -22,13 +22,13 @@ int	parse_all(t_shell *shell_info, char *str)
 	///////////////////////////출력 확인 코드 모음///////////////////////////////
 
 	///////////////token 출력 확인 코드////////////////////
-	t_token *current_token;
-	current_token = token;
-    while (current_token)
-    {
-        printf("Type: %d, Value: [%s]\n", current_token->type, current_token->value);
-        current_token = current_token->next;
-    }	
+//	t_token *current_token;
+//	current_token = token;
+//    while (current_token)
+//    {
+//        printf("Type: %d, Value: [%s]\n", current_token->type, current_token->value);
+//        current_token = current_token->next;
+//    }
 
 	///////////////////redir 출력 확인 코드///////////////////////////
 	// t_redir *current_redir;

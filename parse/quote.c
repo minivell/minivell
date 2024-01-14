@@ -44,7 +44,7 @@ void remove_outer_quotes(t_token **token_tmp)
                 new_str[new_index++] = str[i];
         }
         new_str[new_index] = '\0';
-        strlcpy(str, new_str, len + 1);
+        ft_strlcpy(str, new_str, len + 1);
         free(new_str);
         token = token->next;
     }
