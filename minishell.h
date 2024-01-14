@@ -34,6 +34,8 @@ void init_shell(t_shell *shell_info);
 
 /*env.c*/
 void init_env(t_env **env, char *envp[]);
+void	env_add_back(t_env **env, t_env *new);
+t_env	*new_env(char *key, char *value);
 
 /*parse_pipe.c*/
 void parse_pipe(t_token **token, char *str);
@@ -128,6 +130,9 @@ int env(t_exec *exec_info);
 
 // [builtin/exit.c]
 int exit_shell(void);
+
+// [builtin/export.c]
+int	export(t_exec *exec_info, char **args);
 
 // [builtin/pwd.c]
 int	pwd(void);

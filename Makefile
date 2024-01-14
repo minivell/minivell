@@ -28,6 +28,7 @@ EXEC_SRCS =		exec_main.c\
 				./builtin/echo.c\
 				./builtin/env.c\
 				./builtin/exit.c\
+				./builtin/export.c\
 				./builtin/pwd.c\
 				./parse/parse_all.c \
         		./parse/parse_pipe.c \
