@@ -3,16 +3,13 @@
 static void	set_oldpwd(t_exec *exec_info, char *oldpwd)
 {
 	t_env	*node;
-//	char *tmp;
 
 	node = exec_info->env;
 	while (node)
 	{
 		if (ft_strncmp(node->key, "OLDPWD", 7) == TRUE)
 		{
-//			tmp = node->value;
 			node->value = oldpwd;
-//			free(tmp);
 			return ;
 		}
 		node = node->next;
