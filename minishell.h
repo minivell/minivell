@@ -18,7 +18,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
-
 #include <readline/readline.h>
 #include <readline/history.h>
 
@@ -35,6 +34,10 @@ void init_shell(t_shell *shell_info);
 /*env.c*/
 void init_env(t_env **env, char *envp[]);
 
+/*convert_env.c*/
+char *find_env_value(t_env *env_list, char *key);
+void replace_env_variables_in_token(t_shell *shell_info, t_token *token);
+
 /*parse_pipe.c*/
 void parse_pipe(t_token **token, char *str);
 
@@ -49,7 +52,6 @@ int ft_isspace(int c);
 void parse_space(t_token **token);
 
 /*parse_error.c*/
-int error_before_parse(t_token *token, char *str);
 int print_error_msg(void);
 int quote_error(char *str);
 int token_error(t_token *token);
