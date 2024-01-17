@@ -10,11 +10,15 @@ int	parse_all(t_shell *shell_info, char *str)
 	parse_pipe(&token, str);
 	parse_redir(&token);
 	parse_space(&token);
-	parse_filename(&token);
 	remove_outer_quotes(&token);
+
+	// 토큰 순회하면서 enum type 최종적으로 재정의 -> bug: 따옴표 안에 있는 값들은 다 word 처리 되어있음
+	parse_filename(&token);
+	
 	if (validate_token(&token) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
 	// 달러 처리해서 value값 치환한 상태로 넘겨주기
+	replace_env_variables_in_token(shell_info, token);
 	count_token_type(shell_info, token);
 	shell_info->cmd = tokens_to_cmds(token);
 	//main 에서 set signal로 설정해주고 heredoc -> signal 처리 유의하기
