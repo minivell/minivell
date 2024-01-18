@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-static t_env	*new_env(char *key, char *value)
+t_env	*new_env(char *key, char *value)
 {
 	t_env *new;
 
@@ -11,7 +11,7 @@ static t_env	*new_env(char *key, char *value)
 	return (new);
 }
 
-static void	env_add_back(t_env **env, t_env *new)
+void	env_add_back(t_env **env, t_env *new)
 {
 	t_env *curr;
 

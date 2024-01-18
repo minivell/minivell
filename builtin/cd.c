@@ -1,63 +1,43 @@
-//#include "../minishell.h"
-//
-//void	ft_cd(char **args)
-//{
-//	char *path;
-//
-//	if (args[1] == NULL)
-//	{
-//		path = getenv("HOME");
-//		if (path == NULL)
-//		{
-//			fprintf(stderr, "Expected HOME environment variable to be set\n");
-//			return;
-//		}
-//	}
-//	else
-//	{
-//		path = args[1];
-//	}
-//
-//	if (chdir(path) != 0)
-//	{
-//		perror("minishell");
-//	}
-//}
+#include "../minishell.h"
 
-//
-//#include <unistd.h>
-//#include <stdlib.h>
-//#include <stdio.h>
-//#include <string.h>
-//
-//#define BUFFER_SIZE 1024
-//
-//void	cd(char **args)
-//{
-//	char	*home_dir;
-//	char	*old_dir;
-//	char	buffer[BUFFER_SIZE];
-//
-//	old_dir = getcwd(buffer, sizeof(buffer));
-//	if (args[1] == NULL || strcmp(args[1], "~") == 0)
-//	{
-//		home_dir = getenv("HOME");
-//		if (chdir(home_dir) != 0)
-//			printf("cd: no such file or directory: %s\n", home_dir);
-//	}
-//	else if (strcmp(args[1], "-") == 0)
-//	{
-//		printf("%s\n", old_dir);
-//		if(chdir(old_dir) != 0)
-//			printf("cd: no such file or directory: %s\n", old_dir);
-//	}
-//	else
-//	{
-//		if (chdir(args[1]) != 0)
-//			printf("cd: no such file or directory: %s\n", args[1]);
-//	}
-//}
+static void	set_oldpwd(t_exec *exec_info, char *oldpwd)
+{
+	t_env	*node;
 
+	node = exec_info->env;
+	while (node)
+	{
+		if (ft_strcmp(node->key, "OLDPWD") == 0)
+		{
+			node->value = oldpwd;
+			return ;
+		}
+		node = node->next;
+	}
+}
 
-// 폴더 없을 때 처리하기
-// 폴더 안에 폴더 만들고 상위 폴더 삭제시 다 삭제
+int	cd(char **args, t_exec *exec_info)
+{
+	char	*cur_pwd;
+	char	*path;
+
+	cur_pwd = getcwd(NULL, 0);
+	if (args[1] == NULL || ft_strcmp(args[1], "~") == 0
+	|| ft_strcmp(args[1], "~/") == 0)
+		path = getenv("HOME");
+	else
+		path = args[1];
+	if (path == NULL)
+	{
+		printf("error\n"); // minivell: cd: HOME not set\n
+		return (1);
+	}
+	if (chdir(path) == FAILURE)
+	{
+		printf("error\n");
+		return (1);
+	}
+	set_oldpwd(exec_info, cur_pwd);
+	free(cur_pwd);
+	return (g_exit_code);
+}
