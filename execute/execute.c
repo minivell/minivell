@@ -11,9 +11,10 @@ void	exec_heredoc(t_env *env, char *new_filename, char *limiter)
 	char	*line;
 
 	(void)env;
-	fd = open(new_filename, O_RDWR | O_CREAT | O_TRUNC, 0644);
-	if (fd == FAILURE)
-		exit(EXIT_FAILURE);
+	fd = open(new_filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (fd == FAILURE) {
+		perror("open failed\n");
+		exit(EXIT_FAILURE); }
 	while (TRUE)
 	{
 		line = readline("> ");
@@ -30,6 +31,7 @@ void	exec_heredoc(t_env *env, char *new_filename, char *limiter)
 		free(line);
 	}
 	close(fd);
+	unlink(new_filename);
 }
 
 void	set_heredoc_filename(t_shell *shell_info)
@@ -46,7 +48,7 @@ void	set_heredoc_filename(t_shell *shell_info)
 		{
 			if (node->redir->type == HEREDOC)
 			{
-				new_filename = ft_strjoin("/heredoc_", \
+				new_filename = ft_strjoin("heredoc_", \
 				ft_itoa(heredoc_filenum));
 				heredoc_filenum++;
 				exec_heredoc(shell_info->env, new_filename, \
