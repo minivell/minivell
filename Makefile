@@ -60,6 +60,7 @@ PARSE_SRCS =	parse_main.c\
 				./parse/init.c \
 				./parse/parse_error.c \
 				./parse/token_check.c \
+				./parse/convert_env.c \
 
 
 SRCS	=	${EXEC_SRCS}\
