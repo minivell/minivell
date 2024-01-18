@@ -16,7 +16,7 @@ char *find_key(char *value, int *i, int *start_idx)
 
 char *find_value(t_env *env_list, char *key)
 {
-	while (env_list != NULL) 
+	while (env_list != NULL)
 	{
 		if (!ft_strcmp(env_list->key, key))
 			return env_list->value;
@@ -25,7 +25,7 @@ char *find_value(t_env *env_list, char *key)
 	return (NULL);
 }
 
-char *ft_strjoin_free_first(char *s1, const char *s2)
+char *ft_strjoin_free(char *s1, const char *s2)
 {
 	char *new_str;
 	int len1;
@@ -33,16 +33,13 @@ char *ft_strjoin_free_first(char *s1, const char *s2)
 
 	if (!s1 || !s2)
 		return (NULL);
-
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
 	new_str = malloc(sizeof(char) * (len1 + len2 + 1));
 	if (!new_str)
 		return (NULL);
-
 	ft_strlcpy(new_str, s1, len1 + 1);
 	ft_strlcat(new_str, s2, len1 + len2 + 1);
-
 	free(s1);
 	return (new_str);
 }
@@ -74,14 +71,14 @@ void replace_env_in_token(t_env *env_list, t_token *token)
 			else if (quote_flag != '\'' && token->value[i] == '$' && (ft_isalnum(token->value[i + 1]) || token->value[i + 1] == '_'))
 			{
 				temp = ft_substr(token->value, start_idx, i - start_idx);
-				res = ft_strjoin_free_first(res, temp);
+				res = ft_strjoin_free(res, temp);
 				start_idx = ++i;
 				key = find_key(token->value, &i, &start_idx);
 				env_value = find_value(env_list, key);
 				if (env_value)
-					res = ft_strjoin_free_first(res, env_value);
+					res = ft_strjoin_free(res, env_value);
 				else
-					res = ft_strjoin_free_first(res, "");
+					res = ft_strjoin_free(res, "");
 				free(key);
 				start_idx = i;
 				continue; 
@@ -89,7 +86,7 @@ void replace_env_in_token(t_env *env_list, t_token *token)
 			i++;
 		}
 		temp = ft_substr(token->value, start_idx, i - start_idx);
-		res = ft_strjoin_free_first(res, temp);
+		res = ft_strjoin_free(res, temp);
 		free(token->value);
 		token->value = res;
 		token = token->next;
