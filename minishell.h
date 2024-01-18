@@ -35,8 +35,10 @@ void init_shell(t_shell *shell_info);
 void init_env(t_env **env, char *envp[]);
 
 /*convert_env.c*/
-char *find_env_value(t_env *env_list, char *key);
-void replace_env_variables_in_token(t_shell *shell_info, t_token *token);
+void process_tokens(t_shell *shell_info, t_token *token);
+void expand_env(t_token *token, t_env *env_var);
+char *find_value(t_env *env_list, char *key);
+void replace_env_in_token(t_env *env_list, t_token *token);
 
 /*parse_pipe.c*/
 void parse_pipe(t_token **token, char *str);
@@ -67,6 +69,8 @@ void free_redir(t_redir *redir);
 
 /*quote.c*/
 int check_quote(t_quote *quote, char c);
+char *find_value(t_env *env_list, char *key);
+void replace_env_in_token(t_env *env_list, t_token *token);
 void remove_outer_quotes(t_token **token);
 
 /*quote_check.c*/
