@@ -47,7 +47,6 @@ t_cmd *tokens_to_cmds(t_token *tokens)
                 ft_memcpy(new_args, current_cmd->cmd_args, sizeof(char *) * current_cmd->cmd_cnt);
                 free(current_cmd->cmd_args);
             }
-
             new_args[current_cmd->cmd_cnt] = ft_strdup(tokens->value);
             new_args[current_cmd->cmd_cnt + 1] = NULL;
             current_cmd->cmd_args = new_args;
