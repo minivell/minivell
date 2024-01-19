@@ -8,7 +8,7 @@ PARSE	= minishell_parse
 #==========================================
 
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS	= -Wall -Wextra -Werror #-fsanitize=address -g3
 RM		= rm -f
 
 # exec src files
