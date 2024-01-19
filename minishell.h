@@ -65,6 +65,9 @@ int print_error_msg(void);
 int quote_error(char *str);
 int token_error(t_token *token);
 
+/*signal.c*/
+void	set_signal(int sig_int, int sig_quit);
+
 /*cmd.c*/
 // void    init_cmd(t_cmd **cmd, t_token *token);
 t_cmd *tokens_to_cmds(t_token *tokens);
