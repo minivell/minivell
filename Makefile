@@ -22,6 +22,7 @@ EXEC_SRCS =		exec_main.c\
 				./execute/make_new_env.c\
 				./execute/single_process.c\
 				./execute/multi_process.c\
+				./execute/set_for_heredoc.c\
 				./execute/set_for_redir.c\
 				./builtin/cd.c\
 				./builtin/check_n_exec_builtin.c\
