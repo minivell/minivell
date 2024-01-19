@@ -31,7 +31,7 @@ void	exec_heredoc(t_env *env, char *new_filename, char *limiter)
 		free(line);
 	}
 	close(fd);
-	unlink(new_filename);
+	// unlink(new_filename);
 }
 
 void	set_heredoc_filename(t_shell *shell_info)
@@ -39,24 +39,26 @@ void	set_heredoc_filename(t_shell *shell_info)
 	char	*new_filename;
 	int		heredoc_filenum;
 	t_cmd	*node;
+	t_redir	*tmp_redir;
 
 	heredoc_filenum = 0;
 	node = shell_info->cmd;
 	while (node)
 	{
-		while (node->redir)
+		tmp_redir = node->redir;
+		while (tmp_redir)
 		{
-			if (node->redir->type == HEREDOC)
+			if (tmp_redir->type == HEREDOC)
 			{
 				new_filename = ft_strjoin("heredoc_", \
 				ft_itoa(heredoc_filenum));
 				heredoc_filenum++;
 				exec_heredoc(shell_info->env, new_filename, \
-				node->redir->filename);
-				free(node->redir->filename);
-				node->redir->filename = new_filename;
+				tmp_redir->filename);
+				free(tmp_redir->filename);
+				tmp_redir->filename = new_filename;
 			}
-			node->redir = node->redir->next;
+			tmp_redir = tmp_redir->next;
 		}
 		node = node->next;
 	}
