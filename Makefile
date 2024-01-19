@@ -32,17 +32,18 @@ EXEC_SRCS =		exec_main.c\
 				./builtin/pwd.c\
 				./builtin/unset.c\
 				./parse/parse_all.c \
-        		./parse/parse_pipe.c \
-        		./parse/parse_redir.c \
-        		./parse/token.c \
-        		./parse/quote.c \
-        		./parse/parse_space.c \
-        		./parse/redir.c \
-        		./parse/cmd.c \
-        		./parse/env.c \
-        		./parse/init.c \
-        		./parse/parse_error.c \
-        		./parse/token_check.c \
+                ./parse/parse_pipe.c \
+                ./parse/parse_redir.c \
+                ./parse/token.c \
+                ./parse/quote.c \
+                ./parse/parse_space.c \
+                ./parse/redir.c \
+                ./parse/cmd.c \
+                ./parse/env.c \
+                ./parse/init.c \
+                ./parse/parse_error.c \
+                ./parse/token_check.c \
+                ./parse/convert_env.c \
 
 
 
