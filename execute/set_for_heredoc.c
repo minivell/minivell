@@ -62,9 +62,10 @@ void	set_heredoc_filename(t_shell *shell_info)
 		}
 		node = node->next;
 	}
+	// exit(EXIT_SUCCESS);
 }
 
-void	set_for_heredoc(t_shell *shell_info)
+int	set_for_heredoc(t_shell *shell_info)
 {
 	pid_t	pid;
 	int		status;
@@ -75,6 +76,11 @@ void	set_for_heredoc(t_shell *shell_info)
 	else if (pid == SUCCESS)
 		set_heredoc_filename(shell_info);
 	wait(&status);
+	printf("hahahaha\n");
 	if (WEXITSTATUS(status) == EXIT_FAILURE)
+	{
 		g_exit_code = EXIT_FAILURE;
+		return (FAILURE);
+	}
+	return (SUCCESS);
 }
