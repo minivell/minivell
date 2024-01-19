@@ -9,7 +9,6 @@ int	echo(char **args)
 	newline = TRUE;
 	while (args[idx] && ft_strcmp(args[idx], "-n") == 0)
 	{
-		printf("-n option\n");
 		newline = FALSE;
 		idx++;
 	}
