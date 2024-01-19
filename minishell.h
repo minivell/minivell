@@ -5,6 +5,11 @@
 #define SUCCESS 0
 #define FAILURE -1
 
+#define DEFAULT   0
+#define IGNORE    1
+#define HRD_IGN   2
+#define HRD_CHILD 3
+
 #define TRUE 1
 #define FALSE 0
 
