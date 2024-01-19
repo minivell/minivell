@@ -117,7 +117,7 @@ void exec_child_process(t_exec *exec_info, t_cmd *cmd, int order, int last);
 void exec_parents_process(t_exec *exec_info);
 
 // [execute/set_for_heredoc.c]
-void	set_for_heredoc(t_shell *shell_info);
+int	set_for_heredoc(t_shell *shell_info);
 
 // [execute/single_process.c]
 void	single_process(t_shell *shell_info, t_exec *exec_info);
