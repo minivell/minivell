@@ -17,7 +17,7 @@ int	parse_all(t_shell *shell_info, char *str)
 	if (validate_token(&token) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
 	shell_info->cmd = tokens_to_cmds(token);
-	//main 에서 set signal로 설정해주고 heredoc -> signal 처리 유의하기
+	return (SUCCESS);
 
 	///////////////////////////출력 확인 코드 모음///////////////////////////////
 
@@ -66,5 +66,4 @@ int	parse_all(t_shell *shell_info, char *str)
 	// 	free_token(token);
 	// 	return (EXIT_FAILURE);
 	// }
-	return (SUCCESS);
 }
