@@ -1,11 +1,5 @@
 #include "../minishell.h"
 
-//void	heredoc(int *heredoc_filenum)
-//{
-//	while
-//}
-
-
 void	set_for_redir(t_exec *exec_info, t_redir *redir)
 {
 	t_redir	*node;
@@ -15,7 +9,7 @@ void	set_for_redir(t_exec *exec_info, t_redir *redir)
 	node = redir;
 	while (node)
 	{
-		if (node->type == IN_REDIR)
+		if (node->type == IN_REDIR || node->type == HEREDOC)
 		{
 			exec_info->infile_fd = open(redir->filename, O_RDONLY);
 			if (exec_info->infile_fd == FAILURE)
@@ -29,22 +23,6 @@ void	set_for_redir(t_exec *exec_info, t_redir *redir)
 				return ; // error
 			}
 			close(exec_info->infile_fd);
-		}
-		else if (node->type == HEREDOC)
-		{
-			exec_info->infile_fd = open(redir->filename, O_RDONLY);
-			if (exec_info->infile_fd == FAILURE)
-			{
-				printf("error\n");
-				return ; // error
-			}
-			if (dup2(exec_info->infile_fd, STDIN_FILENO) == FAILURE)
-			{
-				printf("error\n");
-				return ; // error
-			}
-			close(exec_info->infile_fd);
-
 		}
 		else if (node->type == OUT_REDIR)
 		{

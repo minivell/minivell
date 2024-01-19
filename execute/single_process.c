@@ -20,6 +20,7 @@ void	single_process(t_shell *shell_info, t_exec *exec_info)
 			exit (1);
 		}
 		wait(&status);
+		// g_exit_code = WEXITSTATUS(status);
 		return ;
 	}
 }
