@@ -22,8 +22,11 @@ int main(int ac, char *av[], char *envp[])
 		}
 		if (parse_all(&shell_info, str) == SUCCESS)
 			execute(&shell_info);
+			free_cmd_list(shell_info.cmd);
+		}
 		add_history(str);
 		free(str);
 	}
+	free_env_list(shell_info.env);
 	return (g_exit_code);
 }

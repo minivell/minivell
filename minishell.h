@@ -44,7 +44,7 @@ t_env	*new_env(char *key, char *value);
 /*convert_env.c*/
 void process_tokens(t_shell *shell_info, t_token *token);
 void expand_env(t_token *token, t_env *env_var);
-char *find_value(t_env *env_list, char *key);
+char *find_value(t_env *env_list, char *key, int *flag);
 void replace_env_in_token(t_env *env_list, t_token *token);
 
 /*parse_pipe.c*/
@@ -71,6 +71,7 @@ void	set_signal(int sig_int, int sig_quit);
 /*cmd.c*/
 // void    init_cmd(t_cmd **cmd, t_token *token);
 t_cmd *tokens_to_cmds(t_token *tokens);
+void free_cmd_list(t_cmd *cmd);
 
 /*redir.c*/
 t_redir *new_redir(t_type type, char *filename);
@@ -79,7 +80,7 @@ void free_redir(t_redir *redir);
 
 /*quote.c*/
 int check_quote(t_quote *quote, char c);
-char *find_value(t_env *env_list, char *key);
+// char *find_value(t_env *env_list, char *key);
 void replace_env_in_token(t_env *env_list, t_token *token);
 void remove_outer_quotes(t_token **token);
 
@@ -94,6 +95,7 @@ void replace_token(t_token **token_list, t_token *old_token, t_token *new_tokens
 void free_token(t_token *token);
 void count_token_type(t_shell *shell_info, t_token *token);
 
+void free_env_list(t_env *env);
 /* execute */
 
 // [execute/exec_cmd.c]

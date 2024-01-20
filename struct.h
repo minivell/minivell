@@ -54,7 +54,6 @@ typedef struct s_quote
 
 typedef struct s_token
 {
-	int				token_flag;
 	t_type			type;
 	char			*value;
 	struct s_token	*next;

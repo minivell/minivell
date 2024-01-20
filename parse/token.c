@@ -18,7 +18,6 @@ t_token	*new_token(t_type type, char *value)
 		return (NULL);
 	token->type = type;
 	token->value = value;
-	token->token_flag = TRUE;
 	token->next = NULL;
 	return (token);
 }

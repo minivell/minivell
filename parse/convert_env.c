@@ -6,6 +6,8 @@ char *find_key(char *value, int *i, int *start_idx)
 	char *key;
 
 	len = 0;
+	if (value[*start_idx] == '?' && ++(*i))
+		return (ft_strdup("?"));
 	while (ft_isalnum(value[*start_idx + len]) || value[*start_idx + len] == '_')
 		len++;
 	*i += len;
@@ -14,8 +16,12 @@ char *find_key(char *value, int *i, int *start_idx)
 	return (key);
 }
 
-char *find_value(t_env *env_list, char *key)
+char *find_value(t_env *env_list, char *key, int *flag)
 {
+	if (!ft_strcmp("?", key) && ++(*flag))
+	{
+		return (ft_itoa(g_exit_code));
+	}
 	while (env_list != NULL)
 	{
 		if (!ft_strcmp(env_list->key, key))
@@ -47,6 +53,7 @@ char *ft_strjoin_free(char *s1, const char *s2)
 void replace_env_in_token(t_env *env_list, t_token *token)
 {
 	int i, start_idx;
+	int free_flag;
 	char quote_flag, *res, *temp, *key, *env_value;
 
 	while (token != NULL)
@@ -64,29 +71,30 @@ void replace_env_in_token(t_env *env_list, t_token *token)
 				else if (quote_flag == token->value[i])
 					quote_flag = 0;
 			}
-			else if (quote_flag != '\'' && token->value[i] == '$' && token->value[i + 1] == '?')
+			else if (quote_flag != '\'' && token->value[i] == '$' && (token->value[i + 1] == '?' || ft_isalnum(token->value[i + 1]) || token->value[i + 1] == '_'))
 			{
-				ft_putstr_fd("$? 처리", 1);
-			}
-			else if (quote_flag != '\'' && token->value[i] == '$' && (ft_isalnum(token->value[i + 1]) || token->value[i + 1] == '_'))
-			{
+				free_flag = FALSE;
 				temp = ft_substr(token->value, start_idx, i - start_idx);
 				res = ft_strjoin_free(res, temp);
+				free(temp);
 				start_idx = ++i;
 				key = find_key(token->value, &i, &start_idx);
-				env_value = find_value(env_list, key);
+				env_value = find_value(env_list, key, &free_flag);
 				if (env_value)
 					res = ft_strjoin_free(res, env_value);
 				else
 					res = ft_strjoin_free(res, "");
 				free(key);
+				if (free_flag)
+					free(env_value);
 				start_idx = i;
-				continue; 
+				continue;
 			}
 			i++;
 		}
 		temp = ft_substr(token->value, start_idx, i - start_idx);
 		res = ft_strjoin_free(res, temp);
+		free(temp);
 		free(token->value);
 		token->value = res;
 		token = token->next;
