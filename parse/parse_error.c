@@ -1,15 +1,15 @@
 #include "../minishell.h"
 
-int	print_error_msg(void)
+int print_error_msg(void)
 {
 	ft_putstr_fd("minivell: syntax error\n", 2);
 	g_exit_code = 258;
 	return (EXIT_FAILURE);
 }
 
-int	quote_error(char *str)
+int quote_error(char *str)
 {
-	t_quote	q;
+	t_quote q;
 
 	q.quote_flag = FALSE;
 	while (*str)
@@ -25,7 +25,7 @@ int	quote_error(char *str)
 	return (EXIT_SUCCESS);
 }
 
-int	token_error(t_token *token)
+int token_error(t_token *token)
 {
 	t_token	*tmp;
 
@@ -34,8 +34,7 @@ int	token_error(t_token *token)
 	tmp = token;
 	while (tmp->next)
 	{
-		if (((IN_REDIR <= tmp->type && tmp->type <= APPEND_REDIR) \
-			&& tmp->next->type != WORD) \
+		if (((IN_REDIR <= tmp->type && tmp->type <= APPEND_REDIR) && tmp->next->type != WORD)
 			|| (tmp->type == PIPE && tmp->next->type == PIPE))
 			return (print_error_msg());
 		tmp = tmp->next;
@@ -49,3 +48,4 @@ int	token_error(t_token *token)
 	}
 	return (EXIT_SUCCESS);
 }
+

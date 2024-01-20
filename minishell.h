@@ -33,12 +33,15 @@
 
 extern int g_exit_code;
 
+
+
+
 void free_str_arr(char **arr);
+
 
 /*parse*/
 
 /*parse_all.c*/
-void	free_token_list(t_token *token);
 int parse_all(t_shell *shell_info, char *str);
 
 /*init.c*/
@@ -50,17 +53,10 @@ void	env_add_back(t_env **env, t_env *new);
 t_env	*new_env(char *key, char *value);
 
 /*convert_env.c*/
-char	*find_key(char *value, int *i, int *start_idx);
-char	*find_value(t_env *env_list, char *key, int *flag);
-char	*ft_strjoin_free(char *s1, const char *s2);
-char	handle_quotes(char quote_flag, char current_char);
-char	*join_and_free(char *s1, char *s2, int free_s1);
-char	*process_segment(char *str, int start, int end, char **res);
-void    process_env_var(t_env *env_list, t_env_process *env_proc);
-void    replace_env_in_token(t_env *env_list, t_token *token);
-
-/*convert_env_exec.c*/
-void    replace_env_in_line(char **line, t_env *env);
+void process_tokens(t_shell *shell_info, t_token *token);
+void expand_env(t_token *token, t_env *env_var);
+char *find_value(t_env *env_list, char *key, int *flag);
+void replace_env_in_token(t_env *env_list, t_token *token);
 
 /*parse_pipe.c*/
 void parse_pipe(t_token **token, char *str);

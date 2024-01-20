@@ -50,8 +50,7 @@ EXEC_SRCS =		exec_main.c\
                 ./parse/parse_error.c \
                 ./parse/token_check.c \
                 ./parse/convert_env.c \
-                ./parse/signal.c \
-				./parse/convert_env_exec.c \
+                ./parse/signal.c\
 
 
 
@@ -71,7 +70,6 @@ PARSE_SRCS =	parse_main.c\
 				./parse/token_check.c \
 				./parse/convert_env.c \
 				./parse/signal.c\
-
 
 
 SRCS	=	${EXEC_SRCS}\
