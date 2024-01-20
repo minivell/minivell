@@ -1,12 +1,40 @@
 #include "../minishell.h"
 
+void free_token_list(t_token *token)
+{
+	t_token *tmp;
+	if (token == NULL)
+		return ;
+	while (token)
+	{
+		tmp = token->next;
+		free(token->value);
+		free(token);
+		token = tmp;
+	}
+}
+
+void free_env_list(t_env *env)
+{
+	t_env *tmp;
+
+	while (env != NULL)
+	{
+		tmp = env->next;
+		free(env->key);
+		free(env->value);
+		free(env);
+		env = tmp;
+	}
+}
+
 int	parse_all(t_shell *shell_info, char *str)
 {
 	t_token *token;
 	token = NULL;
 	init_shell(shell_info);
 	if (quote_error(str) != EXIT_SUCCESS)
-        return (EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	parse_pipe(&token, str);
 	parse_redir(&token);
 	parse_space(&token);
@@ -17,18 +45,18 @@ int	parse_all(t_shell *shell_info, char *str)
 	if (validate_token(&token) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
 	shell_info->cmd = tokens_to_cmds(token);
-	return (SUCCESS);
+
 
 	///////////////////////////출력 확인 코드 모음///////////////////////////////
 
 	///////////////token 출력 확인 코드////////////////////
-//	t_token *current_token;
-//	current_token = token;
-//    while (current_token)
-//    {
-//        printf("Type: %d, Value: [%s]\n", current_token->type, current_token->value);
-//        current_token = current_token->next;
-//    }
+	// t_token *current_token;
+	// current_token = token;
+	// while (current_token)
+	// {
+	// 	printf("Type: %d, Value: [%s]\n", current_token->type, current_token->value);
+	// 	current_token = current_token->next;
+	// }
 
 	///////////////////redir 출력 확인 코드///////////////////////////
 	// t_redir *current_redir;
@@ -60,10 +88,6 @@ int	parse_all(t_shell *shell_info, char *str)
 	// shell_info->pipe_cnt = 0;
 	// printf("heredoc: %d, pipe: %d\n", shell_info->heredoc_cnt, shell_info->pipe_cnt);
 
-	////////////////////token 관련 메모리 해제 로직 /////////////////////////////////
-	// if (!token || token_error(token) != EXIT_SUCCESS)
-	// {
-	// 	free_token(token);
-	// 	return (EXIT_FAILURE);
-	// }
+	free_token_list(token);
+	return (SUCCESS);
 }
