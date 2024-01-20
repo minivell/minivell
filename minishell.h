@@ -58,6 +58,10 @@ void create_redir_token(t_token **token, char **str);
 
 /*parse_space.c*/
 int ft_isspace(int c);
+int is_space_outside_quotes(char c, t_quote quote);
+void update_quote_flag(char c, t_quote *quote);
+t_token *create_new_token(t_type type, char *start, char *end);
+void tokenize_string(char *str, t_type type, t_token **new_token_list);
 void parse_space(t_token **token);
 
 /*parse_error.c*/
@@ -96,6 +100,11 @@ void free_token(t_token *token);
 void count_token_type(t_shell *shell_info, t_token *token);
 
 void free_env_list(t_env *env);
+
+
+
+
+
 /* execute */
 
 // [execute/exec_cmd.c]
