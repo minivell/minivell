@@ -13,7 +13,7 @@ int	exec_cmd(t_cmd *cmd, t_exec *exec_info)
 	if (execve(cmd_path, cmd->cmd_args, make_new_env(exec_info)) == FAILURE)
 	{
 		g_exit_code = 127;
-		ft_putstr_fd("minishell: ", STDERR_FILENO);
+		ft_putstr_fd("minivell: ", STDERR_FILENO);
 		ft_putstr_fd(cmd->cmd_args[0], STDERR_FILENO);
 		ft_putstr_fd(": command not found\n", STDERR_FILENO);
 		exit(g_exit_code);
