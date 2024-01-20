@@ -26,8 +26,10 @@ void	exec_heredoc(t_env *env, char *new_filename, char *limiter)
 			break ;
 		}
 //		replace_env_in_line(&line, env); -> key로 value 찾는 함수 있나 경아한테 물어보기
-		write(fd, line, ft_strlen(line));
-		write(fd, "\n", 1);
+		// write(fd, line, ft_strlen(line));
+		ft_putstr_fd(line, fd);
+		// write(fd, "\n", 1);
+		ft_putstr_fd("\n", fd);
 		free(line);
 	}
 	close(fd);
@@ -81,6 +83,8 @@ int	set_for_heredoc(t_shell *shell_info)
 	if (WEXITSTATUS(status) == EXIT_FAILURE)
 		g_exit_code = EXIT_FAILURE;
 	set_signal(MINIVELL, MINIVELL);
+
+
 	char	*new_filename;
 	int		num;
 	t_cmd	*node;
