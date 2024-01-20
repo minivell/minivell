@@ -33,22 +33,6 @@ void	exec_heredoc(t_env *env, char *new_filename, char *limiter)
 	close(fd);
 }
 
-void	replace_new_filename(t_cmd *node, char *new_filename)
-{
-	t_redir	*tmp_redir;
-
-	tmp_redir = node->redir;
-	while (tmp_redir != NULL)
-	{
-		if (tmp_redir->type == HEREDOC)
-		{
-			free(tmp_redir->filename);
-			tmp_redir->filename = new_filename;
-		}
-		tmp_redir = tmp_redir->next;
-	}
-}
-
 void	set_heredoc_filename(t_shell *shell_info)
 {
 	char	*new_filename;
