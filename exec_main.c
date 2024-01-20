@@ -21,12 +21,13 @@ int	main(int ac, char *av[], char *envp[])
 			continue ;
 		}
 		if (parse_all(&shell_info, str) == SUCCESS)
+		{
 			execute(&shell_info);
-			free_cmd_list(shell_info.cmd);
+//			free_cmd_list(shell_info.cmd); // TODO: double free check
 		}
 		add_history(str);
 		free(str);
 	}
-	free_env_list(shell_info.env);
+//	free_env_list(shell_info.env);
 	return (g_exit_code);
 }
