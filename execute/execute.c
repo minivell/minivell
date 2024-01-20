@@ -21,4 +21,7 @@ void	execute(t_shell *shell_info)
 		exit(EXIT_FAILURE);
 	close(origin_stdin);
 	close(origin_stdout);
+	free_str_arr(exec_info->path);
+	free(exec_info);
+	set_signal(MINIVELL, MINIVELL);
 }

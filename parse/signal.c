@@ -17,7 +17,7 @@ void	hrd_ign_handler(int sig_no)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
-	exit(EXIT_FAILURE);
+	// exit(EXIT_FAILURE);
 }
 
 void	set_signal(int sig_int, int sig_quit)
@@ -26,12 +26,12 @@ void	set_signal(int sig_int, int sig_quit)
 		signal(SIGINT, SIG_DFL);
 	if (sig_int == IGNORE)
 		signal(SIGINT, SIG_IGN);
-	if (sig_int == HRD_IGN)
+	if (sig_int == MINIVELL)
 		signal(SIGINT, hrd_ign_handler);
 	if (sig_int == HRD_CHILD)
 		signal(SIGINT, hrd_handler);
 	if (sig_quit == DEFAULT)
 		signal(SIGQUIT, SIG_DFL);
-	if (sig_quit == IGNORE || sig_quit == HRD_IGN || sig_quit == HRD_CHILD)
+	if (sig_quit == IGNORE || sig_quit == MINIVELL || sig_quit == HRD_CHILD)
 		signal(SIGQUIT, SIG_IGN);
 }

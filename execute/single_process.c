@@ -19,10 +19,12 @@ void	single_process(t_shell *shell_info, t_exec *exec_info)
 			return ;
 		else if (pid == SUCCESS)
 		{
+			set_signal(DEFAULT, DEFAULT);
 			exec_cmd(shell_info->cmd, exec_info, FALSE);
 			exit (1);
 		}
 		wait(&status);
 		g_exit_code = WEXITSTATUS(status);
 	}
+	free_cmd_list(shell_info->cmd);
 }
