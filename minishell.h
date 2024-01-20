@@ -22,7 +22,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <errno.h>
 #include <fcntl.h>
+#include <signal.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 
@@ -101,14 +103,10 @@ void count_token_type(t_shell *shell_info, t_token *token);
 
 void free_env_list(t_env *env);
 
-
-
-
-
 /* execute */
 
 // [execute/exec_cmd.c]
-int	exec_cmd(char **cmd_args, t_exec *exec_info);
+int	exec_cmd(t_cmd *cmd, t_exec *exec_info, int child);
 
 // [execute/exec_process.c]
 void	exec_parents_process(t_exec *exec_info);
@@ -129,7 +127,6 @@ t_exec 	*init_exec(t_shell *shell_info);
 // [execute/make_new_env.c]
 char	**make_new_env(t_exec *exec_info);
 
-
 // [execute/multi_process.c]
 void multi_process(t_shell *shell_info, t_exec *exec_info);
 void exec_child_process(t_exec *exec_info, t_cmd *cmd, int order, int last);
@@ -140,8 +137,6 @@ int	set_for_heredoc(t_shell *shell_info);
 
 // [execute/single_process.c]
 void	single_process(t_shell *shell_info, t_exec *exec_info);
-int		exec_cmd(char **cmd_args, t_exec *exec_info);
-char	*get_cmd_path(char *cmd, char **path);
 
 // [execute/set_for_redir.c]
 int	set_for_redir(t_exec *exec_info, t_redir *redir);
@@ -150,7 +145,7 @@ int	set_for_redir(t_exec *exec_info, t_redir *redir);
 int	cd(char **args, t_exec *exec_info);
 
 // [builtin/check_n_exec_builtin.c]
-int check_n_exec_builtin(t_cmd *cmd_info, t_exec *exec_info);
+int	check_n_exec_builtin(t_cmd *cmd_info, t_exec *exec_info, int exit_flag);
 
 // [builtin/echo.c]
 int	echo(char **args);
@@ -159,7 +154,7 @@ int	echo(char **args);
 int env(t_exec *exec_info);
 
 // [builtin/exit.c]
-int exit_shell(void);
+int exit_shell(int exit_flag);
 
 // [builtin/export.c]
 int	export(t_exec *exec_info, char **args);

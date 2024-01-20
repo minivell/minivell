@@ -2,13 +2,14 @@
 
 void	single_process(t_shell *shell_info, t_exec *exec_info)
 {
-	int	status;
+	int		status;
 	pid_t	pid;
 
 	set_signal(DEFAULT, DEFAULT);
-	if (shell_info->cmd->redir != NULL && set_for_redir(exec_info, shell_info->cmd->redir) == FALSE)
+	if (shell_info->cmd->redir != NULL && \
+	set_for_redir(exec_info, shell_info->cmd->redir) == FALSE)
 		g_exit_code = 1;
-	if (check_n_exec_builtin(shell_info->cmd, exec_info) == TRUE)
+	if (check_n_exec_builtin(shell_info->cmd, exec_info, FALSE) == TRUE)
 		return ;
 	else
 	{
@@ -18,11 +19,10 @@ void	single_process(t_shell *shell_info, t_exec *exec_info)
 			return ;
 		else if (pid == SUCCESS)
 		{
-			exec_cmd(shell_info->cmd->cmd_args, exec_info);
+			exec_cmd(shell_info->cmd, exec_info, FALSE);
 			exit (1);
 		}
 		wait(&status);
-		 g_exit_code = WEXITSTATUS(status);
-		return ;
+		g_exit_code = WEXITSTATUS(status);
 	}
 }

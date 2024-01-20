@@ -6,6 +6,8 @@ char	*get_cmd_path(char *cmd, char **path)
 	char	*cmd_path;
 	char	*cmd_tmp;
 
+	if (access(cmd, X_OK) == 0)
+		return (cmd);
 	if (cmd == NULL || path == NULL)
 		return (NULL);
 	i = 0;
