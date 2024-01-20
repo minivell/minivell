@@ -1,8 +1,8 @@
 #include "../minishell.h"
 
-void	free_redir_list(t_redir *redir)
+void free_redir_list(t_redir *redir)
 {
-	t_redir	*tmp;
+	t_redir *tmp;
 
 	while (redir != NULL)
 	{
@@ -13,9 +13,9 @@ void	free_redir_list(t_redir *redir)
 	}
 }
 
-void	free_str_arr(char **arr)
+void free_str_arr(char **arr)
 {
-	int	i;
+	int i;
 
 	if (arr == NULL)
 		return ;
@@ -25,9 +25,9 @@ void	free_str_arr(char **arr)
 	free(arr);
 }
 
-void	free_cmd_list(t_cmd *cmd)
+void free_cmd_list(t_cmd *cmd)
 {
-	t_cmd	*tmp;
+	t_cmd *tmp;
 
 	while (cmd)
 	{
@@ -38,71 +38,55 @@ void	free_cmd_list(t_cmd *cmd)
 		cmd = tmp;
 	}
 }
-int count_cmd_args(t_token *tokens) {
-	int cnt = 0;
-	while (tokens != NULL && tokens->type != PIPE) {
-		if (tokens->type == WORD) {
-			cnt++;
-		}
-		tokens = tokens->next;
-	}
-	return cnt;
-}
 
-void process_redirections(t_token **cmd_tmp, t_cmd *new_cmd) {
-	t_redir *new;
-	char *filename;
-
-	while (*cmd_tmp && (*cmd_tmp)->type >= OUT_REDIR && (*cmd_tmp)->type <= HEREDOC) {
-		filename = ft_strdup((*cmd_tmp)->next->value);
-		new = new_redir((*cmd_tmp)->type, filename);
-		add_back_redir(&(new_cmd->redir), new);
-		*cmd_tmp = (*cmd_tmp)->next->next; // Move to next after redirection token
-	}
-}
-
-t_cmd *create_new_cmd(t_token **cmd_tmp, int cnt) {
-	t_cmd *new_cmd = ft_calloc(1, sizeof(t_cmd));
-	new_cmd->cmd_args = ft_calloc(cnt + 1, sizeof(char *));
-	new_cmd->cmd_cnt = cnt;
-
-	for (int i = 0; i < cnt && *cmd_tmp; i++) {
-		process_redirections(cmd_tmp, new_cmd);
-		if ((*cmd_tmp)->type == WORD) {
-			new_cmd->cmd_args[i] = ft_strdup((*cmd_tmp)->value);
-			*cmd_tmp = (*cmd_tmp)->next;
-		}
-	}
-
-	return new_cmd;
-}
-
-t_cmd *tokens_to_cmds(t_token *tokens) {
-	t_cmd *head = NULL;
-	t_cmd *tail = NULL;
+t_cmd *tokens_to_cmds(t_token *tokens)
+{
+	t_cmd *head;
+	t_cmd *tail;
+	t_cmd *new_cmd;
+	int cnt;
 	t_token *cmd_tmp;
 
-	while (tokens != NULL) {
+	head = NULL;
+	while (tokens != NULL)
+	{
 		cmd_tmp = tokens;
-		int cnt = count_cmd_args(tokens);
 
-		while (tokens != NULL && tokens->type != PIPE) {
+		cnt = 0;
+		while (tokens != NULL && tokens->type != PIPE)
+		{
+			if (tokens->type == WORD)
+				cnt++;
 			tokens = tokens->next;
 		}
 
-		t_cmd *new_cmd = create_new_cmd(&cmd_tmp, cnt);
+		new_cmd = ft_calloc(1, sizeof(t_cmd));
+		new_cmd->cmd_args = ft_calloc(cnt + 1, sizeof(char *));
+		new_cmd->cmd_cnt = cnt;
+		int i = 0;
+		while (cmd_tmp != tokens)
+		{
+			if (cmd_tmp->type >= OUT_REDIR && cmd_tmp->type <= HEREDOC)
+			{
+				char *filename = ft_strdup(cmd_tmp->next->value);
+				t_redir *new = new_redir(cmd_tmp->type, filename);
+				add_back_redir(&(new_cmd->redir), new);
+				cmd_tmp = cmd_tmp->next;
+			}
+			else
+			{
+				new_cmd->cmd_args[i++] = ft_strdup(cmd_tmp->value);
+			}
+			cmd_tmp = cmd_tmp->next;
+		}
 
-		if (head == NULL) {
+		if (head == NULL)
 			head = new_cmd;
-		} else {
+		else
 			tail->next = new_cmd;
-		}
 		tail = new_cmd;
-
-		if (tokens) {
+		if (tokens)
 			tokens = tokens->next;
-		}
 	}
-
-	return head;
+	return (head);
 }
