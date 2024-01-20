@@ -18,8 +18,8 @@ int	set_for_redir(t_exec *exec_info, t_redir *redir)
 				ft_putstr_fd("minivell: ", STDERR_FILENO);
 				ft_putstr_fd(node->filename, STDERR_FILENO);
 				ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
-				exit(g_exit_code);
-//				return FALSE; // error
+//				exit(g_exit_code);
+				return FALSE; // error
 			}
 			if (dup2(exec_info->infile_fd, STDIN_FILENO) == FAILURE)
 			{

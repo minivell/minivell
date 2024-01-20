@@ -15,6 +15,7 @@ void	exec_child_process(t_exec *exec_info, t_cmd *cmd, int order, int last_child
 	if (order != last_child && dup2(exec_info->pipe[O_STREAM], STDOUT_FILENO) == FAILURE)
 		return ; // error
 	close(exec_info->pipe[O_STREAM]);
-	set_for_redir(exec_info, cmd->redir);
+	if (set_for_redir(exec_info, cmd->redir) == FALSE)
+		return ;
 	exec_cmd(cmd, exec_info, TRUE);
 }
