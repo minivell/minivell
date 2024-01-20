@@ -2,11 +2,11 @@
 
 void add_token_if_not_empty(char **start, char **current, t_token **token, t_type type)
 {
-    if (*current != *start)
-    {
-        char *value = ft_strndup(*start, *current - *start);
-        add_back_token(token, new_token(type, value));
-    }
+	if (*current != *start)
+	{
+		char *value = ft_strndup(*start, *current - *start);
+		add_back_token(token, new_token(type, value));
+	}
 }
 
 t_token	*new_token(t_type type, char *value)
@@ -54,13 +54,13 @@ void	free_token(t_token *token)
 
 void count_token_type(t_shell *shell_info, t_token *token)
 {
-    t_token *current_token = token;
-    while (current_token)
-    {
-        if (current_token->type == HEREDOC)
-            shell_info->heredoc_cnt++;
-        else if (current_token->type == PIPE)
-            shell_info->pipe_cnt++;
-        current_token = current_token->next;
-    }
+	t_token *current_token = token;
+	while (current_token)
+	{
+		if (current_token->type == HEREDOC)
+			shell_info->heredoc_cnt++;
+		else if (current_token->type == PIPE)
+			shell_info->pipe_cnt++;
+		current_token = current_token->next;
+	}
 }
