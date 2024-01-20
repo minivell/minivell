@@ -1,15 +1,15 @@
 #include "../minishell.h"
 
-void parse_redir(t_token **token)
+void	parse_redir(t_token **token)
 {
-	t_token *tmp = *token;
-	t_token *next_tmp;
-	t_token *new_token;
+	t_token	*tmp;
+	t_token	*next_tmp;
+	t_token	*new_token;
 
+	tmp = *token;
 	while (tmp)
 	{
 		next_tmp = tmp->next;
-
 		if (tmp->type == WORD)
 		{
 			new_token = NULL;
@@ -18,68 +18,70 @@ void parse_redir(t_token **token)
 			{
 				replace_token(token, tmp, new_token);
 				tmp = next_tmp;
-				continue;
+				continue ;
 			}
 		}
 		tmp = next_tmp;
 	}
 }
 
-void parse_filename(t_token **token)
+void	parse_filename(t_token **token)
 {
-    t_token *tmp = *token;
-    t_token *next_tmp;
+	t_token	*tmp;
+	t_token	*next_tmp;
 
-    while (tmp)
-    {
-        next_tmp = tmp->next;
-
-        if ((tmp->type == IN_REDIR || tmp->type == OUT_REDIR || tmp->type == APPEND_REDIR || tmp->type == HEREDOC))
-        {
-            if (next_tmp && next_tmp->type == WORD)
-            {
-                next_tmp->type = FILENAME;
-            }
-        }
-        tmp = next_tmp;
-    }
+	tmp = *token;
+	while (tmp)
+	{
+		next_tmp = tmp->next;
+		if ((tmp->type >= IN_REDIR && tmp->type <= HEREDOC))
+		{
+			if (next_tmp && next_tmp->type == WORD)
+				next_tmp->type = FILENAME;
+		}
+		tmp = next_tmp;
+	}
 }
 
-void replace_token(t_token **token_list, t_token *old_token, t_token *new_tokens)
+void	replace_token(t_token **token_list, t_token *old, t_token *new)
 {
-	t_token *prev = NULL;
-	t_token *current = *token_list;
-	while (current != old_token)
+	t_token	*prev;
+	t_token	*current;
+	t_token	*last_new;
+
+	prev = NULL;
+	current = *token_list;
+	while (current != old)
 	{
 		prev = current;
 		current = current->next;
 	}
 	if (prev)
-		prev->next = new_tokens;
+		prev->next = new;
 	else
-		*token_list = new_tokens;
-
-	t_token *last_new = new_tokens;
+		*token_list = new;
+	last_new = new;
 	while (last_new->next)
 		last_new = last_new->next;
-	last_new->next = old_token->next;
-	free(old_token->value);
-	free(old_token);
+	last_new->next = old->next;
+	free(old->value);
+	free(old);
 }
 
-void parse_and_extract_redir(t_token **token, char *str)
+void	parse_and_extract_redir(t_token **token, char *str)
 {
-	char *tmp = str;
-	t_quote q;
-	q.quote_flag = FALSE;
+	char	*tmp;
+	t_quote	q;
 
+	tmp = str;
+	q.quote_flag = FALSE;
 	while (*str)
 	{
 		if (!check_quote(&q, *str) && (*str == '<' || *str == '>'))
 		{
 			if (str != tmp)
-				add_back_token(token, new_token(WORD, ft_strndup(tmp, str - tmp)));
-
+				add_back_token(token, \
+				new_token(WORD, ft_strndup(tmp, str - tmp)));
 			create_redir_token(token, &str);
 			tmp = str;
 		}
@@ -90,7 +92,7 @@ void parse_and_extract_redir(t_token **token, char *str)
 		add_back_token(token, new_token(WORD, ft_strdup(tmp)));
 }
 
-void create_redir_token(t_token **token, char **str)
+void	create_redir_token(t_token **token, char **str)
 {
 	if (**str == '<' && *(*str + 1) != '<')
 	{
@@ -113,4 +115,3 @@ void create_redir_token(t_token **token, char **str)
 		add_back_token(token, new_token(APPEND_REDIR, ft_strdup(">>")));
 	}
 }
-

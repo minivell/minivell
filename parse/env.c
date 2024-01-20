@@ -2,7 +2,7 @@
 
 t_env	*new_env(char *key, char *value)
 {
-	t_env *new;
+	t_env	*new;
 
 	new = ft_calloc(1, sizeof(t_env));
 	new->key = key;
@@ -13,7 +13,7 @@ t_env	*new_env(char *key, char *value)
 
 void	env_add_back(t_env **env, t_env *new)
 {
-	t_env *curr;
+	t_env	*curr;
 
 	if (!*env)
 	{

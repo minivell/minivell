@@ -1,8 +1,9 @@
 #include "../minishell.h"
 
-void free_token_list(t_token *token)
+void	free_token_list(t_token *token)
 {
-	t_token *tmp;
+	t_token	*tmp;
+
 	if (token == NULL)
 		return ;
 	while (token)
@@ -14,9 +15,9 @@ void free_token_list(t_token *token)
 	}
 }
 
-void free_env_list(t_env *env)
+void	free_env_list(t_env *env)
 {
-	t_env *tmp;
+	t_env	*tmp;
 
 	while (env != NULL)
 	{
@@ -30,14 +31,15 @@ void free_env_list(t_env *env)
 
 int	parse_all(t_shell *shell_info, char *str)
 {
-	t_token *token;
+	t_token	*token;
+
 	token = NULL;
 	init_shell(shell_info);
 	if (quote_error(str) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
 	parse_pipe(&token, str);
-	parse_redir(&token);
-	parse_space(&token);
+	// parse_redir(&token);
+	parse_space(&token); 
 	replace_env_in_token(shell_info->env, token);
 	remove_outer_quotes(&token);
 	parse_filename(&token);
@@ -45,9 +47,10 @@ int	parse_all(t_shell *shell_info, char *str)
 	if (validate_token(&token) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
 	shell_info->cmd = tokens_to_cmds(token);
-
-
-	///////////////////////////출력 확인 코드 모음///////////////////////////////
+	free_token_list(token);
+	return (SUCCESS);
+}
+	///////////////////////////출력 확인 코드 모음///////// mak//////////////////////
 
 	///////////////token 출력 확인 코드////////////////////
 	// t_token *current_token;
@@ -87,7 +90,3 @@ int	parse_all(t_shell *shell_info, char *str)
 	// shell_info->heredoc_cnt = 0;
 	// shell_info->pipe_cnt = 0;
 	// printf("heredoc: %d, pipe: %d\n", shell_info->heredoc_cnt, shell_info->pipe_cnt);
-
-	free_token_list(token);
-	return (SUCCESS);
-}
