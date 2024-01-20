@@ -4,6 +4,7 @@ int	exec_cmd(char **cmd_args, t_exec *exec_info)
 {
 	char	*cmd_path;
 
+	set_signal(DEFAULT, DEFAULT);
 	if (cmd_args[0] == NULL)
 		return (SUCCESS);
 	cmd_path = get_cmd_path(cmd_args[0], exec_info->path);

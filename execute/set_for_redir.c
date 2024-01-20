@@ -1,11 +1,11 @@
 #include "../minishell.h"
 
-void	set_for_redir(t_exec *exec_info, t_redir *redir)
+int	set_for_redir(t_exec *exec_info, t_redir *redir)
 {
 	t_redir	*node;
 
 	if (redir == NULL)
-		return ;
+		return (TRUE);
 	node = redir;
 	while (node)
 	{
@@ -15,12 +15,12 @@ void	set_for_redir(t_exec *exec_info, t_redir *redir)
 			if (exec_info->infile_fd == FAILURE)
 			{
 				printf("error\n");
-				return ; // error
+				return FALSE; // error
 			}
 			if (dup2(exec_info->infile_fd, STDIN_FILENO) == FAILURE)
 			{
 				printf("error\n");
-				return ; // error
+				return FALSE; // error
 			}
 			close(exec_info->infile_fd);
 		}
@@ -28,20 +28,21 @@ void	set_for_redir(t_exec *exec_info, t_redir *redir)
 		{
 			exec_info->outfile_fd = open(redir->filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 			if (exec_info->outfile_fd == FAILURE)
-				return ; // error
+				return FALSE; // error
 			if (dup2(exec_info->outfile_fd, STDOUT_FILENO) == FAILURE)
-				return ; // error
+				return FALSE; // error
 			close(exec_info->outfile_fd);
 		}
 		else if (node->type == APPEND_REDIR)
 		{
 			exec_info->outfile_fd = open(redir->filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
 			if (exec_info->outfile_fd == FAILURE)
-				return ; // error
+				return FALSE; // error
 			if (dup2(exec_info->outfile_fd, STDOUT_FILENO) == FAILURE)
-				return ; // error
+				return FALSE; // error
 			close(exec_info->outfile_fd);
 		}
 		node = node->next;
 	}
+	return (TRUE);
 }

@@ -21,9 +21,7 @@ int main(int ac, char *av[], char *envp[])
 			continue ;
 		}
 		if (parse_all(&shell_info, str) == SUCCESS)
-		{
 			execute(&shell_info);
-		}
 		add_history(str);
 		free(str);
 	}
