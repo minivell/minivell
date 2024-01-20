@@ -8,7 +8,7 @@ void	single_process(t_shell *shell_info, t_exec *exec_info)
 	set_signal(DEFAULT, DEFAULT);
 	if (shell_info->cmd->redir != NULL && \
 	set_for_redir(exec_info, shell_info->cmd->redir) == FALSE)
-		g_exit_code = 1;
+		return ;
 	if (check_n_exec_builtin(shell_info->cmd, exec_info, FALSE) == TRUE)
 		return ;
 	else

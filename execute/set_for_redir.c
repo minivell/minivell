@@ -9,17 +9,16 @@ int	set_for_redir(t_exec *exec_info, t_redir *redir)
 	node = redir;
 	while (node)
 	{
-		printf("node->filename: %s\n", node->filename);
 		if (node->type == IN_REDIR || node->type == HEREDOC)
 		{
-			exec_info->infile_fd = open(redir->filename, O_RDONLY);
+			exec_info->infile_fd = open(node->filename, O_RDONLY);
 			if (exec_info->infile_fd == FAILURE)
 			{
 				g_exit_code = 1;
 				ft_putstr_fd("minivell: ", STDERR_FILENO);
 				ft_putstr_fd(node->filename, STDERR_FILENO);
 				ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
-				exit(g_exit_code);
+//				exit(g_exit_code);
 				return FALSE; // error
 			}
 			if (dup2(exec_info->infile_fd, STDIN_FILENO) == FAILURE)
@@ -31,7 +30,7 @@ int	set_for_redir(t_exec *exec_info, t_redir *redir)
 		}
 		else if (node->type == OUT_REDIR)
 		{
-			exec_info->outfile_fd = open(redir->filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+			exec_info->outfile_fd = open(node->filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 			if (exec_info->outfile_fd == FAILURE)
 			{
 				ft_putchar_fd('1', STDERR_FILENO);
@@ -43,11 +42,10 @@ int	set_for_redir(t_exec *exec_info, t_redir *redir)
 				return FALSE; // error
 			}
 			close(exec_info->outfile_fd);
-			ft_putstr_fd("hello\n", STDOUT_FILENO);
 		}
 		else if (node->type == APPEND_REDIR)
 		{
-			exec_info->outfile_fd = open(redir->filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
+			exec_info->outfile_fd = open(node->filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
 			if (exec_info->outfile_fd == FAILURE) {
 				ft_putchar_fd('3', STDERR_FILENO);
 				return FALSE; // error
