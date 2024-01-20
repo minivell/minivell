@@ -19,14 +19,14 @@ void	multi_process(t_shell *shell_info, t_exec *exec_info)
 	t_cmd	*cmd;
 	int		order;
 
-	set_signal(IGNORE, IGNORE);
+	// set_signal(IGNORE, IGNORE);
 	order = 1;
 	cmd = shell_info->cmd;
 	while (cmd)
 	{
+		set_signal(IGNORE, IGNORE);
 		if (pipe(exec_info->pipe) == FAILURE)
 			return ; // error handle
-		set_signal(IGNORE, IGNORE);
 		pid = fork();
 		if (pid == FAILURE)
 			return ;	// error handle
@@ -38,4 +38,6 @@ void	multi_process(t_shell *shell_info, t_exec *exec_info)
 		order++;
 	}
 	wait_child(shell_info->pipe_cnt + 1);
+	set_signal(MINIVELL, MINIVELL);
+	free_cmd_list(shell_info->cmd);
 }

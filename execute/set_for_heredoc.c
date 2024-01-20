@@ -80,7 +80,7 @@ int	set_for_heredoc(t_shell *shell_info)
 	wait(&status);
 	if (WEXITSTATUS(status) == EXIT_FAILURE)
 		g_exit_code = EXIT_FAILURE;
-	set_signal(HRD_IGN, HRD_IGN);
+	set_signal(MINIVELL, MINIVELL);
 	char	*new_filename;
 	int		num;
 	t_cmd	*node;
