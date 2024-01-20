@@ -19,7 +19,7 @@ void	single_process(t_shell *shell_info, t_exec *exec_info)
 			return ;
 		else if (pid == SUCCESS)
 		{
-			exec_cmd(shell_info->cmd, exec_info);
+			exec_cmd(shell_info->cmd, exec_info, FALSE);
 			exit (1);
 		}
 		wait(&status);
