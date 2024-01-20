@@ -52,7 +52,7 @@ void	set_heredoc_filename(t_shell *shell_info)
 			if (tmp_redir->type == HEREDOC)
 			{
 				n = ft_itoa(num);
-				new_filename = ft_strjoin("hrd_", n);
+				new_filename = ft_strjoin("/tmp/hrd_", n);
 				num++;
 				exec_heredoc(shell_info->env, new_filename, \
 				tmp_redir->filename);
@@ -97,7 +97,7 @@ int	set_for_heredoc(t_shell *shell_info)
 			if (tmp_redir->type == HEREDOC)
 			{
 				n = ft_itoa(num);
-				new_filename = ft_strjoin("hrd_", n);
+				new_filename = ft_strjoin("/tmp/hrd_", n);
 				num++;
 				tmp_redir->filename = new_filename;
 				free(n);
