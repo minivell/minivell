@@ -105,13 +105,13 @@ $(NAME)	: $(OBJS)
 # make for exec
 $(EXEC) : $(EXEC_OBJS)
 	@$(MAKE) -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) $(COMP_FLAGS) -o $(EXEC) $(EXEC_OBJS) -L$(LIBFT_DIR) -lft -lreadline
+	@$(CC) $(CFLAGS) $(COMP_FLAGS) -o $(EXEC) $(EXEC_OBJS) -L$(LIBFT_DIR) -lft
 	@echo $(GREEN) "⚡︎	[ minishell_exec ]	Ready to run minishell_exec" $(RESET)
 
 # make for parse
 $(PARSE) : $(PARSE_OBJS)
 	@$(MAKE) -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) $(COMP_FLAGS) -o $(PARSE) $(PARSE_OBJS) -L$(LIBFT_DIR) -lft -lreadline
+	@$(CC) $(CFLAGS) $(COMP_FLAGS) -o $(PARSE) $(PARSE_OBJS) -L$(LIBFT_DIR) -lft
 	@echo $(GREEN) "⚡︎	[ minishell_parse ]	Ready to run minishell_parse" $(RESET)
 
 #====================================#
