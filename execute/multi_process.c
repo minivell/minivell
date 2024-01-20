@@ -19,12 +19,14 @@ void	multi_process(t_shell *shell_info, t_exec *exec_info)
 	t_cmd	*cmd;
 	int		order;
 
+	set_signal(IGNORE, IGNORE);
 	order = 1;
 	cmd = shell_info->cmd;
 	while (cmd)
 	{
 		if (pipe(exec_info->pipe) == FAILURE)
 			return ; // error handle
+		set_signal(IGNORE, IGNORE);
 		pid = fork();
 		if (pid == FAILURE)
 			return ;	// error handle
