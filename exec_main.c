@@ -1,14 +1,9 @@
 #include "minishell.h"
 int	g_exit_code;
 
-void	_check(void)
-{
-	system("leaks minishell_exec");
-}
 
 int main(int ac, char *av[], char *envp[])
 {
-	// atexit(_check);
 	t_shell shell_info;
 	char	*str;
 	(void) ac;
@@ -26,7 +21,6 @@ int main(int ac, char *av[], char *envp[])
 			continue ;
 		}
 		if (parse_all(&shell_info, str) == SUCCESS)
-		{
 			execute(&shell_info);
 			free_cmd_list(shell_info.cmd);
 		}

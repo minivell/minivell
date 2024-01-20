@@ -9,6 +9,8 @@ PARSE	= minishell_parse
 
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror #-fsanitize=address -g3
+COMP_FLAGS	= -L/opt/homebrew/opt/readline/lib -lreadline
+OBJS_FLAGS	= -I/opt/homebrew/opt/readline/include
 RM		= rm -f
 
 # exec src files
@@ -45,6 +47,7 @@ EXEC_SRCS =		exec_main.c\
                 ./parse/parse_error.c \
                 ./parse/token_check.c \
                 ./parse/convert_env.c \
+                ./parse/signal.c\
 
 
 
@@ -91,24 +94,24 @@ parse : $(PARSE)
 #====================================#
 
 %.o		: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(OBJS_FLAGS) -c $< -o $@
 
 $(NAME)	: $(OBJS)
 	@$(MAKE) -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBFT_DIR) -lft
+	@$(CC) $(CFLAGS) $(COMP_FLAGS) -o $(NAME) $(OBJS) -L$(LIBFT_DIR) -lft
 	@echo $(GREEN) "⚡︎	[ minishell ]	Ready to run minishell" $(RESET)
 
 #====================================#
 # make for exec
 $(EXEC) : $(EXEC_OBJS)
 	@$(MAKE) -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) -o $(EXEC) $(EXEC_OBJS) -L$(LIBFT_DIR) -lft -lreadline
+	@$(CC) $(CFLAGS) $(COMP_FLAGS) -o $(EXEC) $(EXEC_OBJS) -L$(LIBFT_DIR) -lft -lreadline
 	@echo $(GREEN) "⚡︎	[ minishell_exec ]	Ready to run minishell_exec" $(RESET)
 
 # make for parse
 $(PARSE) : $(PARSE_OBJS)
 	@$(MAKE) -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) -o $(PARSE) $(PARSE_OBJS) -L$(LIBFT_DIR) -lft -lreadline
+	@$(CC) $(CFLAGS) $(COMP_FLAGS) -o $(PARSE) $(PARSE_OBJS) -L$(LIBFT_DIR) -lft -lreadline
 	@echo $(GREEN) "⚡︎	[ minishell_parse ]	Ready to run minishell_parse" $(RESET)
 
 #====================================#

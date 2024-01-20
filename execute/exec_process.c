@@ -10,6 +10,7 @@ void	exec_parents_process(t_exec *exec_info)
 
 void	exec_child_process(t_exec *exec_info, t_cmd *cmd, int order, int last_child)
 {
+	set_signal(DEFAULT, DEFAULT);
 	close(exec_info->pipe[I_STREAM]);
 	if (order != last_child && dup2(exec_info->pipe[O_STREAM], STDOUT_FILENO) == FAILURE)
 		return ; // error

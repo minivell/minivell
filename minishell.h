@@ -106,7 +106,7 @@ void	exec_parents_process(t_exec *exec_info);
 void	exec_child_process(t_exec *exec_info, t_cmd *cmd, int order, int last_child);
 
 // [execute/execute.c]
-int execute(t_shell *shell_info);
+void	execute(t_shell *shell_info);
 
 // [execute/get_cmd_path.c]
 char	*get_cmd_path(char *cmd, char **path);
@@ -127,13 +127,15 @@ void exec_child_process(t_exec *exec_info, t_cmd *cmd, int order, int last);
 void exec_parents_process(t_exec *exec_info);
 
 // [execute/set_for_heredoc.c]
-void	set_for_heredoc(t_shell *shell_info);
+int	set_for_heredoc(t_shell *shell_info);
 
 // [execute/single_process.c]
 void	single_process(t_shell *shell_info, t_exec *exec_info);
 int		exec_cmd(char **cmd_args, t_exec *exec_info);
 char	*get_cmd_path(char *cmd, char **path);
-void	set_for_redir(t_exec *exec_info, t_redir *redir);
+
+// [execute/set_for_redir.c]
+int	set_for_redir(t_exec *exec_info, t_redir *redir);
 
 // [builtin/cd.c]
 int	cd(char **args, t_exec *exec_info);
