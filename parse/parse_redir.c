@@ -10,13 +10,12 @@ void parse_redir(t_token **token)
 	{
 		next_tmp = tmp->next;
 
-		if (tmp->token_flag && tmp->type == WORD)
+		if (tmp->type == WORD)
 		{
 			new_token = NULL;
 			parse_and_extract_redir(&new_token, tmp->value);
 			if (new_token)
 			{
-				tmp->token_flag = FALSE;
 				replace_token(token, tmp, new_token);
 				tmp = next_tmp;
 				continue;
@@ -35,8 +34,7 @@ void parse_filename(t_token **token)
     {
         next_tmp = tmp->next;
 
-        if (tmp->token_flag && (tmp->type == IN_REDIR || tmp->type == OUT_REDIR ||
-                                tmp->type == APPEND_REDIR || tmp->type == HEREDOC))
+        if ((tmp->type == IN_REDIR || tmp->type == OUT_REDIR || tmp->type == APPEND_REDIR || tmp->type == HEREDOC))
         {
             if (next_tmp && next_tmp->type == WORD)
             {
@@ -81,7 +79,7 @@ void parse_and_extract_redir(t_token **token, char *str)
 		{
 			if (str != tmp)
 				add_back_token(token, new_token(WORD, ft_strndup(tmp, str - tmp)));
-			
+
 			create_redir_token(token, &str);
 			tmp = str;
 		}
