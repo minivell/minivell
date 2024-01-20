@@ -1,14 +1,14 @@
 #include "minishell.h"
+
 int	g_exit_code;
 
-
-int main(int ac, char *av[], char *envp[])
+int	main(int ac, char *av[], char *envp[])
 {
-	t_shell shell_info;
 	char	*str;
+	t_shell	shell_info;
+
 	(void) ac;
 	(void) av;
-
 	init_env(&shell_info.env, envp);
 	while (TRUE)
 	{
