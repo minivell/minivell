@@ -7,7 +7,7 @@
 
 #define DEFAULT   0
 #define IGNORE    1
-#define HRD_IGN   2
+#define MINIVELL  2
 #define HRD_CHILD 3
 
 #define TRUE 1
@@ -25,10 +25,19 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <signal.h>
+#include <sys/termios.h>
+#include <sys/wait.h>
+#include <sys/ioctl.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 
 extern int g_exit_code;
+
+
+
+
+void free_str_arr(char **arr);
+
 
 /*parse*/
 
