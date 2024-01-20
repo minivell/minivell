@@ -34,4 +34,3 @@ void	set_signal(int sig_int, int sig_quit)
 	if (sig_quit == IGNORE || sig_quit == HRD_IGN || sig_quit == HRD_CHILD)
 		signal(SIGQUIT, SIG_IGN);
 }
-
