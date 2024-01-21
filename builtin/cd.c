@@ -9,6 +9,7 @@ static void	set_oldpwd(t_exec *exec_info, char *oldpwd)
 	{
 		if (ft_strcmp(node->key, "OLDPWD") == 0)
 		{
+			free(node->value);
 			node->value = oldpwd;
 			return ;
 		}
@@ -38,6 +39,5 @@ int	cd(char **args, t_exec *exec_info)
 		return (1);
 	}
 	set_oldpwd(exec_info, cur_pwd);
-	free(cur_pwd);
 	return (g_exit_code);
 }
