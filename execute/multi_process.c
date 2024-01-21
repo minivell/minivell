@@ -19,17 +19,24 @@ void	multi_process(t_shell *shell_info, t_exec *exec_info)
 	t_cmd	*cmd;
 	int		order;
 
-	// set_signal(IGNORE, IGNORE);
+	set_signal(IGNORE, IGNORE);
 	order = 1;
 	cmd = shell_info->cmd;
 	while (cmd)
 	{
-		set_signal(IGNORE, IGNORE);
 		if (pipe(exec_info->pipe) == FAILURE)
-			return ; // error handle
+		{
+			ft_putstr_fd("minivell: ", STDERR_FILENO);
+			perror("pipe error");
+			exit (EXIT_FAILURE);
+		}
 		pid = fork();
 		if (pid == FAILURE)
-			return ;	// error handle
+		{
+			ft_putstr_fd("minivell: ", STDERR_FILENO);
+			perror("fork error");
+			exit (EXIT_FAILURE);
+		}
 		else if (pid == SUCCESS)
 			exec_child_process(exec_info, cmd, order, shell_info->pipe_cnt + 1);
 		else
