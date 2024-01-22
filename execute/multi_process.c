@@ -1,21 +1,5 @@
 #include "../minishell.h"
 
-static void	wait_child(int child_cnt, pid_t last_child)
-{
-	pid_t	current_pid;
-	int		status;
-	int		i;
-
-	i = 0;
-	while (i < child_cnt)
-	{
-		current_pid = wait(&status);
-		if (current_pid == last_child)
-			g_exit_code = WEXITSTATUS(status);
-		i++;
-	}
-}
-
 static void	open_pipe(t_exec *exec_info)
 {
 	if (pipe(exec_info->pipe) == FAILURE)

@@ -29,7 +29,7 @@ void	single_process(t_shell *shell_info, t_exec *exec_info)
 			set_signal(DEFAULT, DEFAULT);
 			exec_cmd(shell_info->cmd, exec_info, FALSE);
 		}
-		wait(&status);
+		wait_child(1, pid);
 		g_exit_code = WEXITSTATUS(status);
 	}
 }
