@@ -111,10 +111,13 @@ void count_token_type(t_shell *shell_info, t_token *token);
 
 void free_env_list(t_env *env);
 
+char *ft_strjoin_free(char *s1, const char *s2);
+char *find_key(char *value, int *i, int *start_idx);
+
 /* execute */
 
 // [execute/check_num.c]
-int	check_num(char *str);
+int		check_num(char *str);
 
 // [execute/error.c]
 void	print_error_message(char *cmd, char *arg, char *msg);
@@ -158,6 +161,9 @@ int	set_for_redir(t_exec *exec_info, t_redir *redir);
 // [execute/unlink_heredoc.c]
 void	unlink_heredoc(void);
 
+
+/* builtin */
+
 // [builtin/cd.c]
 int	cd(char **args, t_exec *exec_info);
 
@@ -168,7 +174,7 @@ int	check_n_exec_builtin(t_cmd *cmd_info, t_exec *exec_info, int exit_flag);
 int	echo(char **args);
 
 // [builtin/env.c]
-int env(t_exec *exec_info);
+int	env(t_exec *exec_info, char **cmd_args);
 
 // [builtin/exit.c]
 int exit_shell(char **cmd_args, int exit_flag);
@@ -181,8 +187,5 @@ int	pwd(void);
 
 // [builtin/unset.c]
 int	unset(t_exec *exec_info, char **args);
-
-
-
 
 #endif
