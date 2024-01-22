@@ -31,6 +31,7 @@ EXEC_SRCS =		exec_main.c\
 				./execute/multi_process.c\
 				./execute/set_for_heredoc.c\
 				./execute/set_for_redir.c\
+				./execute/unlink_heredoc.c\
 				./builtin/cd.c\
 				./builtin/check_n_exec_builtin.c\
 				./builtin/echo.c\

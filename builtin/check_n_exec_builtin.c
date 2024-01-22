@@ -20,7 +20,7 @@ int	check_n_exec_builtin(t_cmd *cmd_info, t_exec *exec_info, int exit_flag)
 	else if (ft_strcmp(cmd, "env") == 0)
 		g_exit_code = env(exec_info);
 	else if (ft_strcmp(cmd, "exit") == 0)
-		g_exit_code = exit_shell(exit_flag);
+		g_exit_code = exit_shell(cmd_info->cmd_args, exit_flag);
 	else
 		return (FALSE);
 	return (TRUE);
