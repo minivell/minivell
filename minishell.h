@@ -1,7 +1,6 @@
 #ifndef MINISHELL_H
 #define MINISHELL_H
 
-#define EXIT_FAILURE 1
 #define SUCCESS 0
 #define FAILURE -1
 
@@ -114,8 +113,14 @@ void free_env_list(t_env *env);
 
 /* execute */
 
+// [execute/check_num.c]
+int	check_num(char *str);
+
+// [execute/error.c]
+void	print_error_message(char *cmd, char *arg, char *msg);
+
 // [execute/exec_cmd.c]
-int	exec_cmd(t_cmd *cmd, t_exec *exec_info, int child);
+void	exec_cmd(t_cmd *cmd, t_exec *exec_info, int child);
 
 // [execute/exec_process.c]
 void	exec_parents_process(t_exec *exec_info);
@@ -163,7 +168,7 @@ int	echo(char **args);
 int env(t_exec *exec_info);
 
 // [builtin/exit.c]
-int exit_shell(int exit_flag);
+int exit_shell(char **cmd_args, int exit_flag);
 
 // [builtin/export.c]
 int	export(t_exec *exec_info, char **args);
@@ -173,5 +178,8 @@ int	pwd(void);
 
 // [builtin/unset.c]
 int	unset(t_exec *exec_info, char **args);
+
+
+
 
 #endif

@@ -18,6 +18,7 @@ RM		= rm -f
 
 # exec src files
 EXEC_SRCS =		exec_main.c\
+				./execute/check_num.c\
 				./execute/error.c\
 				./execute/exec_cmd.c\
 				./execute/exec_process.c\
