@@ -18,6 +18,9 @@ int	parse_all(t_shell *shell_info, char *str)
 	if (validate_token(&token) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
 	shell_info->cmd = tokens_to_cmds(token);
+	free_token_list(token);
+	return (SUCCESS);
+}
 
 	///////////////////////////출력 확인 코드 모음///////////////////////////////
 
@@ -59,7 +62,3 @@ int	parse_all(t_shell *shell_info, char *str)
 	// shell_info->heredoc_cnt = 0;
 	// shell_info->pipe_cnt = 0;
 	// printf("heredoc: %d, pipe: %d\n", shell_info->heredoc_cnt, shell_info->pipe_cnt);
-
-	free_token_list(token);
-	return (SUCCESS);
-}
