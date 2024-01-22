@@ -46,5 +46,4 @@ void	multi_process(t_shell *shell_info, t_exec *exec_info)
 	}
 	wait_child(shell_info->pipe_cnt + 1);
 	set_signal(MINIVELL, MINIVELL);
-	free_cmd_list(shell_info->cmd);
 }
