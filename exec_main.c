@@ -47,11 +47,12 @@ int	main(int ac, char *av[], char *envp[])
 		if (parse_all(&shell_info, str) == SUCCESS)
 		{
 			execute(&shell_info);
-			// free_cmd_list(shell_info.cmd); // TODO: double free check
+//			free_cmd_list(shell_info.cmd); // 멀티 프로세스 일 때 abort
 		}
 		add_history(str);
 		free(str);
 	}
+	unlink_heredoc();
 	set_terminal_to_origin(&term, &shell_info);
 	return (g_exit_code);
 }

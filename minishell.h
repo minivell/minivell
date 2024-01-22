@@ -155,6 +155,9 @@ void	single_process(t_shell *shell_info, t_exec *exec_info);
 // [execute/set_for_redir.c]
 int	set_for_redir(t_exec *exec_info, t_redir *redir);
 
+// [execute/unlink_heredoc.c]
+void	unlink_heredoc(void);
+
 // [builtin/cd.c]
 int	cd(char **args, t_exec *exec_info);
 
