@@ -75,6 +75,7 @@ static void	replace_filename(t_cmd *node, t_shell *shell_info, int num)
 				num++;
 				exec_heredoc(shell_info->env, new_filename, \
 				tmp_redir->filename);
+				free(tmp_redir->filename);
 				tmp_redir->filename = new_filename;
 				free(n);
 			}
