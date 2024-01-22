@@ -1,15 +1,15 @@
 #include "../minishell.h"
 
-int print_error_msg(void)
+int	print_error_msg(void)
 {
 	ft_putstr_fd("minivell: syntax error\n", 2);
 	g_exit_code = 258;
 	return (EXIT_FAILURE);
 }
 
-int quote_error(char *str)
+int	quote_error(char *str)
 {
-	t_quote q;
+	t_quote	q;
 
 	q.quote_flag = FALSE;
 	while (*str)

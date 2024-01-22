@@ -1,8 +1,8 @@
 #include "../minishell.h"
 
-void free_redir_list(t_redir *redir)
+void	free_redir_list(t_redir *redir)
 {
-	t_redir *tmp;
+	t_redir	*tmp;
 
 	while (redir != NULL)
 	{
@@ -13,9 +13,9 @@ void free_redir_list(t_redir *redir)
 	}
 }
 
-void free_str_arr(char **arr)
+void	free_str_arr(char **arr)
 {
-	int i;
+	int	i;
 
 	if (arr == NULL)
 		return ;
@@ -25,9 +25,9 @@ void free_str_arr(char **arr)
 	free(arr);
 }
 
-void free_str_arr_line(char **arr, int len)
+void	free_str_arr_line(char **arr, int len)
 {
-	int i;
+	int	i;
 
 	if (arr == NULL)
 		return ;

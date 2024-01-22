@@ -1,10 +1,10 @@
 #include "../minishell.h"
 
-void parse_pipe(t_token **token, char *str)
+void	parse_pipe(t_token **token, char *str)
 {
-	t_quote quote;
-	char *tmp;
-	
+	t_quote	quote;
+	char	*tmp;
+
 	tmp = str;
 	quote.quote_flag = FALSE;
 	while (*str)

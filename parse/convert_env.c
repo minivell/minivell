@@ -23,9 +23,10 @@ char	*join_and_free(char *s1, char *s2, int free_s1)
 {
 	char	*result;
 
+	(void)free_s1;
 	result = ft_strjoin(s1, s2);
-	if (free_s1)
-		free(s1);
+	// if (free_s1)
+	// 	free(s1);
 	return (result);
 }
 
