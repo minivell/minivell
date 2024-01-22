@@ -48,6 +48,7 @@ int	main(int ac, char *av[], char *envp[])
 		{
 			execute(&shell_info);
 //			free_cmd_list(shell_info.cmd); // 멀티 프로세스 일 때 abort
+			shell_info.cmd = NULL;
 		}
 		add_history(str);
 		free(str);

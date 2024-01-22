@@ -25,6 +25,18 @@ void free_str_arr(char **arr)
 	free(arr);
 }
 
+void free_str_arr2(char **arr, int len)
+{
+	int i;
+
+	if (arr == NULL)
+		return ;
+	i = 0;
+	while (i < len)
+		free(arr[i++]);
+	free(arr);
+}
+
 void free_cmd_list(t_cmd *cmd)
 {
 	t_cmd *tmp;
@@ -32,7 +44,7 @@ void free_cmd_list(t_cmd *cmd)
 	while (cmd)
 	{
 		tmp = cmd->next;
-		free_str_arr(cmd->cmd_args);
+		free_str_arr2(cmd->cmd_args, cmd->cmd_cnt);
 		free_redir_list(cmd->redir);
 		free(cmd);
 		cmd = tmp;
