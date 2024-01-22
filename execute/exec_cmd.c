@@ -7,7 +7,7 @@ void	exec_cmd(t_cmd *cmd, t_exec *exec_info, int child)
 	set_signal(DEFAULT, DEFAULT);
 	if (cmd->cmd_args[0] == NULL)
 		exit (EXIT_SUCCESS);
-	if (child == TRUE && ft_strcmp(cmd->cmd_args[0], "./minishell_exec") == 0) // TODO: 나중에 minishell_exec -> minishell로 바꾸기
+	if (child == TRUE && ft_strcmp(cmd->cmd_args[0], "./minishell") == 0)
 	{
 		ft_putstr_fd("The default interactive shell is not minivell.\n", \
 			STDERR_FILENO);
