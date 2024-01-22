@@ -82,7 +82,7 @@ int quote_error(char *str);
 int check_pipe_error(t_token *token);
 int check_redir_sequence_error(t_token *token);
 int check_heredoc_limit(t_token *token);
-int check_redir_filename_error(t_token *token); 
+int check_redir_filename_error(t_token *token);
 int validate_token(t_token **token);
 
 /*cmd.c*/
@@ -171,6 +171,9 @@ int	set_for_redir(t_exec *exec_info, t_redir *redir);
 
 // [execute/unlink_heredoc.c]
 void	unlink_heredoc(void);
+
+// [execute/wait_child.c]
+void	wait_child(int child_cnt, pid_t last_child);
 
 
 /* builtin */
