@@ -14,19 +14,15 @@ void	exec_cmd(t_cmd *cmd, t_exec *exec_info, int child)
 		exit (EXIT_FAILURE);
 	}
 	g_exit_code = 0;
-	if (check_n_exec_builtin(cmd, exec_info, TRUE) == TRUE)
+	if (check_n_exec_builtin(cmd, exec_info, child) == TRUE)
 		exit (g_exit_code);
 	cmd_path = get_cmd_path(cmd->cmd_args[0], exec_info->path);
 	if (cmd_path == NULL && cmd->cmd_args[0][0] == '/')
 	{
-		ft_putstr_fd("minivell: ", STDERR_FILENO);
-		ft_putstr_fd(cmd->cmd_args[0], STDERR_FILENO);
-		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
+		print_error_message(cmd->cmd_args[0], "No such file or directory");
 		exit (127);
 	}
 	execve(cmd_path, cmd->cmd_args, make_new_env(exec_info));
-	ft_putstr_fd("minivell: ", STDERR_FILENO);
-	ft_putstr_fd(cmd->cmd_args[0], STDERR_FILENO);
-	ft_putstr_fd(": command not found\n", STDERR_FILENO);
+	print_error_message(cmd->cmd_args[0], "command not found");
 	exit(127);
 }

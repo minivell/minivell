@@ -15,9 +15,7 @@ int	set_for_redir(t_exec *exec_info, t_redir *redir)
 			if (exec_info->infile_fd == FAILURE)
 			{
 				g_exit_code = 1;
-				ft_putstr_fd("minivell: ", STDERR_FILENO);
-				ft_putstr_fd(node->filename, STDERR_FILENO);
-				ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
+				print_error_message(node->filename, NULL, "No such file or directory");
 				return (FALSE);
 			}
 			if (dup2(exec_info->infile_fd, STDIN_FILENO) == FAILURE)

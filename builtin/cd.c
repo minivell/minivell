@@ -30,12 +30,12 @@ int	cd(char **args, t_exec *exec_info)
 		path = args[1];
 	if (path == NULL)
 	{
-		printf("error\n"); // minivell: cd: HOME not set\n
+		print_error_message("cd", NULL, "HOME not set");
 		return (1);
 	}
 	if (chdir(path) == FAILURE)
 	{
-		printf("error\n");
+		print_error_message(args[0], args[1], "No such file or directory");
 		return (1);
 	}
 	set_oldpwd(exec_info, cur_pwd);
