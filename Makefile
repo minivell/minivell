@@ -8,7 +8,7 @@ PARSE	= minishell_parse
 #==========================================
 
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror #-fsanitize=address -g3
+CFLAGS	= -Wall -Wextra -Werror -fsanitize=address -g3
  COMP_FLAGS	= -L/opt/homebrew/opt/readline/lib -lreadline
  OBJS_FLAGS	= -I/opt/homebrew/opt/readline/include
 
@@ -18,6 +18,7 @@ RM		= rm -f
 
 # exec src files
 EXEC_SRCS =		exec_main.c\
+				./execute/error.c\
 				./execute/exec_cmd.c\
 				./execute/exec_process.c\
 				./execute/execute.c\
