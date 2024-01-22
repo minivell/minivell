@@ -52,14 +52,29 @@ int check_redir_filename_error(t_token *token)
 int validate_token(t_token **token)
 {
 	if (!token || !*token)
+	{
+		free_token_list(*token);
 		return EXIT_FAILURE;
+	}
 	if (check_pipe_error(*token) != EXIT_SUCCESS)
+	{
+		free_token_list(*token);
 		return EXIT_FAILURE;
+	}
 	if (check_redir_sequence_error(*token) != EXIT_SUCCESS)
+	{
+		free_token_list(*token);
 		return EXIT_FAILURE;
+	}
 	if (check_heredoc_limit(*token) != EXIT_SUCCESS)
+	{
+		free_token_list(*token);
 		return EXIT_FAILURE;
+	}
 	if (check_redir_filename_error(*token) != EXIT_SUCCESS)
+	{
+		free_token_list(*token);
 		return EXIT_FAILURE;
+	}
 	return EXIT_SUCCESS;
 }
