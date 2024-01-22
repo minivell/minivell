@@ -16,15 +16,17 @@ void	single_process(t_shell *shell_info, t_exec *exec_info)
 		set_signal(IGNORE, IGNORE);
 		pid = fork();
 		if (pid == FAILURE)
-			return ;
+		{
+			ft_putstr_fd("minivell: ", STDERR_FILENO);
+			perror("fork error");
+			exit (EXIT_FAILURE);
+		}
 		else if (pid == SUCCESS)
 		{
 			set_signal(DEFAULT, DEFAULT);
 			exec_cmd(shell_info->cmd, exec_info, FALSE);
-			exit (1);
 		}
 		wait(&status);
 		g_exit_code = WEXITSTATUS(status);
 	}
-	free_cmd_list(shell_info->cmd);
 }

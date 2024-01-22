@@ -22,6 +22,11 @@ int	echo(char **args)
 
 	idx = 1;
 	newline = TRUE;
+	if (args[idx] == NULL)
+	{
+		printf("\n");
+		return (SUCCESS);
+	}
 	while (args[idx] && ft_strcmp(args[idx], "-n") == 0)
 	{
 		newline = FALSE;

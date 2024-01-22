@@ -1,28 +1,28 @@
 #include "../minishell.h"
 
-int	exec_cmd(t_cmd *cmd, t_exec *exec_info, int child)
+void	exec_cmd(t_cmd *cmd, t_exec *exec_info, int child)
 {
 	char	*cmd_path;
 
 	set_signal(DEFAULT, DEFAULT);
 	if (cmd->cmd_args[0] == NULL)
-		return (SUCCESS);
+		exit (EXIT_SUCCESS);
 	if (child == TRUE && ft_strcmp(cmd->cmd_args[0], "./minishell_exec") == 0) // TODO: 나중에 minishell_exec -> minishell로 바꾸기
 	{
 		ft_putstr_fd("The default interactive shell is not minivell.\n", \
 			STDERR_FILENO);
 		exit (EXIT_FAILURE);
 	}
-	if (check_n_exec_builtin(cmd, exec_info, TRUE) == TRUE)
-		return (SUCCESS);
+	g_exit_code = 0;
+	if (check_n_exec_builtin(cmd, exec_info, child) == TRUE)
+		exit (g_exit_code);
 	cmd_path = get_cmd_path(cmd->cmd_args[0], exec_info->path);
-	if (execve(cmd_path, cmd->cmd_args, make_new_env(exec_info)) == FAILURE)
+	if (cmd_path == NULL && cmd->cmd_args[0][0] == '/')
 	{
-		g_exit_code = 127;
-		ft_putstr_fd("minivell: ", STDERR_FILENO);
-		ft_putstr_fd(cmd->cmd_args[0], STDERR_FILENO);
-		ft_putstr_fd(": command not found\n", STDERR_FILENO);
-		exit(g_exit_code);
+		print_error_message(cmd->cmd_args[0], "No such file or directory");
+		exit (127);
 	}
-	return (SUCCESS);
+	execve(cmd_path, cmd->cmd_args, make_new_env(exec_info));
+	print_error_message(cmd->cmd_args[0], "command not found");
+	exit(127);
 }
