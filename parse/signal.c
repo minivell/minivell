@@ -17,7 +17,6 @@ void	hrd_ign_handler(int sig_no)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
-	// exit(EXIT_FAILURE);
 }
 
 void	set_signal(int sig_int, int sig_quit)

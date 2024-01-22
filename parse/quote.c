@@ -49,6 +49,18 @@ void remove_quotes_from_string(char *str, char *new_str)
 	new_str[new_index] = '\0';
 }
 
+char	handle_quotes(char quote_flag, char current_char)
+{
+	if (current_char == '\'' || current_char == '\"')
+	{
+		if (quote_flag == 0)
+			return (current_char);
+		else if (quote_flag == current_char)
+			return (0);
+	}
+	return (quote_flag);
+}
+
 void remove_outer_quotes(t_token **token)
 {
 	t_token *token_tmp = *token;

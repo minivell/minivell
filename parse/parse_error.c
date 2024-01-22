@@ -24,28 +24,3 @@ int quote_error(char *str)
 	}
 	return (EXIT_SUCCESS);
 }
-
-int token_error(t_token *token)
-{
-	t_token	*tmp;
-
-	if (token->type == PIPE)
-		return (print_error_msg());
-	tmp = token;
-	while (tmp->next)
-	{
-		if (((IN_REDIR <= tmp->type && tmp->type <= APPEND_REDIR) && tmp->next->type != WORD)
-			|| (tmp->type == PIPE && tmp->next->type == PIPE))
-			return (print_error_msg());
-		tmp = tmp->next;
-	}
-	if (tmp)
-	{
-		if (IN_REDIR <= tmp->type && tmp->type <= APPEND_REDIR)
-			return (print_error_msg());
-		else if (tmp->type == PIPE)
-			return (print_error_msg());
-	}
-	return (EXIT_SUCCESS);
-}
-

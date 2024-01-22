@@ -32,11 +32,7 @@
 
 extern int g_exit_code;
 
-
-
-
 void free_str_arr(char **arr);
-
 
 /*parse*/
 
@@ -47,14 +43,18 @@ int parse_all(t_shell *shell_info, char *str);
 void init_shell(t_shell *shell_info);
 
 /*env.c*/
-void init_env(t_env **env, char *envp[]);
-void	env_add_back(t_env **env, t_env *new);
+char *find_key(char *value, int *i, int *start_idx);
+char *find_value(t_env *env_list, char *key, int *flag);
 t_env	*new_env(char *key, char *value);
+void	env_add_back(t_env **env, t_env *new);
+void	init_env(t_env **env, char *envp[]);
 
 /*convert_env.c*/
-void process_tokens(t_shell *shell_info, t_token *token);
-void expand_env(t_token *token, t_env *env_var);
-char *find_value(t_env *env_list, char *key, int *flag);
+char *ft_strjoin_free(char *s1, const char *s2);
+char	*join_and_free(char *s1, char *s2, int free_s1);
+char	*process_segment(char *str, int start, int end, char **res);
+void process_env_var(t_env *env_list, t_env_process *env_proc);
+void	process_token(t_env *env_list, t_token *token, char quote_flag, char *res);
 void replace_env_in_token(t_env *env_list, t_token *token);
 
 /*parse_pipe.c*/
@@ -63,11 +63,11 @@ void parse_pipe(t_token **token, char *str);
 /*parse_redir.c*/
 void parse_redir(t_token **token);
 void parse_filename(t_token **token);
+void replace_token(t_token **token_list, t_token *old_token, t_token *new_tokens);
 void parse_and_extract_redir(t_token **token, char *str);
 void create_redir_token(t_token **token, char **str);
 
 /*parse_space.c*/
-int ft_isspace(int c);
 int is_space_outside_quotes(char c, t_quote quote);
 void update_quote_flag(char c, t_quote *quote);
 t_token *create_new_token(t_type type, char *start, char *end);
@@ -77,15 +77,21 @@ void parse_space(t_token **token);
 /*parse_error.c*/
 int print_error_msg(void);
 int quote_error(char *str);
-int token_error(t_token *token);
 
-/*signal.c*/
-void	set_signal(int sig_int, int sig_quit);
+/*token_check.c*/
+int check_pipe_error(t_token *token);
+int check_redir_sequence_error(t_token *token);
+int check_heredoc_limit(t_token *token);
+int check_redir_filename_error(t_token *token); 
+int validate_token(t_token **token);
 
 /*cmd.c*/
-// void    init_cmd(t_cmd **cmd, t_token *token);
 t_cmd *tokens_to_cmds(t_token *tokens);
-void free_cmd_list(t_cmd *cmd);
+
+/*signal.c*/
+void	hrd_handler(int sig_no);
+void	hrd_ign_handler(int sig_no);
+void	set_signal(int sig_int, int sig_quit);
 
 /*redir.c*/
 t_redir *new_redir(t_type type, char *filename);
@@ -94,21 +100,26 @@ void free_redir(t_redir *redir);
 
 /*quote.c*/
 int check_quote(t_quote *quote, char c);
-// char *find_value(t_env *env_list, char *key);
-void replace_env_in_token(t_env *env_list, t_token *token);
+int find_matching_quote(const char *str, int start_index, char quote_type);
+void remove_quotes_from_string(char *str, char *new_str);
+char	handle_quotes(char quote_flag, char current_char);
 void remove_outer_quotes(t_token **token);
-
-/*quote_check.c*/
-int validate_token(t_token **token);
 
 /*token.c*/
 void add_token_if_not_empty(char **start, char **current, t_token **token, t_type type);
 t_token *new_token(t_type type, char *value);
 void add_back_token(t_token **node, t_token *new);
-void replace_token(t_token **token_list, t_token *old_token, t_token *new_tokens);
-void free_token(t_token *token);
+void	free_token(t_token *token);
 void count_token_type(t_shell *shell_info, t_token *token);
 
+/*free.c*/
+void free_redir_list(t_redir *redir);
+void free_str_arr(char **arr);
+void free_str_arr_line(char **arr, int len);
+
+/*free2.c*/
+void free_cmd_list(t_cmd *cmd);
+void free_token_list(t_token *token);
 void free_env_list(t_env *env);
 
 char *ft_strjoin_free(char *s1, const char *s2);
