@@ -30,17 +30,18 @@ int	find_matching_quote(const char *str, int start_index, char quote_type)
 
 void	remove_quotes_from_string(char *str, char *new_str)
 {
-	int	len;
-	int	new_index;
+	int		new_index;
+	size_t	i;
+	size_t	j;
 
-	len = ft_strlen(str);
 	new_index = 0;
-	for (int i = 0; i < len; i++)
+	i = 0;
+	while (i < ft_strlen(str))
 	{
 		if (str[i] == '\"' || str[i] == '\'')
 		{
-			int j = find_matching_quote(str, i + 1, str[i]);
-			if (j < len)
+			j = find_matching_quote(str, i + 1, str[i]);
+			if (j < ft_strlen(str))
 			{
 				i++;
 				while (i < j)
@@ -51,6 +52,7 @@ void	remove_quotes_from_string(char *str, char *new_str)
 		}
 		else
 			new_str[new_index++] = str[i];
+		i++;
 	}
 	new_str[new_index] = '\0';
 }
