@@ -1,5 +1,24 @@
 #include "../minishell.h"
 
+char	*ft_strjoin_free(char *s1, const char *s2)
+{
+	char	*new_str;
+	int		len1;
+	int		len2;
+
+	if (!s1 || !s2)
+		return (NULL);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	new_str = malloc(sizeof(char) * (len1 + len2 + 1));
+	if (!new_str)
+		return (NULL);
+	ft_strlcpy(new_str, s1, len1 + 1);
+	ft_strlcat(new_str, s2, len1 + len2 + 1);
+	free(s1);
+	return (new_str);
+}
+
 void	free_redir_list(t_redir *redir)
 {
 	t_redir	*tmp;
