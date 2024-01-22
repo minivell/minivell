@@ -48,12 +48,11 @@ void	env_add_back(t_env **env, t_env *new);
 void	init_env(t_env **env, char *envp[]);
 
 /*convert_env.c*/
-char	*ft_strjoin_free(char *s1, const char *s2);
-char	*join_and_free(char *s1, char *s2, int free_s1);
-char	*process_segment(char *str, int start, int end, char **res);
-void	process_env_var(t_env *env_list, t_env_process *env_proc);
-void	process_token(t_env *env_list, \
-	t_token *token, char quote_flag, char *res);
+void	change_quote_flag(t_convert_env *env, t_token *token, int i);
+int		is_env_char(t_convert_env *env, t_token *token, int i);
+int		convert_and_join(t_env *env_list, t_token *token, \
+	t_convert_env *env, int i);
+void	res_to_value(t_token **token, t_convert_env *env, int i);
 void	replace_env_in_token(t_env *env_list, t_token *token);
 
 /*parse_pipe.c*/
@@ -114,6 +113,7 @@ void	free_token(t_token *token);
 void	count_token_type(t_shell *shell_info, t_token *token);
 
 /*free.c*/
+char	*ft_strjoin_free(char *s1, const char *s2);
 void	free_redir_list(t_redir *redir);
 void	free_str_arr(char **arr);
 void	free_str_arr_line(char **arr, int len);
@@ -202,5 +202,6 @@ int		pwd(void);
 
 // [builtin/unset.c]
 int		unset(t_exec *exec_info, char **args);
+
 
 #endif
