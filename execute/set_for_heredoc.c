@@ -12,9 +12,11 @@ void	exec_heredoc(t_env *env, char *new_filename, char *limiter)
 
 	(void)env;
 	fd = open(new_filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (fd == FAILURE) {
+	if (fd == FAILURE)
+	{
 		perror("open failed\n");
-		exit(EXIT_FAILURE); }
+		exit(EXIT_FAILURE);
+	}
 	while (TRUE)
 	{
 		line = readline("> ");
@@ -25,25 +27,20 @@ void	exec_heredoc(t_env *env, char *new_filename, char *limiter)
 			free(line);
 			break ;
 		}
-//		replace_env_in_line(&line, env); -> key로 value 찾는 함수 있나 경아한테 물어보기
-		 write(fd, line, ft_strlen(line));
-		 write(fd, "\n", 1);
+//		replace_env_in_line(&line, env); -> TODO: key로 value 찾는 함수 있나 경아한테 물어보기
+		write(fd, line, ft_strlen(line));
+		write(fd, "\n", 1);
 		free(line);
 	}
 	close(fd);
 }
 
-void	set_heredoc_filename(t_shell *shell_info)
+static void	replace_filename(t_cmd *node, t_shell *shell_info, int num)
 {
+	char	*n;
 	char	*new_filename;
-	int		num;
-	t_cmd	*node;
 	t_redir	*tmp_redir;
-	char *n;
 
-	set_signal(HRD_CHILD, HRD_CHILD);
-	num = 0;
-	node = shell_info->cmd;
 	while (node != NULL)
 	{
 		tmp_redir = node->redir;
@@ -63,12 +60,12 @@ void	set_heredoc_filename(t_shell *shell_info)
 		}
 		node = node->next;
 	}
-	 exit(EXIT_SUCCESS);
 }
 
 int	set_for_heredoc(t_shell *shell_info)
 {
 	pid_t	pid;
+	t_cmd	*node;
 	int		status;
 
 	set_signal(IGNORE, IGNORE);
@@ -76,38 +73,16 @@ int	set_for_heredoc(t_shell *shell_info)
 	if (pid == FAILURE)
 		exit(EXIT_FAILURE);
 	else if (pid == SUCCESS)
-		set_heredoc_filename(shell_info);
+	{
+		set_signal(HRD_CHILD, HRD_CHILD);
+		exit(EXIT_SUCCESS);
+	}
 	wait(&status);
 	if (WEXITSTATUS(status) == EXIT_FAILURE)
 		g_exit_code = EXIT_FAILURE;
 	set_signal(MINIVELL, MINIVELL);
-
-	char	*new_filename;
-	int		num;
-	t_cmd	*node;
-	t_redir	*tmp_redir;
-	char *n;
-
-	num = 0;
 	node = shell_info->cmd;
-	while (node != NULL)
-	{
-		tmp_redir = node->redir;
-		while (tmp_redir != NULL)
-		{
-			if (tmp_redir->type == HEREDOC)
-			{
-				n = ft_itoa(num);
-				new_filename = ft_strjoin("/tmp/hrd_", n);
-				num++;
-				free(tmp_redir->filename);
-				tmp_redir->filename = new_filename;
-				free(n);
-			}
-			tmp_redir = tmp_redir->next;
-		}
-		node = node->next;
-	}
+	replace_filename(node, shell_info, 0);
 	if (g_exit_code == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (SUCCESS);

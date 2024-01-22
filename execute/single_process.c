@@ -1,5 +1,12 @@
 #include "../minishell.h"
 
+static void	print_error(void)
+{
+	ft_putstr_fd("minivell: ", STDERR_FILENO);
+	perror("fork error");
+	exit (EXIT_FAILURE);
+}
+
 void	single_process(t_shell *shell_info, t_exec *exec_info)
 {
 	int		status;
@@ -16,11 +23,7 @@ void	single_process(t_shell *shell_info, t_exec *exec_info)
 		set_signal(IGNORE, IGNORE);
 		pid = fork();
 		if (pid == FAILURE)
-		{
-			ft_putstr_fd("minivell: ", STDERR_FILENO);
-			perror("fork error");
-			exit (EXIT_FAILURE);
-		}
+			print_error();
 		else if (pid == SUCCESS)
 		{
 			set_signal(DEFAULT, DEFAULT);

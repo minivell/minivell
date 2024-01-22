@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-t_exec 	*init_exec(t_shell *shell_info)
+t_exec	*init_exec(t_shell *shell_info)
 {
 	t_exec	*exec_info;
 

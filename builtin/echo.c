@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-int	is_newline(char *arg, int *idx)
+static int	is_newline(char *arg, int *idx)
 {
 	int	i;
 
@@ -20,18 +20,15 @@ int	echo(char **args)
 	int	idx;
 	int	newline;
 
-	idx = 1;
+	idx = 0;
 	newline = TRUE;
 	if (args[idx] == NULL)
 	{
 		printf("\n");
 		return (SUCCESS);
 	}
-	while (args[idx] && ft_strcmp(args[idx], "-n") == 0)
-	{
+	while (args[++idx] && ft_strcmp(args[idx], "-n") == 0)
 		newline = FALSE;
-		idx++;
-	}
 	if (ft_strncmp(args[idx], "-n", 2) == 0)
 		newline = is_newline(args[idx], &idx);
 	while (args[idx])

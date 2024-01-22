@@ -15,8 +15,8 @@ static void	print_export(t_exec *exec_info)
 int	export(t_exec *exec_info, char **args)
 {
 	int		i;
-	char *key;
-	char *value;
+	char	*key;
+	char	*value;
 
 	if (args[1] == NULL)
 		print_export(exec_info);

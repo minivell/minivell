@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-int unset(t_exec *exec_info, char **args)
+int	unset(t_exec *exec_info, char **args)
 {
 	t_env	*node;
 	t_env	*prev;
