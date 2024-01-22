@@ -1,7 +1,7 @@
 NAME	= minishell
 
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror #-fsanitize=address -g3
+CFLAGS	= -Wall -Wextra -Werror -fsanitize=address -g3
 # COMP_FLAGS	= -L/opt/homebrew/opt/readline/lib -lreadline
 # OBJS_FLAGS	= -I/opt/homebrew/opt/readline/include
 
