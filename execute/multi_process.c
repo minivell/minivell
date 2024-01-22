@@ -1,15 +1,28 @@
 #include "../minishell.h"
 
-static void	wait_child(int last_child)
+static void	wait_child(int child_cnt, pid_t last_child)
 {
-	int	status;
-	int	i;
+	pid_t	current_pid;
+	int		status;
+	int		i;
 
 	i = 0;
-	while (i < last_child)
+	while (i < child_cnt)
 	{
-		wait(&status);
+		current_pid = wait(&status);
+		if (current_pid == last_child)
+			g_exit_code = WEXITSTATUS(status);
 		i++;
+	}
+}
+
+static void	open_pipe(t_exec *exec_info)
+{
+	if (pipe(exec_info->pipe) == FAILURE)
+	{
+		ft_putstr_fd("minivell: ", STDERR_FILENO);
+		perror("pipe error");
+		exit (EXIT_FAILURE);
 	}
 }
 
@@ -24,12 +37,7 @@ void	multi_process(t_shell *shell_info, t_exec *exec_info)
 	cmd = shell_info->cmd;
 	while (cmd)
 	{
-		if (pipe(exec_info->pipe) == FAILURE)
-		{
-			ft_putstr_fd("minivell: ", STDERR_FILENO);
-			perror("pipe error");
-			exit (EXIT_FAILURE);
-		}
+		open_pipe(exec_info);
 		pid = fork();
 		if (pid == FAILURE)
 		{
@@ -44,6 +52,5 @@ void	multi_process(t_shell *shell_info, t_exec *exec_info)
 		cmd = cmd->next;
 		order++;
 	}
-	wait_child(shell_info->pipe_cnt + 1);
-	set_signal(MINIVELL, MINIVELL);
+	wait_child(shell_info->pipe_cnt + 1, pid);
 }

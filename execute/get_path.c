@@ -2,7 +2,7 @@
 
 char	**get_path(void)
 {
-	char *path;
+	char	*path;
 
 	path = getenv("PATH");
 	if (path == NULL)

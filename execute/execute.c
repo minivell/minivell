@@ -14,7 +14,10 @@ void	execute(t_shell *shell_info)
 	if (shell_info->pipe_cnt == 0)
 		single_process(shell_info, exec_info);
 	else
+	{
 		multi_process(shell_info, exec_info);
+		set_signal(MINIVELL, MINIVELL);
+	}
 	if (dup2(origin_stdin, STDIN_FILENO) == -1)
 		exit(EXIT_FAILURE);
 	if (dup2(origin_stdout, STDOUT_FILENO) == -1)

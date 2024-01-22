@@ -10,11 +10,11 @@ char	*get_cmd_path(char *cmd, char **path)
 		return (cmd);
 	if (cmd == NULL || path == NULL)
 		return (NULL);
-	i = 0;
+	i = -1;
 	cmd_tmp = ft_strjoin("/", cmd);
 	if (cmd_tmp == NULL)
 		exit (EXIT_FAILURE);
-	while (path[i])
+	while (path[++i])
 	{
 		cmd_path = ft_strjoin(path[i], cmd_tmp);
 		if (cmd_path == NULL)
@@ -25,7 +25,6 @@ char	*get_cmd_path(char *cmd, char **path)
 			return (cmd_path);
 		}
 		free(cmd_path);
-		i++;
 	}
 	return (NULL);
 }

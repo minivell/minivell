@@ -19,7 +19,8 @@ void	exec_cmd(t_cmd *cmd, t_exec *exec_info, int child)
 	cmd_path = get_cmd_path(cmd->cmd_args[0], exec_info->path);
 	if (cmd_path == NULL && cmd->cmd_args[0][0] == '/')
 	{
-		print_error_message(cmd->cmd_args[0], NULL, "No such file or directory");
+		print_error_message(cmd->cmd_args[0], NULL, \
+			"No such file or directory");
 		exit (127);
 	}
 	execve(cmd_path, cmd->cmd_args, make_new_env(exec_info));
