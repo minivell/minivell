@@ -1,10 +1,5 @@
 #include "../minishell.h"
 
-int ft_isspace(int c)
-{
-	return (c == ' ' || c == '\t');
-}
-
 int is_space_outside_quotes(char c, t_quote quote)
 {
 	return ft_isspace(c) && !quote.quote_flag;

@@ -1,33 +1,5 @@
 #include "../minishell.h"
 
-void free_token_list(t_token *token)
-{
-	t_token *tmp;
-	if (token == NULL)
-		return ;
-	while (token)
-	{
-		tmp = token->next;
-		free(token->value);
-		free(token);
-		token = tmp;
-	}
-}
-
-void free_env_list(t_env *env)
-{
-	t_env *tmp;
-
-	while (env != NULL)
-	{
-		tmp = env->next;
-		free(env->key);
-		free(env->value);
-		free(env);
-		env = tmp;
-	}
-}
-
 int	parse_all(t_shell *shell_info, char *str)
 {
 	t_token *token;

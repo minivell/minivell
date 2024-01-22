@@ -59,6 +59,20 @@ typedef struct s_token
 	struct s_token	*next;
 }	t_token;
 
+typedef struct s_env_process 
+{
+	char	*str;
+	int		*i;
+	char	**res;
+	int		*start_idx;
+} t_env_process;
+
+typedef struct s_index 
+{
+	int current;
+	int start;
+}	t_index;
+
 // execute
 typedef struct s_exec
 {
