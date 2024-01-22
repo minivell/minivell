@@ -18,7 +18,7 @@ char	*get_cmd_path(char *cmd, char **path)
 	{
 		cmd_path = ft_strjoin(path[i], cmd_tmp);
 		if (cmd_path == NULL)
-			exit (EXIT_FAILURE); // need to "command not found" error handle
+			exit (EXIT_FAILURE);
 		if (access(cmd_path, X_OK) == SUCCESS)
 		{
 			free(cmd_tmp);
