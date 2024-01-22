@@ -1,16 +1,38 @@
 #include "../minishell.h"
 
-//void	replace_env_in_line(t_env *env, char  *line)
-//{
-//
-//}
+void	replace_env_in_line(char **line, t_env *env)
+{
+	int		i;
+	int		start_idx;
+	char	*key;
+	char	*value;
+	char	*tmp;
+
+	i = 0;
+	start_idx = 0;
+	while (i < (int)ft_strlen(*line) && (*line)[i])
+	{
+		if ((*line)[i] == '$' && (*line)[i + 1] != '\0')
+		{
+			start_idx = ++i;
+			key = find_key(*line, &i, &start_idx);
+			value = find_value(env, key, NULL);
+			free(key);
+			if (value == NULL)
+				continue ;
+			tmp = ft_strjoin_free(ft_substr(*line, 0, start_idx - 1), value);
+			*line = ft_strjoin_free(tmp, *line + i);
+			i = start_idx + ft_strlen(value) - 1;
+		}
+		i++;
+	}
+}
 
 void	exec_heredoc(t_env *env, char *new_filename, char *limiter)
 {
 	int		fd;
 	char	*line;
 
-	(void)env;
 	fd = open(new_filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == FAILURE)
 	{
@@ -27,7 +49,7 @@ void	exec_heredoc(t_env *env, char *new_filename, char *limiter)
 			free(line);
 			break ;
 		}
-//		replace_env_in_line(&line, env); -> TODO: key로 value 찾는 함수 있나 경아한테 물어보기
+		replace_env_in_line(&line, env);
 		write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);
 		free(line);

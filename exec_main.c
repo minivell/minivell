@@ -32,7 +32,7 @@ int	main(int ac, char *av[], char *envp[])
 	t_shell	shell_info;
 	struct termios	term;
 
- 	set_terminal_to_minivell(ac, av, &term);
+	set_terminal_to_minivell(ac, av, &term);
 	init_env(&shell_info.env, envp);
 	while (TRUE)
 	{
