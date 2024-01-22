@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-int exit_shell(char **cmd_args, int exit_flag)
+int	exit_shell(char **cmd_args, int exit_flag)
 {
 	if (exit_flag == FALSE)
 		printf("exit\n");
@@ -13,7 +13,8 @@ int exit_shell(char **cmd_args, int exit_flag)
 	}
 	if (check_num(cmd_args[1]) == FALSE)
 	{
-		print_error_message(cmd_args[0], cmd_args[1], "numeric argument required");
+		print_error_message(cmd_args[0], cmd_args[1], \
+			"numeric argument required");
 		exit(255);
 	}
 	if (exit_flag == TRUE)

@@ -24,7 +24,7 @@ int	cd(char **args, t_exec *exec_info)
 
 	cur_pwd = getcwd(NULL, 0);
 	if (args[1] == NULL || ft_strcmp(args[1], "~") == 0
-	|| ft_strcmp(args[1], "~/") == 0)
+		|| ft_strcmp(args[1], "~/") == 0)
 		path = getenv("HOME");
 	else
 		path = args[1];

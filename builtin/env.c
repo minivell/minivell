@@ -1,8 +1,8 @@
 #include "../minishell.h"
 
-int env(t_exec *exec_info)
+int	env(t_exec *exec_info)
 {
-	t_env *env;
+	t_env	*env;
 
 	env = exec_info->env;
 	while (env)
