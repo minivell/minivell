@@ -1,8 +1,8 @@
 #include "../minishell.h"
 
-void free_cmd_list(t_cmd *cmd)
+void	free_cmd_list(t_cmd *cmd)
 {
-	t_cmd *tmp;
+	t_cmd	*tmp;
 
 	while (cmd)
 	{
@@ -14,10 +14,10 @@ void free_cmd_list(t_cmd *cmd)
 	}
 }
 
-
-void free_token_list(t_token *token)
+void	free_token_list(t_token *token)
 {
-	t_token *tmp;
+	t_token	*tmp;
+
 	if (token == NULL)
 		return ;
 	while (token)
@@ -29,9 +29,9 @@ void free_token_list(t_token *token)
 	}
 }
 
-void free_env_list(t_env *env)
+void	free_env_list(t_env *env)
 {
-	t_env *tmp;
+	t_env	*tmp;
 
 	while (env != NULL)
 	{

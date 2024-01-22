@@ -2,7 +2,8 @@
 
 int	parse_all(t_shell *shell_info, char *str)
 {
-	t_token *token;
+	t_token	*token;
+
 	token = NULL;
 	init_shell(shell_info);
 	if (quote_error(str) != EXIT_SUCCESS)
@@ -17,7 +18,6 @@ int	parse_all(t_shell *shell_info, char *str)
 	if (validate_token(&token) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
 	shell_info->cmd = tokens_to_cmds(token);
-
 
 	///////////////////////////출력 확인 코드 모음///////////////////////////////
 

@@ -1,8 +1,8 @@
 #include "../minishell.h"
 
-t_redir *new_redir(t_type type, char *filename)
+t_redir	*new_redir(t_type type, char *filename)
 {
-	t_redir *new;
+	t_redir	*new;
 
 	new = (t_redir *)malloc(sizeof(t_redir));
 	if (!new)
@@ -13,9 +13,9 @@ t_redir *new_redir(t_type type, char *filename)
 	return (new);
 }
 
-void    add_back_redir(t_redir **redir, t_redir *new)
+void	add_back_redir(t_redir **redir, t_redir *new)
 {
-	t_redir *curr;
+	t_redir	*curr;
 
 	if (!redir || !new)
 		return ;
@@ -30,10 +30,10 @@ void    add_back_redir(t_redir **redir, t_redir *new)
 	curr->next = new;
 }
 
-void    free_redir(t_redir *redir)
+void	free_redir(t_redir *redir)
 {
-	t_redir *curr;
-	t_redir *tmp;
+	t_redir	*curr;
+	t_redir	*tmp;
 
 	if (!redir)
 		return ;
