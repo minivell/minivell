@@ -10,10 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+int	ft_isdigit(char *str)
 {
-	if ('0' <= c && c <= '9')
-		return (1);
-	else
-		return (0);
+	while (*str)
+	{
+		if (!('0' <= *str && *str <= '9'))
+			return (0);
+		str++;
+	}
+	return (1);
 }
