@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:10:57 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 10:10:58 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 14:44:59 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	print_export(t_exec *exec_info)
 int	export(t_exec *exec_info, char **args)
 {
 	int		i;
+	int		j;
 	char	*key;
 	char	*value;
 
@@ -34,12 +35,17 @@ int	export(t_exec *exec_info, char **args)
 		print_export(exec_info);
 	else
 	{
-		i = 0;
-		while (args[1][i] && args[1][i] != '=')
+		i = 1;
+		while (args[i])
+		{
+			j = 0;
+			while (args[i][j] && args[i][j] != '=')
+				j++;
+			key = ft_substr(args[i], 0, j);
+			value = ft_substr(args[i], j + 1, ft_strlen(args[i]) - j - 1);
+			env_add_back(&exec_info->env, new_env(key, value));
 			i++;
-		key = ft_substr(args[1], 0, i);
-		value = ft_substr(args[1], i + 1, ft_strlen(args[1]) - i - 1);
-		env_add_back(&exec_info->env, new_env(key, value));
+		}
 	}
 	return (g_exit_code);
 }
