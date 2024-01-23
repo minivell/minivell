@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gykoh <gykoh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 13:53:15 by gykoh             #+#    #+#             */
-/*   Updated: 2024/01/23 13:53:16 by gykoh            ###   ########.fr       */
+/*   Updated: 2024/01/23 14:11:04 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-extern int	g_exit_code;
+int	g_exit_code;
 
 /*parse*/
 
