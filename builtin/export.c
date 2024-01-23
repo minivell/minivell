@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:10:57 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 18:35:53 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 19:35:08 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static int	check_key_dup(t_env *env, char *key, char *value)
 		if (ft_strcmp(node->key, key) == 0)
 		{
 			free(node->value);
+			free(key);
 			node->value = value;
 			return (TRUE);
 		}
