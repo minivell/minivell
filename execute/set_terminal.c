@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-void set_terminal_to_minivell(int ac, char *av[], struct termios *term)
+void	set_terminal_to_minivell(int ac, char *av[], struct termios *term)
 {
 	(void) av;
 	if (ac != 1)

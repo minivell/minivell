@@ -6,13 +6,13 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:13:36 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 13:45:19 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 13:51:19 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static void rebase_fd_n_free(t_shell *shell_info, t_exec *exec_info, \
+static void	rebase_fd_n_free(t_shell *shell_info, t_exec *exec_info, \
 	int origin_stdin, int origin_stdout)
 {
 	close(origin_stdin);
