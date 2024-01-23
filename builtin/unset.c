@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:11:08 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 10:11:10 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 17:10:06 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,26 @@ int	unset(t_exec *exec_info, char **args)
 	t_env	*node;
 	t_env	*prev;
 	t_env	*tmp;
+	int		i;
 
-	node = exec_info->env;
-	while (node)
+	i = -1;
+	while (args[++i])
 	{
-		if (ft_strcmp(node->key, args[1]) == 0)
+		node = exec_info->env;
+		while (node)
 		{
-			tmp = node;
-			prev->next = tmp->next;
-			free(tmp->key);
-			free(tmp->value);
-			free(tmp);
-			return (g_exit_code);
+			if (ft_strcmp(node->key, args[i]) == 0)
+			{
+				tmp = node;
+				prev->next = tmp->next;
+				free(tmp->key);
+				free(tmp->value);
+				free(tmp);
+				break ;
+			}
+			prev = node;
+			node = node->next;
 		}
-		prev = node;
-		node = node->next;
 	}
 	return (g_exit_code);
 }
