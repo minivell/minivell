@@ -6,13 +6,14 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:11:08 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 19:32:30 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 20:31:18 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static int	unset_process(t_env *node, t_env *prev, t_exec *exec_info, char *str)
+static int	unset_process(t_env *node, t_env *prev, \
+	t_exec *exec_info, char *str)
 {
 	t_env	*tmp;
 
