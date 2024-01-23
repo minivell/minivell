@@ -4,8 +4,8 @@ int	g_exit_code;
 
 int	main(int ac, char *av[], char *envp[])
 {
-	char	*str;
-	t_shell	shell_info;
+	char			*str;
+	t_shell			shell_info;
 	struct termios	term;
 
 	set_terminal_to_minivell(ac, av, &term);
