@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gykoh <gykoh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 13:53:29 by gykoh             #+#    #+#             */
-/*   Updated: 2024/01/23 13:53:29 by gykoh            ###   ########.fr       */
+/*   Updated: 2024/01/23 14:05:18 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	g_exit_code;
 
 int	main(int ac, char *av[], char *envp[])
 {
