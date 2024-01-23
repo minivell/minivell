@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:10:50 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 14:29:41 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 20:46:39 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	exit_shell(char **cmd_args, int exit_flag)
 {
 	if (exit_flag == FALSE)
-		printf("exit\n");
+		write(1, "exit\n", 5);
 	if (cmd_args[1] == NULL)
 		exit(EXIT_SUCCESS);
 	if (cmd_args[2] != NULL)

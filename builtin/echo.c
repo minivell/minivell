@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:10:35 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 14:48:52 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 20:46:23 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	echo(char **args)
 	newline = TRUE;
 	if (args[idx] == NULL)
 	{
-		printf("\n");
+		write(1, "\n", 1);
 		return (SUCCESS);
 	}
 	while (args[++idx] && ft_strcmp(args[idx], "-n") == 0)
@@ -45,12 +45,12 @@ int	echo(char **args)
 		newline = is_newline(args[idx], &idx);
 	while (args[idx])
 	{
-		printf("%s", args[idx]);
+		write(1, args[idx], ft_strlen(args[idx]));
 		if (args[idx + 1])
-			printf(" ");
+			write(1, " ", 1);
 		idx++;
 	}
 	if (newline == TRUE)
-		printf("\n");
+		write(1, "\n", 1);
 	return (SUCCESS);
 }

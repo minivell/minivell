@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:10:57 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 20:25:25 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 20:48:21 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,15 @@ static void	print_export(t_exec *exec_info)
 	node = *exec_info->env;
 	while (node)
 	{
-		printf("declare -x %s=\"%s\"\n", node->key, node->value);
+		write(1, "declare -x ", 11);
+		write(1, node->key, ft_strlen(node->key));
+		if (node->value)
+		{
+			write(1, "=\"", 2);
+			write(1, node->value, ft_strlen(node->value));
+			write(1, "\"", 1);
+		}
+		write(1, "\n", 1);
 		node = node->next;
 	}
 }
