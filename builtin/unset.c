@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:11:08 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 17:10:06 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 18:12:25 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	unset(t_exec *exec_info, char **args)
 	t_env	*tmp;
 	int		i;
 
-	i = -1;
+	i = 0;
 	while (args[++i])
 	{
 		node = exec_info->env;
