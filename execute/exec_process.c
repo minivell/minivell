@@ -24,6 +24,6 @@ int order, int last_child)
 	}
 	close(exec_info->pipe[O_STREAM]);
 	if (set_for_redir(exec_info, cmd->redir) == FALSE)
-		return ;
+		exit (EXIT_FAILURE);
 	exec_cmd(cmd, exec_info, TRUE);
 }
