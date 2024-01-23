@@ -6,13 +6,13 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:11:08 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 18:36:06 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 19:32:30 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static int	tmp(t_env *node, t_env *prev, t_exec *exec_info, char *str)
+static int	unset_process(t_env *node, t_env *prev, t_exec *exec_info, char *str)
 {
 	t_env	*tmp;
 
@@ -44,7 +44,7 @@ int	unset(t_exec *exec_info, char **args)
 		prev = NULL;
 		while (node)
 		{
-			if (tmp(node, prev, exec_info, args[i]) == FALSE)
+			if (unset_process(node, prev, exec_info, args[i]) == FALSE)
 				break ;
 			prev = node;
 			node = node->next;
