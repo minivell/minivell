@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:14:01 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 10:14:02 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 13:51:06 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,9 @@ void	exec_cmd(t_cmd *cmd, t_exec *exec_info, int child)
 	{
 		print_error_message(cmd->cmd_args[0], NULL, \
 			"No such file or directory");
-		g_exit_code = 127;
 		exit (g_exit_code);
 	}
 	execve(cmd_path, cmd->cmd_args, make_new_env(exec_info));
 	print_error_message(cmd->cmd_args[0], NULL, "command not found");
-	g_exit_code = 127;
-	exit(g_exit_code);
+	exit(127);
 }

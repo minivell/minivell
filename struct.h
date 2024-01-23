@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gykoh <gykoh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 13:53:08 by gykoh             #+#    #+#             */
-/*   Updated: 2024/01/23 13:53:09 by gykoh            ###   ########.fr       */
+/*   Updated: 2024/01/23 13:57:48 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ typedef struct s_convert_env
 // execute
 typedef struct s_exec
 {
-	int 	infile_fd;
+	int		infile_fd;
 	int		outfile_fd;
 	int		pipe[2];
 	char	**path;

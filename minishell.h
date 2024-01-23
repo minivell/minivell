@@ -183,6 +183,10 @@ void	single_process(t_shell *shell_info, t_exec *exec_info);
 // [execute/set_for_redir.c]
 int		set_for_redir(t_exec *exec_info, t_redir *redir);
 
+// [execute/set_terminal.c]
+void	set_terminal_to_minivell(int ac, char *av[], struct termios *term);
+void	set_terminal_to_origin(struct termios *term, t_shell *shell_info);
+
 // [execute/unlink_heredoc.c]
 void	unlink_heredoc(void);
 
@@ -214,6 +218,5 @@ int		pwd(void);
 
 // [builtin/unset.c]
 int		unset(t_exec *exec_info, char **args);
-
 
 #endif

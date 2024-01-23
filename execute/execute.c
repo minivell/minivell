@@ -6,11 +6,22 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:13:36 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 10:13:37 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 13:51:19 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+static void	rebase_fd_n_free(t_shell *shell_info, t_exec *exec_info, \
+	int origin_stdin, int origin_stdout)
+{
+	close(origin_stdin);
+	close(origin_stdout);
+	free_str_arr(exec_info->path);
+	free(exec_info);
+	set_signal(MINIVELL, MINIVELL);
+	free_cmd_list(shell_info->cmd);
+}
 
 void	execute(t_shell *shell_info)
 {
@@ -34,9 +45,5 @@ void	execute(t_shell *shell_info)
 		exit(EXIT_FAILURE);
 	if (dup2(origin_stdout, STDOUT_FILENO) == -1)
 		exit(EXIT_FAILURE);
-	close(origin_stdin);
-	close(origin_stdout);
-	free_str_arr(exec_info->path);
-	free(exec_info);
-	set_signal(MINIVELL, MINIVELL);
+	rebase_fd_n_free(shell_info, exec_info, origin_stdin, origin_stdout);
 }
