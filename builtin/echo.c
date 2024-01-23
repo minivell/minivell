@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:10:35 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 10:10:36 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 14:48:52 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	echo(char **args)
 	}
 	while (args[++idx] && ft_strcmp(args[idx], "-n") == 0)
 		newline = FALSE;
-	if (ft_strncmp(args[idx], "-n", 2) == 0)
+	if (args[idx] && ft_strncmp(args[idx], "-n", 2) == 0)
 		newline = is_newline(args[idx], &idx);
 	while (args[idx])
 	{
