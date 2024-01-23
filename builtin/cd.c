@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:10:09 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 18:35:37 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 20:30:59 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	set_oldpwd(t_exec *exec_info, char *oldpwd)
 		}
 		node = node->next;
 	}
+	free(oldpwd);
 }
 
 int	cd(char **args, t_exec *exec_info)
