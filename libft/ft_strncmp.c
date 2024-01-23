@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: gykoh <gykoh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:39:33 by eushin            #+#    #+#             */
-/*   Updated: 2023/03/17 15:40:47 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 13:46:56 by gykoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
