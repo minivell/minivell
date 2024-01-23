@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:10:57 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 14:44:59 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 16:53:37 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,46 @@ static void	print_export(t_exec *exec_info)
 	}
 }
 
+static int	check_key_dup(t_env *env, char *key, char *value)
+{
+	t_env	*node;
+
+	node = env;
+	while (node)
+	{
+		if (ft_strcmp(node->key, key) == 0)
+		{
+			free(node->value);
+			node->value = value;
+			return (TRUE);
+		}
+		node = node->next;
+	}
+	return (FALSE);
+}
+
+static int	make_env(char **args, int *i, t_exec *exec_info)
+{
+	char	*key;
+	char	*value;
+	int		idx;
+	int		j;
+
+	j = 0;
+	idx = *i;
+	while (args[idx][j] && args[idx][j] != '=')
+		j++;
+	key = ft_substr(args[idx], 0, j);
+	value = ft_substr(args[idx], j + 1, ft_strlen(args[idx]) - j - 1);
+	if (check_key_dup(exec_info->env, key, value) == TRUE)
+		return (idx + 1);
+	env_add_back(&exec_info->env, new_env(key, value));
+	return (idx + 1);
+}
+
 int	export(t_exec *exec_info, char **args)
 {
 	int		i;
-	int		j;
-	char	*key;
-	char	*value;
 
 	if (args[1] == NULL)
 		print_export(exec_info);
@@ -37,15 +71,7 @@ int	export(t_exec *exec_info, char **args)
 	{
 		i = 1;
 		while (args[i])
-		{
-			j = 0;
-			while (args[i][j] && args[i][j] != '=')
-				j++;
-			key = ft_substr(args[i], 0, j);
-			value = ft_substr(args[i], j + 1, ft_strlen(args[i]) - j - 1);
-			env_add_back(&exec_info->env, new_env(key, value));
-			i++;
-		}
+			i = make_env(args, &i, exec_info);
 	}
 	return (g_exit_code);
 }
