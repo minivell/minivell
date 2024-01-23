@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:14:24 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 10:14:25 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 18:40:49 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	**make_new_env(t_exec *exec_info)
 	char	**new_env;
 
 	i = 0;
-	node = exec_info->env;
+	node = *exec_info->env;
 	new_env = malloc(sizeof(char *) * (get_envlen(node) + 1));
 	while (node)
 	{
