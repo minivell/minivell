@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_terminal.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gykoh <gykoh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 13:59:16 by gykoh             #+#    #+#             */
-/*   Updated: 2024/01/23 13:59:17 by gykoh            ###   ########.fr       */
+/*   Updated: 2024/01/23 23:44:20 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	set_terminal_to_minivell(int ac, char *av[], struct termios *term)
 {
+	struct termios	term_curr;
+
 	(void) av;
 	if (ac != 1)
 	{
@@ -22,7 +24,9 @@ void	set_terminal_to_minivell(int ac, char *av[], struct termios *term)
 	}
 	if (tcgetattr(STDIN_FILENO, term) == FAILURE)
 		exit(EXIT_FAILURE);
-	term->c_lflag &= ~(ECHOCTL);
+	if (tcgetattr(STDIN_FILENO, &term_curr) == FAILURE)
+		exit(EXIT_FAILURE);
+	term_curr.c_lflag &= ~(ECHOCTL);
 	set_signal(MINIVELL, MINIVELL);
 }
 
