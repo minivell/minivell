@@ -34,14 +34,14 @@ static void	outdir(t_exec *exec_info, t_redir *node)
 	close(exec_info->outfile_fd);
 }
 
-static void	indir_n_heredoc(t_exec *exec_info, t_redir *node)
+static int	indir_n_heredoc(t_exec *exec_info, t_redir *node)
 {
 	exec_info->infile_fd = open(node->filename, O_RDONLY);
 	if (exec_info->infile_fd == FAILURE)
 	{
 		g_exit_code = 1;
 		print_error_message(node->filename, NULL, "No such file or directory");
-		exit (EXIT_FAILURE);
+		return (FAILURE);
 	}
 	if (dup2(exec_info->infile_fd, STDIN_FILENO) == FAILURE)
 	{
@@ -49,6 +49,7 @@ static void	indir_n_heredoc(t_exec *exec_info, t_redir *node)
 		exit (EXIT_FAILURE);
 	}
 	close(exec_info->infile_fd);
+	return (SUCCESS);
 }
 
 int	set_for_redir(t_exec *exec_info, t_redir *redir)
@@ -61,7 +62,10 @@ int	set_for_redir(t_exec *exec_info, t_redir *redir)
 	while (node)
 	{
 		if (node->type == IN_REDIR || node->type == HEREDOC)
-			indir_n_heredoc(exec_info, node);
+		{
+			if (indir_n_heredoc(exec_info, node) == FAILURE)
+				return (FALSE);
+		}
 		else if (node->type == OUT_REDIR)
 			outdir(exec_info, node);
 		else if (node->type == APPEND_REDIR)
