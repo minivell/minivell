@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:10:57 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 16:53:37 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 18:35:53 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	print_export(t_exec *exec_info)
 {
 	t_env	*node;
 
-	node = exec_info->env;
+	node = *exec_info->env;
 	while (node)
 	{
 		printf("declare -x %s=\"%s\"\n", node->key, node->value);
@@ -55,9 +55,9 @@ static int	make_env(char **args, int *i, t_exec *exec_info)
 		j++;
 	key = ft_substr(args[idx], 0, j);
 	value = ft_substr(args[idx], j + 1, ft_strlen(args[idx]) - j - 1);
-	if (check_key_dup(exec_info->env, key, value) == TRUE)
+	if (check_key_dup(*exec_info->env, key, value) == TRUE)
 		return (idx + 1);
-	env_add_back(&exec_info->env, new_env(key, value));
+	env_add_back(&(*exec_info->env), new_env(key, value));
 	return (idx + 1);
 }
 

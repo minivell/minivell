@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 13:53:08 by gykoh             #+#    #+#             */
-/*   Updated: 2024/01/23 13:57:48 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 18:35:17 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ typedef struct s_exec
 	int		outfile_fd;
 	int		pipe[2];
 	char	**path;
-	t_env	*env;
+	t_env	**env;
 }	t_exec;
 
 #endif

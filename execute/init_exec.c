@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:13:41 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 16:37:33 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 18:36:27 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_exec	*init_exec(t_shell *shell_info)
 
 	exec_info = malloc(sizeof(t_exec));
 	ft_memset(exec_info, 0, sizeof(t_exec));
-	exec_info->env = shell_info->env;
+	exec_info->env = &shell_info->env;
 	exec_info->path = get_path(shell_info);
 	return (exec_info);
 }

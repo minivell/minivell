@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:10:09 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 15:32:25 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 18:35:37 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	set_oldpwd(t_exec *exec_info, char *oldpwd)
 {
 	t_env	*node;
 
-	node = exec_info->env;
+	node = *exec_info->env;
 	while (node)
 	{
 		if (ft_strcmp(node->key, "OLDPWD") == 0)
