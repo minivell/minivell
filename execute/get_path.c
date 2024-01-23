@@ -6,18 +6,24 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:13:02 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 10:13:05 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 16:37:41 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	**get_path(void)
+char	**get_path(t_shell *shell_info)
 {
-	char	*path;
+	t_env	*node;
 
-	path = getenv("PATH");
-	if (path == NULL)
+	node = shell_info->env;
+	while (node)
+	{
+		if (!ft_strcmp(node->key, "PATH"))
+			break ;
+		node = node->next;
+	}
+	if (!node)
 		return (NULL);
-	return (ft_split(path, ':'));
+	return (ft_split((char const *)node->value, ':'));
 }

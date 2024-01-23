@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 13:53:15 by gykoh             #+#    #+#             */
-/*   Updated: 2024/01/23 14:25:25 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 16:37:24 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ void	execute(t_shell *shell_info);
 char	*get_cmd_path(char *cmd, char **path);
 
 // [execute/get_path.c]
-char	**get_path(void);
+char	**get_path(t_shell *shell_info);
 
 // [execute/init_exec.c]
 t_exec	*init_exec(t_shell *shell_info);
