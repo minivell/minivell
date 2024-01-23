@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:10:57 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 19:58:40 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 20:25:25 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,28 @@ static int	check_key_dup(t_env *env, char *key, char *value)
 	return (FALSE);
 }
 
+static int	is_valid_key(char *key)
+{
+	int		i;
+
+	i = 0;
+	if (ft_isdigit(key[i]))
+	{
+		free(key);
+		return (FALSE);
+	}
+	while (key[i])
+	{
+		if (ft_isalnum(key[i]) == FALSE && key[i] != '_')
+		{
+			free(key);
+			return (FALSE);
+		}
+		i++;
+	}
+	return (TRUE);
+}
+
 static int	make_env(char **args, int *i, t_exec *exec_info)
 {
 	char	*key;
@@ -54,9 +76,14 @@ static int	make_env(char **args, int *i, t_exec *exec_info)
 	idx = *i;
 	while (args[idx][j] && args[idx][j] != '=')
 		j++;
-	if (args[idx][j] != '=')
-		return (idx + 1);
 	key = ft_substr(args[idx], 0, j);
+	if (is_valid_key(key) == FALSE)
+		return (-100);
+	if (args[idx][j] != '=')
+	{
+		free(key);
+		return (idx + 1);
+	}
 	value = ft_substr(args[idx], j + 1, ft_strlen(args[idx]) - j - 1);
 	if (check_key_dup(*exec_info->env, key, value) == TRUE)
 		return (idx + 1);
@@ -67,6 +94,7 @@ static int	make_env(char **args, int *i, t_exec *exec_info)
 int	export(t_exec *exec_info, char **args)
 {
 	int		i;
+	int		flag;
 
 	if (args[1] == NULL)
 		print_export(exec_info);
@@ -74,7 +102,16 @@ int	export(t_exec *exec_info, char **args)
 	{
 		i = 1;
 		while (args[i])
-			i = make_env(args, &i, exec_info);
+		{
+			flag = make_env(args, &i, exec_info);
+			if (flag == -100)
+			{
+				print_error_message("export", args[i],
+					"not a valid identifier", 1);
+				return (g_exit_code);
+			}
+			i = flag;
+		}
 	}
 	return (g_exit_code);
 }
