@@ -6,11 +6,13 @@
 /*   By: gykoh <gykoh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:08:20 by gykoh             #+#    #+#             */
-/*   Updated: 2024/01/22 15:08:31 by gykoh            ###   ########.fr       */
+/*   Updated: 2024/01/23 13:45:13 by gykoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_isspace(int c)
+#include "libft.h"
+
+int	ft_isspace(int c)
 {
 	return (c == ' ' || c == '\t');
 }
