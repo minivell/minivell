@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:10:57 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 19:35:08 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 19:58:40 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static int	make_env(char **args, int *i, t_exec *exec_info)
 	idx = *i;
 	while (args[idx][j] && args[idx][j] != '=')
 		j++;
+	if (args[idx][j] != '=')
+		return (idx + 1);
 	key = ft_substr(args[idx], 0, j);
 	value = ft_substr(args[idx], j + 1, ft_strlen(args[idx]) - j - 1);
 	if (check_key_dup(*exec_info->env, key, value) == TRUE)
