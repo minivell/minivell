@@ -9,7 +9,6 @@ static void	print_error(void)
 
 void	single_process(t_shell *shell_info, t_exec *exec_info)
 {
-	int		status;
 	pid_t	pid;
 
 	set_signal(DEFAULT, DEFAULT);
@@ -30,6 +29,5 @@ void	single_process(t_shell *shell_info, t_exec *exec_info)
 			exec_cmd(shell_info->cmd, exec_info, FALSE);
 		}
 		wait_child(1, pid);
-		g_exit_code = WEXITSTATUS(status);
 	}
 }
