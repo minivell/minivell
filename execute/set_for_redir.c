@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:14:29 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 10:14:30 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 14:28:04 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ static int	indir_n_heredoc(t_exec *exec_info, t_redir *node)
 	if (exec_info->infile_fd == FAILURE)
 	{
 		g_exit_code = 1;
-		print_error_message(node->filename, NULL, "No such file or directory");
+		print_error_message(node->filename, NULL, "No such file or directory", \
+			g_exit_code);
 		return (FAILURE);
 	}
 	if (dup2(exec_info->infile_fd, STDIN_FILENO) == FAILURE)

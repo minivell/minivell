@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:10:43 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 10:10:44 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 14:26:44 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	env(t_exec *exec_info, char **cmd_args)
 	if (cmd_args[1])
 	{
 		print_error_message("env", cmd_args[1], \
-			"No such file or directory");
-		return (127);
+			"No such file or directory", 127);
+		return (g_exit_code);
 	}
 	env = exec_info->env;
 	while (env)

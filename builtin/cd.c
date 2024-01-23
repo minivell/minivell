@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:10:09 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 10:10:11 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 14:26:41 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ int	cd(char **args, t_exec *exec_info)
 		path = args[1];
 	if (path == NULL)
 	{
-		print_error_message("cd", NULL, "HOME not set");
-		return (1);
+		print_error_message("cd", NULL, "HOME not set", 1);
+		return (g_exit_code);
 	}
 	if (chdir(path) == FAILURE)
 	{
-		print_error_message(args[0], args[1], "No such file or directory");
-		return (1);
+		print_error_message(args[0], args[1], "No such file or directory", 1);
+		return (g_exit_code);
 	}
 	set_oldpwd(exec_info, cur_pwd);
 	return (g_exit_code);

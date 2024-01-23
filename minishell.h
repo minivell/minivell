@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 13:53:15 by gykoh             #+#    #+#             */
-/*   Updated: 2024/01/23 14:11:04 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 14:25:25 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ char	*find_key(char *value, int *i, int *start_idx);
 int		check_num(char *str);
 
 // [execute/error.c]
-void	print_error_message(char *cmd, char *arg, char *msg);
+void	print_error_message(char *cmd, char *arg, char *msg, int exit_num);
 
 // [execute/exec_cmd.c]
 void	exec_cmd(t_cmd *cmd, t_exec *exec_info, int child);
