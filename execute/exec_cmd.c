@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_cmd.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/23 10:14:01 by eushin            #+#    #+#             */
+/*   Updated: 2024/01/23 10:14:02 by eushin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	exec_cmd(t_cmd *cmd, t_exec *exec_info, int child)
@@ -21,9 +33,11 @@ void	exec_cmd(t_cmd *cmd, t_exec *exec_info, int child)
 	{
 		print_error_message(cmd->cmd_args[0], NULL, \
 			"No such file or directory");
-		exit (127);
+		g_exit_code = 127;
+		exit (g_exit_code);
 	}
 	execve(cmd_path, cmd->cmd_args, make_new_env(exec_info));
 	print_error_message(cmd->cmd_args[0], NULL, "command not found");
-	exit(127);
+	g_exit_code = 127;
+	exit(g_exit_code);
 }

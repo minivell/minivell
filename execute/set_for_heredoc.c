@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_for_heredoc.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/23 10:13:47 by eushin            #+#    #+#             */
+/*   Updated: 2024/01/23 10:13:48 by eushin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	replace_env_in_line(char **line, t_env *env)
@@ -75,6 +87,7 @@ static void	replace_filename(t_cmd *node, t_shell *shell_info, int num)
 				num++;
 				exec_heredoc(shell_info->env, new_filename, \
 				tmp_redir->filename);
+				free(tmp_redir->filename);
 				tmp_redir->filename = new_filename;
 				free(n);
 			}

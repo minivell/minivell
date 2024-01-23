@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   single_process.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/23 10:13:22 by eushin            #+#    #+#             */
+/*   Updated: 2024/01/23 10:13:23 by eushin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 static void	print_error(void)
@@ -9,7 +21,6 @@ static void	print_error(void)
 
 void	single_process(t_shell *shell_info, t_exec *exec_info)
 {
-	int		status;
 	pid_t	pid;
 
 	set_signal(DEFAULT, DEFAULT);
@@ -30,6 +41,5 @@ void	single_process(t_shell *shell_info, t_exec *exec_info)
 			exec_cmd(shell_info->cmd, exec_info, FALSE);
 		}
 		wait_child(1, pid);
-		g_exit_code = WEXITSTATUS(status);
 	}
 }

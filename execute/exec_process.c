@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_process.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/23 10:12:55 by eushin            #+#    #+#             */
+/*   Updated: 2024/01/23 10:12:57 by eushin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	exec_parents_process(t_exec *exec_info)
@@ -24,6 +36,6 @@ int order, int last_child)
 	}
 	close(exec_info->pipe[O_STREAM]);
 	if (set_for_redir(exec_info, cmd->redir) == FALSE)
-		return ;
+		exit (EXIT_FAILURE);
 	exec_cmd(cmd, exec_info, TRUE);
 }
