@@ -6,7 +6,7 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:10:43 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 20:47:00 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 22:45:02 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	env(t_exec *exec_info, char **cmd_args)
 		write(1, env->key, ft_strlen(env->key));
 		write(1, "=", 1);
 		write(1, env->value, ft_strlen(env->value));
+		write(1, "\n", 1);
 		env = env->next;
 	}
 	return (SUCCESS);
