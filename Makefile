@@ -23,6 +23,7 @@ EXEC_SRCS =		./execute/check_num.c\
 				./execute/multi_process.c\
 				./execute/set_for_heredoc.c\
 				./execute/set_for_redir.c\
+				./execute/set_terminal.c\
 				./execute/unlink_heredoc.c\
 				./execute/wait_child.c\
 				./builtin/cd.c\
