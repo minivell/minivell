@@ -6,11 +6,22 @@
 /*   By: eushin <eushin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:13:47 by eushin            #+#    #+#             */
-/*   Updated: 2024/01/23 10:13:48 by eushin           ###   ########.fr       */
+/*   Updated: 2024/01/23 23:20:42 by eushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	repalce_env_process(char **line, int i, int start_idx, char *value)
+{
+	char	*tmp;
+	char	*tmp2;
+
+	tmp = ft_strjoin_free(ft_substr(*line, 0, start_idx - 1), value);
+	tmp2 = ft_strjoin_free(tmp, *line + i);
+	free(*line);
+	*line = tmp2;
+}
 
 void	replace_env_in_line(char **line, t_env *env)
 {
@@ -18,7 +29,6 @@ void	replace_env_in_line(char **line, t_env *env)
 	int		start_idx;
 	char	*key;
 	char	*value;
-	char	*tmp;
 
 	i = 0;
 	start_idx = 0;
@@ -32,8 +42,7 @@ void	replace_env_in_line(char **line, t_env *env)
 			free(key);
 			if (value == NULL)
 				continue ;
-			tmp = ft_strjoin_free(ft_substr(*line, 0, start_idx - 1), value);
-			*line = ft_strjoin_free(tmp, *line + i);
+			repalce_env_process(line, i, start_idx, value);
 			i = start_idx + ft_strlen(value) - 1;
 		}
 		i++;
